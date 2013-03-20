@@ -1,0 +1,111 @@
+<?php
+global $wp_theme;
+$config = $wp_theme->config;
+?>
+
+<?php include_once('normalize.less') ?>;
+
+
+/* ==|== typography ========================================================= */
+
+
+/* ==|== primary styles ===================================================== */
+
+
+.wpcf7 .watermark {
+    color: @input-placeholder-text-color !important;
+}
+
+::-webkit-input-placeholder {
+    color: @input-placeholder-text-color;
+}
+
+:-moz-placeholder {
+    color: @input-placeholder-text-color;
+}
+
+.sidebar {
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+
+.entry-content {
+    <?php include('entry-content.less'); ?>
+}
+
+/* Contact Form 7 styling */
+.wpcf7 {
+    .wpcf7-form-control-wrap {
+        display: block;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .wpcf7-submit {
+        margin-top: 7px;
+    }
+    
+    .wpcf7-response-output {
+        clear: both;
+        margin: 0;
+        padding: 0.4em 1em;
+        .border-radius(4px);
+        .box-shadow(1px 1px 6px rgba(0, 0, 0, 0.4));
+    }
+    
+    .wpcf7-not-valid-tip {
+        padding-left: 10px;
+        width: 260px;
+        .border-radius(2px);
+        .box-shadow(1px 1px 6px rgba(0, 0, 0, 0.4));
+    }
+    
+    .wpcf7-mail-sent-ok,
+    .wpcf7-mail-sent-ng,
+    .wpcf7-spam-blocked {
+        color: #fff;
+    }
+    
+    .wpcf7-mail-sent-ok {
+        background: #398f14 !important;
+        text-shadow: 1px 1px #060;
+    }
+    
+    .wpcf7-mail-sent-ng {
+        background: #f00 !important;
+        text-shadow: 1px 1px #900;
+    }
+    
+    .wpcf7-spam-blocked {
+        background: #ffa500 !important;
+        text-shadow: 1px 1px #c80;
+    }
+    
+    .wpcf7-validation-errors {
+        color: #363600;
+        border-color: #fff181 !important;
+        background: #fff181 !important;
+        text-shadow: 1px 1px #d7cc67;
+    }
+}
+
+
+/* ==|== print styles ======================================================= */
+ 
+@media print {
+  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; } 
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+

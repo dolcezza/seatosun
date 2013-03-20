@@ -1,0 +1,83 @@
+/* -----------------------------------------------------------------------------
+    These styles will be applied to both .entry-content on the front-end and
+    the WordPress visual editor on the back-end. This way posts, pages, etc.
+    will more-or-less look the same when you're creating / editing them as
+    they do when they're live on the site
+------------------------------------------------------------------------------*/
+
+/* body / .entry-content { */
+
+    font-size: 14px;
+    font-family: @entry-content-font-stack;
+    line-height: 1.3em;
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: @default-heading-text-color;
+        line-height: 1.3em;
+    }
+    
+    h1 {
+        font-size: 22px;
+        font-weight: normal;
+    }
+    
+    h2 {
+        font-size: 19px;
+    }
+    
+    h3 {
+        font-size: 16px;
+    }
+    
+    h2,
+    h3 {
+        margin: 0;
+    }
+    
+    h4,
+    h5,
+    h6 {
+        color: @default-text-color;
+        font-size: 16px;
+    }
+    
+    p {
+        margin-top: 0;
+    }
+    
+    a {
+        color: @default-link-text-color;
+        text-decoration: none;
+    }
+    
+    .alignleft,
+    .alignright,
+    .aligncenter {
+        display: block;
+    }
+    
+    .alignleft {
+        float: left;
+    }
+    
+    .alignright {
+        float: right;
+    }
+    
+    .aligncenter {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .contact-info {
+        p {
+            margin: 0;
+        }
+    }
+
+/* } */

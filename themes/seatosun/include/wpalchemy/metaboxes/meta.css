@@ -1,0 +1,94 @@
+/* Default Styles */
+.custom-metabox .description
+{ display:none; }
+ 
+.custom-metabox label
+{ font-weight:bold; }
+ 
+.custom-metabox label span
+{ display:inline; font-weight:normal; }
+ 
+.custom-metabox span
+{ color:#999; }
+ 
+.custom-metabox h4
+{ color:#999; font-size:1em; margin:15px 6px; text-transform:uppercase; }
+
+/* Custom Styles */
+table.custom-metabox {
+	width: 100%;
+}
+
+table.custom-metabox td {
+	padding: 2px 0px;
+	vertical-align: top;
+}
+
+table.custom-metabox td label {
+	line-height: 22px;
+}
+
+table.custom-metabox td input[type="radio"] + label {
+	font-weight: normal;
+	line-height: normal;
+}
+
+table.custom-metabox td:first-child {
+	width: 20%;
+	padding-right: 1em;
+	text-align: right;
+}
+
+#side-sortables table.custom-metabox td:first-child {
+	width: 45%;
+}
+
+table.custom-metabox input[type="text"],
+table.custom-metabox textarea {
+	width: 100%;
+}
+
+table.custom-metabox input[type="checkbox"] {
+	margin-top: 4px;
+}
+
+table.custom-metabox .button {
+	display: inline-block;
+	text-align: center;
+}
+
+table.custom-metabox .media-upload input[type="text"] {
+	display: block;
+	margin: 0px;
+	margin-top: 0.75%;
+	width: 100%;
+}
+
+table.custom-metabox .media-upload input[type="text"] ~ .button {
+	margin-top: 5px;
+}
+
+.custom-metabox .mceIframeContainer {
+	background-color: #fff;
+}
+
+.custom-metabox .mceStatusbar {
+    width: auto !important;
+    padding-right: 0 !important;
+}
+
+#post-body .my_meta_control .customEditor .mceStatusbar a.mceResize {
+	top: -2px;
+}
+
+.custom-metabox .wpa_group {
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid #999;
+}
+
+.custom-metabox .wpa_group.first {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+}

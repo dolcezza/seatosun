@@ -1,0 +1,77 @@
+<?php global $wp_theme; ?>
+#edit-slug-box {
+    height: auto;
+    min-height: 1em;
+}
+
+#side-sortables {
+    #postimagediv img {
+        max-width: 258px;
+        height: auto;
+    }
+}
+
+#poststuff .inside select {
+    max-width: 100%;
+}
+
+.custom-theme-settings {
+    .theme-settings-title {
+        margin: 0;
+        font-size: 22px;
+        line-height: 22px;
+        padding: 19px 0 8px;
+    }
+    
+    .theme-settings-form {
+        td {
+            line-height: 24px;
+        }
+        
+        input[type="text"],
+        textarea,
+        select {
+            width: 280px;
+            margin-right: 5px;
+            line-height: 16px;
+        }
+        
+        input.colorpicker {
+            width: 250px;
+        }
+        
+        .jPicker {
+            display: inline-block;
+            height: 24px;
+        }
+        
+        textarea {
+            height: 7.65em;
+        }
+    }
+}
+
+@wp-menu-image-url: "<?php echo $wp_theme->config->child_theme_url; ?>admin/images/";
+
+#menu-posts-seatosun_artist .wp-menu-image {
+    background: url("@{wp-menu-image-url}artist.png") no-repeat 6px -17px !important;
+}
+
+#menu-posts-seatosun_release .wp-menu-image {
+    background: url("@{wp-menu-image-url}release.png") no-repeat 6px -17px !important;
+}
+
+#menu-posts-seatosun_video .wp-menu-image {
+    background: url("@{wp-menu-image-url}video.png") no-repeat 6px -17px !important;
+}
+
+#menu-posts-seatosun_artist,
+#menu-posts-seatosun_release,
+#menu-posts-seatosun_video {
+    &:hover,
+    &.wp-has-current-submenu {
+        .wp-menu-image {
+            background-position: 6px 7px!important;
+        }
+    }
+}
