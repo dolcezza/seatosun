@@ -400,6 +400,7 @@ class WordPressToolKitTheme {
             global $wpa_metabox_dir;
             $wpa_metabox_dir = $wpa_dir . 'metaboxes/';
             
+            include_once($wpa_metabox_dir . 'default-spec.php');
             include_once($wpa_metabox_dir . 'artist-spec.php');
             include_once($wpa_metabox_dir . 'release-spec.php');
             include_once($wpa_metabox_dir . 'video-spec.php');
@@ -1439,6 +1440,8 @@ class WordPressToolKitTheme {
     
     public function register_widgets() {
         register_widget('SeaToSun_Releases_Widget');
+        register_widget('SeaToSun_Radio_Widget');
+        register_widget('SeaToSun_Social_Widget');
         register_widget('SeaToSun_Newsletter_Widget');
     }
 }
@@ -1446,20 +1449,75 @@ class WordPressToolKitTheme {
 /**
  * Custom Widget classes
  */
- class SeaToSun_Releases_Widget extends WP_Widget {
+class SeaToSun_Releases_Widget extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'seatosun_releases_widget',
+            'Sea to Sun Releases',
+            array('description' => __('Display the most recent releases in the sidebar', 'text_domain'))
+        );
+    }
+
+    public function form($instance) {
+        // outputs the options form on admin
+        $defaults = array(
+            'title' => 'Releases',
+            'limit' => 4
+        );
+        $instance = wp_parse_args((array) $instance, $defaults);
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+        </p>
+        <p>
+             <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of Releases to Show:'); ?></label>
+             <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance['limit']); ?>" />
+         </p>
+        <?php
+    }
+
+    public function update($new_instance, $old_instance) {
+        // processes widget options to be saved
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['limit'] = strip_tags($new_instance['limit']);
+
+        return $instance;
+    }
+
+    public function widget($args, $instance) {
+        // displays the widget on the front-end
+        extract($args);
+
+        $title = apply_filters('widget_title', $instance['title']);
+
+        echo $before_widget;
+
+        if (!empty($title)) {
+            echo $before_title . $title . $after_title;
+        }
+
+        // rest of widget output goes here
+
+        echo $after_widget;
+    }
+}
+
+class SeaToSun_Radio_Widget extends WP_Widget {
      public function __construct() {
          parent::__construct(
-             'seatosun_releases_widget',
-             'Latest Releases',
-             array('description' => __('Display the most recent releases in the sidebar', 'text_domain'))
+             'seatosun_radio_widget',
+             'Sea to Sun Radio',
+             array('description' => __('Radio widget that plays a selected SoundCloud playlist', 'text_domain'))
          );
      }
 
      public function form($instance) {
          // outputs the options form on admin
          $defaults = array(
-             'title' => 'Releases',
-             'limit' => 4
+             'title' => 'S2S Radio',
+             'playlist_url' => ''
          );
          $instance = wp_parse_args((array) $instance, $defaults);
          ?>
@@ -1468,8 +1526,8 @@ class WordPressToolKitTheme {
              <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
          </p>
          <p>
-              <label for="<?php echo $this->get_field_id('limit'); ?>"><?php _e('Number of Releases to Show:'); ?></label>
-              <input class="widefat" id="<?php echo $this->get_field_id('limit'); ?>" name="<?php echo $this->get_field_name('limit'); ?>" type="text" value="<?php echo esc_attr($instance['limit']); ?>" />
+              <label for="<?php echo $this->get_field_id('playlist_url'); ?>"><?php _e('Playlist URL:'); ?></label>
+              <input class="widefat" id="<?php echo $this->get_field_id('playlist_url'); ?>" name="<?php echo $this->get_field_name('playlist_url'); ?>" type="text" value="<?php echo esc_attr($instance['playlist_url']); ?>" />
           </p>
          <?php
      }
@@ -1478,7 +1536,7 @@ class WordPressToolKitTheme {
          // processes widget options to be saved
          $instance = $old_instance;
          $instance['title'] = strip_tags($new_instance['title']);
-         $instance['limit'] = strip_tags($new_instance['limit']);
+         $instance['playlist_url'] = strip_tags($new_instance['playlist_url']);
 
          return $instance;
      }
@@ -1499,13 +1557,73 @@ class WordPressToolKitTheme {
 
          echo $after_widget;
      }
- }
+}
+
+class SeaToSun_Social_Widget extends WP_Widget {
+     public function __construct() {
+         parent::__construct(
+             'seatosun_social_widget',
+             'Sea to Sun Social Links',
+             array('description' => __('Displays various social network links', 'text_domain'))
+         );
+     }
+
+     public function form($instance) {
+         // outputs the options form on admin
+         $defaults = array(
+             'title' => 'S2S Comm',
+             'facebook_url' => '',
+             'twitter_url' =>'',
+         );
+         $instance = wp_parse_args((array) $instance, $defaults);
+         ?>
+         <p>
+             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+         </p>
+         <p>
+             <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook URL:'); ?></label>
+             <input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_attr($instance['facebook_url']); ?>" />
+         </p>
+         <p>
+             <label for="<?php echo $this->get_field_id('twitter_url'); ?>"><?php _e('Twitter URL:'); ?></label>
+             <input class="widefat" id="<?php echo $this->get_field_id('twitter_url'); ?>" name="<?php echo $this->get_field_name('twitter_url'); ?>" type="text" value="<?php echo esc_attr($instance['twiter_url']); ?>" />
+         </p>
+         <?php
+     }
+
+     public function update($new_instance, $old_instance) {
+         // processes widget options to be saved
+         $instance = $old_instance;
+         $instance['title'] = strip_tags($new_instance['title']);
+         $instance['playlist_url'] = strip_tags($new_instance['playlist_url']);
+
+         return $instance;
+     }
+
+     public function widget($args, $instance) {
+         // displays the widget on the front-end
+         extract($args);
+
+         $title = apply_filters('widget_title', $instance['title']);
+
+         echo $before_widget;
+
+         if (!empty($title)) {
+             echo $before_title . $title . $after_title;
+         }
+
+         // rest of widget output goes here
+
+         echo $after_widget;
+     }
+}
  
 class SeaToSun_Newsletter_Widget extends WP_Widget {
     public function __construct() {
         parent::__construct(
             'seatosun_newsletter_widget',
-            'Newsletter Subscribe',
+            'Sea to Sun Newsletter',
             array('description' => __('MailChimp newsletter subscription form', 'text_domain'))
         );
     }
