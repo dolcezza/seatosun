@@ -1,7 +1,10 @@
 <?php
 // Override default Skeleton functions
 function st_widgets_init() {
-    // Do nothing - this is handled in the add_theme_features() function
+    
+}
+function st_footer() {
+    
 }
 
 // Initialize the theme
@@ -80,6 +83,10 @@ class WordPressToolKitTheme {
             $this->config->{$folder_name . '_dir'} = $child_theme_dir . $relative_path;
             $this->config->{$folder_name . '_url'} = $child_theme_url . $relative_path;
         }
+        
+        // SoundCloud & YouTube API Settings
+        $this->config->soundcloud_client_id = '1fd5a9c284017fbcf509fb18527cf267';
+        $this->config->youtube_api_key = 'AI39si4-lUAdE4snqUuQQeR23S6suDpxwn75Obmxo1k5wo2yfZQsk4GaQ10YKcAfr-6jf_rl5ol9kYH_Zw0VYIZXnCJp5B7XJA';
     }
     
     public function init_actions() {
@@ -1505,58 +1512,98 @@ class SeaToSun_Releases_Widget extends WP_Widget {
 }
 
 class SeaToSun_Radio_Widget extends WP_Widget {
-     public function __construct() {
-         parent::__construct(
-             'seatosun_radio_widget',
-             'Sea to Sun Radio',
-             array('description' => __('Radio widget that plays a selected SoundCloud playlist', 'text_domain'))
-         );
-     }
-
-     public function form($instance) {
-         // outputs the options form on admin
-         $defaults = array(
-             'title' => 'S2S Radio',
-             'playlist_url' => ''
-         );
-         $instance = wp_parse_args((array) $instance, $defaults);
-         ?>
-         <p>
-             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
-         </p>
-         <p>
-              <label for="<?php echo $this->get_field_id('playlist_url'); ?>"><?php _e('Playlist URL:'); ?></label>
-              <input class="widefat" id="<?php echo $this->get_field_id('playlist_url'); ?>" name="<?php echo $this->get_field_name('playlist_url'); ?>" type="text" value="<?php echo esc_attr($instance['playlist_url']); ?>" />
-          </p>
-         <?php
-     }
-
-     public function update($new_instance, $old_instance) {
-         // processes widget options to be saved
-         $instance = $old_instance;
-         $instance['title'] = strip_tags($new_instance['title']);
-         $instance['playlist_url'] = strip_tags($new_instance['playlist_url']);
-
-         return $instance;
-     }
-
-     public function widget($args, $instance) {
-         // displays the widget on the front-end
-         extract($args);
-
-         $title = apply_filters('widget_title', $instance['title']);
-
-         echo $before_widget;
-
-         if (!empty($title)) {
-             echo $before_title . $title . $after_title;
-         }
-
-         // rest of widget output goes here
-
-         echo $after_widget;
-     }
+    public function __construct() {
+        parent::__construct(
+            'seatosun_radio_widget',
+            'Sea to Sun Radio',
+            array('description' => __('Radio widget that plays a selected SoundCloud playlist', 'text_domain'))
+        );
+    }
+    
+    public function form($instance) {
+        // outputs the options form on admin
+        $defaults = array(
+            'title' => 'S2S Radio',
+            'playlist_url' => ''
+        );
+        $instance = wp_parse_args((array) $instance, $defaults);
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('playlist_url'); ?>"><?php _e('Playlist URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('playlist_url'); ?>" name="<?php echo $this->get_field_name('playlist_url'); ?>" type="text" value="<?php echo esc_attr($instance['playlist_url']); ?>" />
+        </p>
+        <?php
+    }
+    
+    public function update($new_instance, $old_instance) {
+        // processes widget options to be saved
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['playlist_url'] = strip_tags($new_instance['playlist_url']);
+        
+        return $instance;
+    }
+    
+    public function widget($args, $instance) {
+        global $wp_theme;
+        // displays the widget on the front-end
+        extract($args);
+        
+        $title = apply_filters('widget_title', $instance['title']);
+        
+        echo $before_widget;
+        
+        if (!empty($title)) {
+            echo $before_title . $title . $after_title;
+        }
+        
+        // rest of widget output goes here
+        $playlist_url = $instance['playlist_url'];
+        $client_id = $wp_theme->config->soundcloud_client_id;
+        $playlist_data_url = "http://api.soundcloud.com/resolve.json?url=$playlist_url&client_id=$client_id";
+        $process = curl_init($playlist_data_url);
+        $curl_options = array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_FOLLOWLOCATION => 1
+        );
+        curl_setopt_array($process, $curl_options);
+        $playlist_data = curl_exec($process);
+        curl_close($process);
+        
+        if ($playlist_data) :
+            $playlist_data = json_decode($playlist_data, true);
+            $tracks = $playlist_data['tracks'];
+            if ($tracks) :
+                ?>
+                <div id="soundcloud-player-container">
+                    <div class="track-info">
+                        <span class="track-title"></span>
+                        <span class="track-duration"></span>
+                    </div>
+                    <div class="player-controls">
+                        <a class="track-list ir" href="#" title="Track List">Track List</a>
+                        <a class="previous ir" href="#" title="Previous Track">Previous Track</a>
+                        <a class="play-pause paused ir" href="#" title="Play">Play</a>
+                        <a class="next ir" href="#" title="Next Track">Next Track</a>
+                        <a class="volume ir" href="#" title="Volume">Volume</a>
+                    </div>
+                    <form id="soundcloud-track-id-list">
+                        <?php foreach ($tracks as $track) : ?>
+                            <input class="track-id" type="hidden" value="<?php echo $track['id']; ?>" />
+                        <?php endforeach; ?>
+                    </form>
+                </div>
+                <?php
+            endif;
+        endif;
+        
+        echo $after_widget;
+    }
 }
 
 class SeaToSun_Social_Widget extends WP_Widget {

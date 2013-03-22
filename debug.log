@@ -1,85 +1,129 @@
-[21-Mar-2013 18:26:56 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:26:56 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:26:57 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:26:57 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:27:57 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:27:57 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:28:20 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:28:20 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:28:21 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
-[21-Mar-2013 18:28:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:28:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:29:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:29:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:30:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:30:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:31:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:31:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:32:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:32:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:32:52 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:32:52 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:53 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:32:54 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:33:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:33:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:34:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:34:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:35:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:35:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:36:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:36:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:21 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:21 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:22 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:22 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:22 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:22 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:23 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:23 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:37:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:22 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:38:22 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:38:56 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:38:56 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:56 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:56 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:56 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:57 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:38:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:38:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:05 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:39:05 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:06 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:07 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 944
-[21-Mar-2013 18:39:07 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
-[21-Mar-2013 18:39:07 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
-[21-Mar-2013 18:39:23 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:39:23 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:40:22 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:40:23 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:41:23 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:41:23 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:42:23 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
-[21-Mar-2013 18:42:23 UTC] PHP Notice:  get_theme_data is <strong>deprecated</strong> since version 3.4! Use wp_get_theme() instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:45:42 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:45:42 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:43 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:43 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:43 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:44 UTC] PHP Notice:  Undefined index: souncloud_client_id in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/config/ThemeConfig.php on line 204
+[21-Mar-2013 20:45:44 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:45:45 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 20:45:45 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 20:46:30 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:46:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:32 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:46:32 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:32 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:32 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:46:32 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:10 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:49:10 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:10 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:10 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:10 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:12 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:49:12 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:12 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:12 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:12 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:57 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:49:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:57 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:58 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:49:58 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:59 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:59 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:49:59 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:20 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:57:20 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:21 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:21 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:21 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:23 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 20:57:23 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 20:57:23 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:24 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 20:57:24 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 20:57:24 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:08:25 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:08:25 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:26 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:26 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:26 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:30 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:08:31 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:08:31 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:13:37 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:13:37 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:37 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:37 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:37 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:39 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:13:39 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:39 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:39 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:39 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:48 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:13:48 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:48 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:48 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:48 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:50 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:13:50 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:50 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:50 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:13:50 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:14 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:15:14 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:14 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:14 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:14 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:15 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:15:16 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:15:16 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:16:00 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:16:01 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:01 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:01 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:01 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:02 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 21:16:02 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:16:02 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:02 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:02 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:03 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 947
+[21-Mar-2013 21:16:03 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:16:03 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:21:37 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:21:37 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:38 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:38 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:38 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:39 UTC] PHP Notice:  ob_end_flush(): failed to send buffer of zlib output compression (0) in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2705
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  add_custom_image_header is <strong>deprecated</strong> since version 3.4! Use add_theme_support( 'custom-header', $args ) instead. in /Users/wes/Sites/MAMP/seatosun/wp-includes/functions.php on line 2839
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  Undefined offset: 1 in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/seatosun/functions.php on line 950
+[21-Mar-2013 21:21:40 UTC] PHP Warning:  ob_start(): output handler 'ob_gzhandler' conflicts with 'zlib output compression' in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
+[21-Mar-2013 21:21:40 UTC] PHP Notice:  ob_start(): failed to create buffer in /Users/wes/Sites/MAMP/seatosun/wp-content/themes/skeleton/style.php on line 2
