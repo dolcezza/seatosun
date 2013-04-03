@@ -249,6 +249,7 @@ class WordPressToolKitTheme {
     
     public function register_post_types() {
         // Artists
+        /*
         $labels = $this->populate_post_type_labels(array(
             'name' => 'Artists',
             'singular_name' => 'Artist'
@@ -261,6 +262,7 @@ class WordPressToolKitTheme {
             'supports' => array('title', 'editor', 'revisions', 'thumbnail')
         );
         register_post_type('seatosun_artist', $args);
+        */
         
         // Releases
         $labels = $this->populate_post_type_labels(array(
