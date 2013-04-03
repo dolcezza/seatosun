@@ -5,7 +5,7 @@ $config = array(
     'compress_css' => true,
     'compile_css' => true, // true (always), false (never), or 'auto'
     'css_files' =>  array(
-                        'style.less',
+                        'style.css => style.min.css',
                         '/admin/css/admin.less',
                         '/admin/css/editor.less',
                         '/js/plugins/jquery.colorbox/colorbox-dark.css 

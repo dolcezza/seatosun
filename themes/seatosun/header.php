@@ -81,18 +81,30 @@
 <body <?php body_class(); ?>>
     <div id="wrap" class="container">
         <header id="header" class="sixteen columns">
-            
-              <?php st_header(); ?>
-            
-            <div id="navigation" class="ten columns omega" style="float: left;">
-                <?php
-                wp_nav_menu(array(
-                    'container_class' => 'menu-header',
-                    'theme_location' => 'primary'
-                ));
-                ?>
-            </nav>
-            <div id="search-bar-container">
-                <input type="search" class="search-input" placeholder="Search" />
+            <div class="inner clearfix">
+                <div class="three columns alpha">
+                    <?php
+                    // Displays H1 or DIV based on whether we are on the home page or not (SEO)
+                    $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div';
+                    if (of_get_option('use_logo_image')) {
+                    	$class="graphic";
+                    } else {
+                    	$class="text"; 		
+                    }
+                    $st_logo  = '<'.$heading_tag.' id="site-title" class="'.$class.'"><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo('name','display')).'">'.get_bloginfo('name').'</a></'.$heading_tag.'>';
+                    echo $st_logo;
+                    ?>
+                </div>
+                <div id="navigation" class="ten columns" role="navigation">
+                    <?php
+                    wp_nav_menu(array(
+                        'container_class' => 'menu-header',
+                        'theme_location' => 'primary'
+                    ));
+                    ?>
+                </div>
+                <div id="search-bar-container" class="three columns omega">
+                    <input type="search" class="search-input" placeholder="Search" />
+                </div>
             </div>
         </header>

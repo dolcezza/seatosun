@@ -7,6 +7,22 @@ function st_footer() {
     
 }
 
+// Build the logo
+// Child Theme Override: child_logo();
+function child_logo() {
+    // Displays H1 or DIV based on whether we are on the home page or not (SEO)
+    $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div';
+    if (of_get_option('use_logo_image')) {
+    	$class="graphic";
+    } else {
+    	$class="text"; 		
+    }
+    // echo of_get_option('header_logo')
+    $st_logo  = '<div class="two columns alpha"><'.$heading_tag.' id="site-title" class="'.$class.'"><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo('name','display')).'">'.get_bloginfo('name').'</a></'.$heading_tag.'></div>'. "\n";
+    $st_logo .= '<div class="two columns alpha" style="float: left;"><span class="site-desc '.$class.'">'.get_bloginfo('description').'</span></div>'. "\n";
+    echo apply_filters ( 'child_logo' , $st_logo);
+}
+
 // Initialize the theme
 global $wp_theme;
 $wp_theme = new WordPressToolKitTheme();
@@ -499,7 +515,7 @@ class WordPressToolKitTheme {
            ------------------------------------------------------------------ */
         if (!is_admin()) {
             // Main stylesheet
-            $this->enqueue_style('main_css', $this->config->css_folder . 'style.css', array(), 'auto', 'all');
+            $this->enqueue_style('main_css', $this->config->css_folder . 'style.min.css', array(), 'auto', 'all');
             
             // Custom overrides
             $this->enqueue_style('override_css', 'style-override.css', array(), 'auto', 'all');
@@ -1787,31 +1803,3 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
         parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
     }
 }
-
-// Build the logo
-// Child Theme Override: child_logo();
-function seatosun_logo() {
-	// Displays H1 or DIV based on whether we are on the home page or not (SEO)
-		$heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div';
-		if (of_get_option('use_logo_image')) {
-			$class="graphic";
-		} else {
-			$class="text"; 		
-		}
-		// echo of_get_option('header_logo')
-		$st_logo  = '<div class="two columns alpha"><'.$heading_tag.' id="site-title" class="'.$class.'"><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo('name','display')).'">'.get_bloginfo('name').'</a></'.$heading_tag.'></div>'. "\n";
-		$st_logo .= '<div class="two columns alpha" style="float: left;"><span class="site-desc '.$class.'">'.get_bloginfo('description').'</span></div>'. "\n";
-		echo apply_filters ( 'child_logo' , $st_logo);
-	}
-add_action('st_header','seatosun_logo', 2);
-
-if ( !function_exists( 'logostyle' ) ) {
-
-function logostyle() {
-	if (of_get_option('use_logo_image')) {
-	echo '<style type="text/css">
-	#header #site-title.graphic a {background-image: url('.of_get_option('header_logo').');width: '.of_get_option('logo_width').'px;height: '.of_get_option('logo_height').'px; float: left; }</style>';
-	}
-}
-
-} //endif
