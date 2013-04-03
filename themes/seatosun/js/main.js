@@ -218,6 +218,7 @@
             
             showHidePlaylistButton.click(function(event) {
                 event.preventDefault();
+                showHidePlaylistButton.toggleClass('visible');
             });
         }
     });

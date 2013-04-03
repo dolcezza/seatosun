@@ -274,7 +274,7 @@ class WordPressToolKitTheme {
             'public' => true,
             'exclude_from_search' => true,
             'show_in_nav_menus' => true,
-            'supports' => array('title', 'editor', 'revisions')
+            'supports' => array('title', 'editor', 'revisions', 'thumbnail')
         );
         register_post_type('seatosun_release', $args);
         
@@ -288,7 +288,7 @@ class WordPressToolKitTheme {
             'public' => true,
             'exclude_from_search' => true,
             'show_in_nav_menus' => true,
-            'supports' => array('title', 'editor', 'revisions')
+            'supports' => array('title', 'editor', 'revisions', 'thumbnail')
         );
         register_post_type('seatosun_video', $args);
     }
@@ -409,8 +409,8 @@ class WordPressToolKitTheme {
             global $wpa_metabox_dir;
             $wpa_metabox_dir = $wpa_dir . 'metaboxes/';
             
-            include_once($wpa_metabox_dir . 'default-spec.php');
-            include_once($wpa_metabox_dir . 'artist-spec.php');
+            // include_once($wpa_metabox_dir . 'default-spec.php');
+            // include_once($wpa_metabox_dir . 'artist-spec.php');
             include_once($wpa_metabox_dir . 'release-spec.php');
             include_once($wpa_metabox_dir . 'video-spec.php');
         }
@@ -1583,11 +1583,11 @@ class SeaToSun_Radio_Widget extends WP_Widget {
             if ($tracks) :
                 ?>
                 <div id="soundcloud-player-container">
-                    <div class="track-info">
+                    <div class="track-info clearfix">
                         <span class="track-title"></span>
                         <span class="track-duration"></span>
                     </div>
-                    <div class="player-controls">
+                    <div class="player-controls clearfix">
                         <a class="track-list ir" href="#" title="Track List">Track List</a>
                         <a class="previous ir" href="#" title="Previous Track">Previous Track</a>
                         <a class="play-pause paused ir" href="#" title="Play">Play</a>
