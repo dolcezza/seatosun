@@ -271,5 +271,11 @@ a.themeauthor {
 
 /* @end */
 
-
-
+.widget_seatosun_radio_widget {background: url(images/radio_bg.png) no-repeat center; height: 106px; width: 176px;}
+.widget_seatosun_radio_widget  h2 {color: #eec673; font-size: 12px; padding: 6px 0 0 34px;}
+.player-controls { width:170px;}
+.player-controls .track-list {background: url(images/radio_tracks.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
+.player-controls .previous {background: url(images/radio_rw.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
+.player-controls .play-pause {background: url(images/radio_play.png) no-repeat center; height: 36px; width: 36px; float: left; position: relative;  z-index: 99;}
+.player-controls .next{background: url(images/radio_ff.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
+.player-controls .volume{background: url(images/radio_volume.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
