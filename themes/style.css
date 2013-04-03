@@ -1,0 +1,428 @@
+/*
+Theme Name: Sea to Sun Theme
+Description: A WordPress theme based on the Skeleton RWD framework
+Version: 1.6
+Author: Susan Kieser
+Template: skeleton
+License: GPL
+License URI: http://www.opensource.org/licenses/gpl-license.php
+*/
+
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		vertical-align: baseline; }
+	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+		display: block; }
+	body {
+		line-height: 1; }
+	ol, ul {
+		list-style: none; }
+	blockquote, q {
+		quotes: none; }
+	blockquote:before, blockquote:after,
+	q:before, q:after {
+		content: '';
+		content: none; }
+	table {
+		border-collapse: collapse;
+		border-spacing: 0; }
+	table.pad td {
+	padding: 10px;
+	}
+		
+	pre,code {
+		white-space: normal;
+		background-color: #ededed;
+		border-bottom: 1px solid #d9d9d9;
+		border-top: 1px solid #d9d9d9;
+		display: block;
+		width: 100%;
+		font: 12px/24px Consolas,"Andale Mono WT","Andale Mono","Lucida Console","Lucida Sans Typewriter","DejaVu Sans Mono","Bitstream Vera Sans Mono","Liberation Mono","Nimbus Mono L",Monaco,"Courier New",Courier,monospace;
+		margin: 5px 0;
+		padding: 5px;
+}
+p code {display: inline;}
+
+
+body {
+	line-height: 150%;
+	-webkit-text-size-adjust: 100%;
+}
+
+/* @end */
+
+
+
+/* @group Structural Customization */
+
+
+#header {
+	clear: both;
+}
+
+#header .inner {
+	padding-top: 15px;
+	padding-bottom: 20px;
+}
+
+#header .header_extras {
+	float: right;
+}
+
+/* Give the main wrapper a separate background color */
+
+#wrap {}
+
+/* Footer Styles */
+
+#footer {
+	border-top: 1px solid #d6d6d6;
+	font-size: .9em;
+}
+#footer.noborder {
+	border: none;
+	padding-top: 0;
+}
+
+#footer #credits {
+	font-size: 11px;
+	color: #9f9f9f;
+}
+
+a.themeauthor {
+	display: block;
+	width: 75px;
+	height: 12px;
+	margin: 0px auto;
+	float: right;
+	text-decoration: none;
+	text-indent: -9999em;
+	background: url(images/icons/stlogo.png) no-repeat right center;
+}
+
+
+/* @end */
+
+/* @group Header */
+
+#site-title {
+	margin: 0;
+	padding: 0;
+	font-size: 60px;
+	line-height: 55px;
+	letter-spacing: -1px;
+}
+
+#header div#site-title a,
+#header h1#site-title,
+#header h1#site-title a {
+	margin: 0;
+	padding: 0;
+	line-height: 55px;
+	text-decoration: none;
+	font-weight: bold;
+	letter-spacing: -2px;
+	text-shadow: 0px 1px 0px #FFF;
+}
+
+#header #site-title a:hover {
+	color: #3253ad;
+}	
+
+/* Header Tagline */
+
+#header span.site-desc {
+	margin: 0;
+	padding: 0;
+	font-size: 24px;
+	line-height: 28px;
+	color: #7d7d7d;
+	letter-spacing: -1px;
+}
+
+/* Image Header */
+#header #site-title.graphic {float: left;}
+#header #site-title.graphic a {
+	text-indent: -9999em;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: left;
+}
+#header span.site-desc.graphic {
+	display: none;
+}
+
+
+/* @end */
+
+/* @group Navigation Bar */
+
+#navigation {float: left;}
+#navigation ul {
+	width: 100%;
+ 	background: -moz-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+ 	background: -webkit-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+	-pie-background: linear-gradient(#FCFCFC, #ECECEC);
+    border-color: #EAEAEA #F5F5F5 #F5F5F5 #F5F5F5;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+     border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    -pie-box-shadow: 0 1px 1px #ccc;
+    position: relative;
+    behavior: url("./wp-content/themes/skeleton/PIE.php");
+}
+	
+
+#navigation ul li {
+ 	background: -moz-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+ 	background: -webkit-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+	-pie-background: linear-gradient(#FCFCFC, #ECECEC);
+	background-image: none;
+	border-right: 1px solid #e3e3e3;
+    position: relative;
+    behavior: url("./wp-content/themes/skeleton/PIE.php");
+}
+
+#navigation ul li a {
+	background-image: none;
+	padding: 10px 15px;
+	text-decoration: none;
+	display: block;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px #fff;
+}
+
+/* Navbar Hover Links */
+
+#navigation ul li:hover a,
+#navigation ul li a:hover {
+	color: #545454;
+	background: #f1f1f1;
+ 	background: -moz-linear-gradient(270deg, #FFFFFF, #F1F1F1) repeat scroll 0 0 transparent;
+ 	background: -webkit-linear-gradient(270deg, #FFFFFF, #F1F1F1) repeat scroll 0 0 transparent;
+	-pie-background: linear-gradient(#FFFFFF, #F1F1F1);
+	border-bottom: 1px solid #F1F1F1;
+    position: relative;
+    behavior: url("./wp-content/themes/skeleton/PIE.php");
+}
+
+#navigation ul li:hover li a {
+	color: #595959;
+	font-weight: normal;
+}
+
+/* Navbar Active Links */
+
+#navigation ul li.active a {
+	color: #333;
+	background: #fff;
+	text-shadow: 1px 1px 0px #fff;
+	border-bottom: 1px solid #fff;
+}
+
+
+/* Nav Sublevel */
+
+#navigation ul.sub-menu {
+ 	background: -moz-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+ 	background: -webkit-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
+    border-color: #EAEAEA #F5F5F5 #F5F5F5 #F5F5F5;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+     border-radius: 5px 5px 5px 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+#navigation ul.sub-menu li {
+	border: none;
+}
+
+/* Nav Sublevel Links */
+
+#navigation ul.sub-menu li a {
+	background: #f0f0f0;
+	padding: 5px 0px 5px 8px;
+	height: 32px;
+	line-height: 32px;
+	border-radius: 0;
+	min-width: 210px;
+	border-bottom: none;
+	position: static;
+    behavior: none;
+}
+
+/* Nav Sublevel Hover */
+
+#navigation ul.sub-menu li a:hover {
+	background: #fff;
+	border-bottom: none;
+}
+
+
+/* @end */
+
+/* @group Typography */
+
+	h1, h2, h3, h4, h5 { 
+		letter-spacing: -1px;
+	}
+	
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	font-weight: inherit;
+	text-decoration: none;
+	}
+	
+	h2.entry-title a {
+	font-weight: bold;
+	}
+	
+	
+	h1 {line-height: 140%; margin-bottom: 14px;}
+	h2 {line-height: 130%; margin-bottom: 10px; }
+	h3 {line-height: 130%; margin-bottom: 8px; }
+	h4 {line-height: 125%; margin-bottom: 8px; }
+	h5 {line-height: 120%; margin-bottom: 8px;}
+	
+	h6 {
+		font-size: 14px;
+		line-height: 120%;
+		margin-bottom: 8px;
+		color: inherit;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: #375199;
+	}
+	.subheader { color: #777; }
+	.normal {font-weight: normal;}
+	.bolder {font-weight: bolder;}
+	
+	p { margin: 0 0 20px 0; }
+	p img { margin: 0; }
+	p.lead { font-size: 21px; line-height: 27px; color: #777;  }
+	
+	em { font-style: italic; }
+	strong { font-weight: bold; color: #333; }
+	small { font-size: 80%; }
+	
+/*	Blockquotes  */
+	blockquote, blockquote p { font-size: 17px; line-height: 24px; color: #777; font-style: italic; }
+	blockquote { margin: 0 0 20px; padding: 9px 20px 0 19px; border-left: 1px solid #ddd; }
+	blockquote cite { display: block; font-size: 12px; color: #555; }
+	blockquote cite:before { content: "\2014 \0020"; }
+	blockquote cite a, blockquote cite a:visited, blockquote cite a:visited { color: #555; }
+	
+	hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px; height: 0; }
+
+
+/* #Links
+================================================== */
+	a, a:visited {text-decoration: underline; outline: 0; }
+	a:hover, a:focus { color: #000; text-decoration: none;}
+	p a, p a:visited { line-height: inherit; }
+	
+
+/* #Lists
+================================================== */
+	ul, ol { margin-bottom: 20px; }
+	ul { list-style: none outside; }
+	ol { list-style: decimal; }
+	ol, ul.square, ul.circle, ul.disc { margin-left: 30px; }
+	ul.square { list-style: square outside; }
+	ul.circle { list-style: circle outside; }
+	ul.disc { list-style: disc outside; }
+	ul ul, ul ol,
+	ol ol, ol ul { margin: 4px 0 5px 30px;}
+	ul ul li, ul ol li,
+	ol ol li, ol ul li { margin-bottom: 6px; }
+	li { line-height: 18px; margin-bottom: 12px; }
+	ul.large li { line-height: 21px; }
+	li p { line-height: 21px; }
+	
+/* # Image Alignment Classes
+============================================================== */
+
+.alignright {
+	float: right;
+	margin: 0px 0px 10px 15px;
+}
+
+.alignleft {
+	float: left;
+	margin: 0px 15px 10px 0px;
+}
+.aligncenter {
+	display:block;
+	margin:0 auto;
+}
+
+
+
+
+/* #Images
+================================================== */
+
+img.scale-with-grid { 
+	max-width: 100%;
+	height: auto; }
+
+			
+/* #Forms (see formalize.css)
+================================================== */
+
+
+	label,legend {
+	font-weight: bold;font-size: 13px;
+	display: inline-block;
+	}
+	
+	input[type="checkbox"] {display: inline; }
+
+/* # Misc Typography Balancing to Maintain Vertical Rhythm
+============================================================== */
+	.remove-bottom { margin-bottom: 0 !important; }
+	.half-bottom { margin-bottom: 10px !important; }
+	.add-bottom { margin-bottom: 20px !important; }
+	.add-top { margin-top: 20px !important; }
+
+
+.resize {
+    background: url(images/resize.png) repeat scroll 0 0 transparent;
+    bottom: 0;
+    height: 80px;
+    position: fixed;
+    right: 0;
+    width: 80px;
+}
+.bypostauthor,.gallery-caption {}
+
+/* @end */
+
+@media screen and (min-width: 56em) {
+#main #content {
+    width: 50%;
+    margin-left: 25%;
+    float: left;
+    padding: 0 1em;
+  }
+  #main #sidebar {
+    float: left;
+    width: 25%;
+    margin-left: -75%;
+  }
+ #main #sidebar_right {
+    float: right;
+    width: 25%;
+  }
+}
+
+#main #content { float: left; }
+#main #sidebar {float: left;}
+#main #sidebar_right {float: right;}
