@@ -7,22 +7,6 @@ function st_footer() {
     
 }
 
-// Build the logo
-// Child Theme Override: child_logo();
-function child_logo() {
-    // Displays H1 or DIV based on whether we are on the home page or not (SEO)
-    $heading_tag = ( is_home() || is_front_page() ) ? 'h1' : 'div';
-    if (of_get_option('use_logo_image')) {
-    	$class="graphic";
-    } else {
-    	$class="text"; 		
-    }
-    // echo of_get_option('header_logo')
-    $st_logo  = '<div class="two columns alpha"><'.$heading_tag.' id="site-title" class="'.$class.'"><a href="'.esc_url( home_url( '/' ) ).'" title="'.esc_attr( get_bloginfo('name','display')).'">'.get_bloginfo('name').'</a></'.$heading_tag.'></div>'. "\n";
-    $st_logo .= '<div class="two columns alpha" style="float: left;"><span class="site-desc '.$class.'">'.get_bloginfo('description').'</span></div>'. "\n";
-    echo apply_filters ( 'child_logo' , $st_logo);
-}
-
 // Initialize the theme
 global $wp_theme;
 $wp_theme = new WordPressToolKitTheme();

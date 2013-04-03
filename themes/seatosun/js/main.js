@@ -46,15 +46,21 @@
         if (SC) {
             var currentTrackID;
             var currentTrackInput;
-            var playerInitialzed = false;
+            var currentSoundObject;
+            var cachedTrackData = [];
+            var cachedSoundObjects = [];
+            var playerInitialized = false;
             var playerState = 'paused';
+            var playerIsMuted = false;
+            var currentVolume = 100;
             var playerContainer = $('#soundcloud-player-container');
             var trackTitleElem = playerContainer.find('.track-title');
             var trackDurationElem = playerContainer.find('.track-duration');
             var playPauseButton = playerContainer.find('.play-pause');
             var previousButton = playerContainer.find('.previous');
             var nextButton = playerContainer.find('.next');
-            var volumeControl = playerContainer.find('.volume');
+            var volumeButton = playerContainer.find('.volume');
+            var showHidePlaylistButton = playerContainer.find('.track-list');
             var trackInputs = $('#soundcloud-track-id-list .track-id');
             currentTrackInput = trackInputs.first().addClass('current');
             currentTrackID = currentTrackInput.val();
@@ -72,15 +78,65 @@
                 return minutes + ":" + seconds;
             }
             
+            function updateCurrentSoundObject(sound) {
+                if (!cachedSoundObjects[currentTrackID]) {
+                    cachedSoundObjects[currentTrackID] = sound;
+                }
+                if (cachedSoundObjects[currentTrackID]) {
+                    currentSoundObject = cachedSoundObjects[currentTrackID];
+                }
+            }
+            
             function updateCurrentTrackInfo() {
-                SC.get("/tracks/" + currentTrackID, function(track, error){
-                    if (error) {
-                        console.log(error.message);
-                    } else {
-                        trackTitleElem.html(track.title);
-                        trackDurationElem.html(formatTrackDuration(track.duration));
-                    }
-                });
+                if (playerInitialized) {
+                    soundManager.stopAll();
+                }
+                currentTrackID = currentTrackInput.val();
+                if (!cachedTrackData[currentTrackID]) {
+                    SC.get("/tracks/" + currentTrackID, function(track, error){
+                        if (error) {
+                            console.log(error.message);
+                            return false;
+                        } else {
+                            cachedTrackData[currentTrackID] = track;
+                            updateTrack(track);
+                        }
+                    });
+                } else {
+                    var track = cachedTrackData[currentTrackID];
+                    updateTrack(track);
+                }
+            }
+            
+            function updateTrack(track) {
+                if (!track) {
+                    console.log('updateTrack :: Invalid or missing track object');
+                    return false;
+                } else {
+                    trackTitleElem.html(track.title);
+                    trackDurationElem.html(formatTrackDuration(track.duration));
+                    SC.stream('/tracks/' + currentTrackID, function(sound) {
+                        updateCurrentSoundObject(sound);
+                        if (playerState != 'paused') {
+                            currentSoundObject.play();
+                        }
+                    });
+                }
+            }
+            
+            function playCurrentTrack() {
+                playerState = 'playing';
+                playPauseButton.removeClass('paused').addClass('playing');
+                if (playerIsMuted) {
+                    currentSoundObject.mute();
+                }
+                currentSoundObject.play();
+            }
+            
+            function pauseCurrentTrack() {
+                playerState = 'paused';
+                playPauseButton.removeClass('playing').addClass('paused');
+                currentSoundObject.pause();
             }
             
             updateCurrentTrackInfo();
@@ -95,11 +151,10 @@
                     newTrackInput = trackInputs.last();
                 }
                 
-                if (newTrackInput) {
+                if (newTrackInput.length) {
                     newTrackInput.addClass('current');
                     currentTrackInput.removeClass('current');
                     currentTrackInput = newTrackInput;
-                    currentTrackID = currentTrackInput.val();
                     
                     updateCurrentTrackInfo();
                 }
@@ -115,17 +170,53 @@
                     newTrackInput = trackInputs.first();
                 }
                 
-                if (newTrackInput) {
+                if (newTrackInput.length) {
                     newTrackInput.addClass('current');
                     currentTrackInput.removeClass('current');
                     currentTrackInput = newTrackInput;
-                    currentTrackID = currentTrackInput.val();
                     
                     updateCurrentTrackInfo();
                 }
             });
             
             playPauseButton.click(function(event) {
+                event.preventDefault();
+                if (!playerInitialized) {
+                    playerInitialized = true;
+                    playerState = 'playing';
+                    SC.stream('/tracks/' + currentTrackID, function(sound) {
+                        updateCurrentSoundObject(sound);
+                        playCurrentTrack();
+                    });
+                } else {
+                    switch (playerState) {
+                        case 'paused' :
+                            playCurrentTrack();
+                        break;
+                        case 'playing' :
+                            pauseCurrentTrack();
+                        break;
+                        default :
+                            if (window.console) console.log('Invalid player state; only "paused" and "playing" are accepted. Check your code for spelling errors.');
+                        break;
+                    }
+                }
+            });
+            
+            volumeButton.click(function(event) {
+                event.preventDefault();
+                if (playerIsMuted) {
+                    playerIsMuted = false;
+                    volumeButton.removeClass('muted');
+                    currentSoundObject.unmute();
+                } else {
+                    playerIsMuted = true;
+                    volumeButton.addClass('muted');
+                    currentSoundObject.mute();
+                }
+            });
+            
+            showHidePlaylistButton.click(function(event) {
                 event.preventDefault();
             });
         }
