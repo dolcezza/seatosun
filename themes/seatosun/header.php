@@ -80,11 +80,11 @@
 </head>
 <body <?php body_class(); ?>>
     <div id="wrap" class="container">
-        <header id="main-header">
-            <div class="logo">
-                
-            </div>
-            <nav id="main-navigation" class="row sixteen columns" role="navigation">
+        <header id="header" class="sixteen columns">
+            
+              <?php st_header(); ?>
+            
+            <div id="navigation" class="ten columns omega" style="float: left;">
                 <?php
                 wp_nav_menu(array(
                     'container_class' => 'menu-header',

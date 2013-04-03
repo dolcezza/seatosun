@@ -84,7 +84,6 @@ body {
 
 #header {
 	clear: both;
-	margin-top: 16px;
 }
 
 #header .inner {
@@ -168,10 +167,10 @@ a.themeauthor {
 }
 
 /* Image Header */
-
+#header #site-title.graphic {float: left;}
 #header #site-title.graphic a {
 	text-indent: -9999em;
-	display: block;
+	display: inline-block;
 	background-repeat: no-repeat;
 	background-position: left;
 }
@@ -179,45 +178,31 @@ a.themeauthor {
 	display: none;
 }
 
+
 /* @end */
 
 /* @group Navigation Bar */
 
+#navigation {float: left;}
 #navigation ul {
-	width: 100%;
- 	background: -moz-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
- 	background: -webkit-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
-	-pie-background: linear-gradient(#FCFCFC, #ECECEC);
-    border-color: #EAEAEA #F5F5F5 #F5F5F5 #F5F5F5;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-     border-radius: 5px 5px 5px 5px;
-    border-style: solid;
-    border-width: 1px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    -pie-box-shadow: 0 1px 1px #ccc;
+
     position: relative;
     behavior: url("./wp-content/themes/skeleton/PIE.php");
 }
 	
 
 #navigation ul li {
- 	background: -moz-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
- 	background: -webkit-linear-gradient(270deg, #FCFCFC, #ECECEC) repeat scroll 0 0 transparent;
-	-pie-background: linear-gradient(#FCFCFC, #ECECEC);
 	background-image: none;
-	border-right: 1px solid #e3e3e3;
     position: relative;
     behavior: url("./wp-content/themes/skeleton/PIE.php");
 }
 
 #navigation ul li a {
 	background-image: none;
-	padding: 15px 25px;
+	padding: 10px 15px;
 	text-decoration: none;
 	display: block;
 	font-weight: bold;
-	text-shadow: 1px 1px 0px #fff;
 }
 
 /* Navbar Hover Links */
@@ -1920,5 +1905,27 @@ img.scale-with-grid {
 .bypostauthor,.gallery-caption {}
 
 /* @end */
+
+@media screen and (min-width: 56em) {
+#main #content {
+    width: 50%;
+    margin-left: 25%;
+    float: left;
+    padding: 0 1em;
+  }
+  #main #sidebar {
+    float: left;
+    width: 25%;
+    margin-left: -75%;
+  }
+ #main #sidebar_right {
+    float: right;
+    width: 25%;
+  }
+}
+
+#main #content { float: left; }
+#main #sidebar {float: left;}
+#main #sidebar_right {float: right;}
 
 
