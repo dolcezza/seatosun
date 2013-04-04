@@ -154,6 +154,7 @@ class WordPressToolKitTheme {
         
         // Add support for post thumbnails
         add_theme_support('post-thumbnails');
+        add_image_size('releases-widget-thumbnail', 64, 64, true);
     }
     
     public function add_remove_hooks() {
@@ -1503,6 +1504,7 @@ class SeaToSun_Releases_Widget extends WP_Widget {
         extract($args);
 
         $title = apply_filters('widget_title', $instance['title']);
+        $limit = $instance['limit'];
 
         echo $before_widget;
 
@@ -1510,7 +1512,33 @@ class SeaToSun_Releases_Widget extends WP_Widget {
             echo $before_title . $title . $after_title;
         }
 
-        // rest of widget output goes here
+        global $wp_theme;
+        $wp_theme->cache_post_object();
+        
+        $posts = get_posts(array(
+            'post_type' => 'seatosun_release',
+            'numberposts' => $limit
+        ));
+        
+        foreach ($posts as $post) :
+            setup_postdata($post);
+            ?>
+            <div class="release">
+                <?php if (has_post_thumbnail($post->ID)) : ?>
+                    <div class="release-image">
+                        <?php echo get_the_post_thumbnail($post->ID, 'releases-widget-thumbnail'); ?>
+                    </div>
+                <?php endif; ?>
+                <div class="release-info">
+                    <span class="title"></span>
+                    <span class="artist"></span>
+                    <span class="year"></span>
+                </div>
+            </div>
+            <?php
+        endforeach;
+        
+        $wp_theme->restore_post_object();
 
         echo $after_widget;
     }
