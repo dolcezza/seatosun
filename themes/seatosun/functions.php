@@ -164,6 +164,9 @@ class WordPressToolKitTheme {
         // Add custom edit screen columns
         $this->add_filter('manage_posts_columns', 'add_edit_screen_columns', 10, 2);
         $this->add_action('manage_posts_custom_column', 'display_edit_screen_column', 10, 2);
+        
+        // Customize the "continue reading" link displayed after each excerpt
+        $this->add_filter('excerpt_more', 'excerpt_more');
     }
     
     public function get_function($function) {
@@ -409,7 +412,7 @@ class WordPressToolKitTheme {
             global $wpa_metabox_dir;
             $wpa_metabox_dir = $wpa_dir . 'metaboxes/';
             
-            // include_once($wpa_metabox_dir . 'default-spec.php');
+            include_once($wpa_metabox_dir . 'default-spec.php');
             // include_once($wpa_metabox_dir . 'artist-spec.php');
             include_once($wpa_metabox_dir . 'release-spec.php');
             include_once($wpa_metabox_dir . 'video-spec.php');
@@ -1278,7 +1281,7 @@ class WordPressToolKitTheme {
     }
     
     public function excerpt_more($more) {
-        $more = '...';
+        $more = '... <a class="excerpt-more-link" href="' . get_permalink() . '"><i class="excerpt-more-arrow"></i>More</a>';
         return $more;
     }
     
