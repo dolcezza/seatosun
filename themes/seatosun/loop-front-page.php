@@ -29,6 +29,11 @@ global $wp_theme;
                 setup_postdata($post);
                 ?>
                 <div id="post-<?php the_ID(); ?>" <?php post_class('featured-item'); ?>>
+                    <?php if (has_post_thumbnail($post->ID)) : ?>
+                        <div class="entry-image-container">
+                            <?php echo get_the_post_thumbnail($post->ID); ?>
+                        </div>
+                    <?php endif; ?>
                     <header class="entry-header">
                         <h3 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
                     </header>

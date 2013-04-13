@@ -295,6 +295,19 @@ class WordPressToolKitTheme {
             'supports' => array('title', 'editor', 'revisions', 'thumbnail')
         );
         register_post_type('seatosun_video', $args);
+        
+        // Slides
+        $labels = $this->populate_post_type_labels(array(
+            'name' => 'Slides'
+        ));
+        $args = array(
+            'labels' => $labels,
+            'public' => true,
+            'exclude_from_search' => true,
+            'show_in_nav_menus' => true,
+            'supports' => array('title', 'editor', 'revisions')
+        );
+        register_post_type('seatosun_slide', $args);
     }
     
     public function register_taxonomies() {
