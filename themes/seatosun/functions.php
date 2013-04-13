@@ -1689,7 +1689,8 @@ class SeaToSun_Social_Widget extends WP_Widget {
          // processes widget options to be saved
          $instance = $old_instance;
          $instance['title'] = strip_tags($new_instance['title']);
-         $instance['playlist_url'] = strip_tags($new_instance['playlist_url']);
+         $instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
+         $instance['twitter_url'] = strip_tags($new_instance['twitter_url']);
 
          return $instance;
      }
