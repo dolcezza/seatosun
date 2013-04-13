@@ -154,6 +154,8 @@ class WordPressToolKitTheme {
         
         // Add support for post thumbnails
         add_theme_support('post-thumbnails');
+        add_image_size('releases-archive-thumbnail', 145, 145, true);
+        add_image_size('releases-archive-featured-thumbnail', 250, 250, true);
         add_image_size('releases-widget-thumbnail', 64, 64, true);
     }
     
@@ -278,7 +280,11 @@ class WordPressToolKitTheme {
             'public' => true,
             'exclude_from_search' => true,
             'show_in_nav_menus' => true,
-            'supports' => array('title', 'editor', 'revisions', 'thumbnail')
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'revisions', 'thumbnail'),
+            'rewrite' => array(
+                'slug' => 'releases',
+            ),
         );
         register_post_type('seatosun_release', $args);
         
@@ -292,7 +298,11 @@ class WordPressToolKitTheme {
             'public' => true,
             'exclude_from_search' => true,
             'show_in_nav_menus' => true,
-            'supports' => array('title', 'editor', 'revisions', 'thumbnail')
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'revisions', 'thumbnail'),
+            'rewrite' => array(
+                'slug' => 'videos',
+            ),
         );
         register_post_type('seatosun_video', $args);
         
@@ -1513,6 +1523,10 @@ class SeaToSun_Releases_Widget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
+        if (is_archive() && get_post_type() == 'seatosun_release') {
+            return null;
+        }
+        
         // displays the widget on the front-end
         extract($args);
 
@@ -1533,8 +1547,12 @@ class SeaToSun_Releases_Widget extends WP_Widget {
             'numberposts' => $limit
         ));
         
+        global $seatosun_release_meta;
+        
         foreach ($posts as $post) :
             setup_postdata($post);
+            $meta = $seatosun_release_meta->the_meta($post->ID);
+            $wp_theme->log($meta);
             ?>
             <div class="release">
                 <?php if (has_post_thumbnail($post->ID)) : ?>
@@ -1543,9 +1561,9 @@ class SeaToSun_Releases_Widget extends WP_Widget {
                     </div>
                 <?php endif; ?>
                 <div class="release-info">
-                    <span class="title"></span>
-                    <span class="artist"></span>
-                    <span class="year"></span>
+                    <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
+                    <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
+                    <p class="year"><?php $seatosun_release_meta->the_value('year'); ?></p>
                 </div>
             </div>
             <?php
@@ -1653,64 +1671,75 @@ class SeaToSun_Radio_Widget extends WP_Widget {
 }
 
 class SeaToSun_Social_Widget extends WP_Widget {
-     public function __construct() {
-         parent::__construct(
-             'seatosun_social_widget',
-             'Sea to Sun Social Links',
-             array('description' => __('Displays various social network links', 'text_domain'))
-         );
-     }
-
-     public function form($instance) {
-         // outputs the options form on admin
-         $defaults = array(
-             'title' => 'S2S Comm',
-             'facebook_url' => '',
-             'twitter_url' =>'',
-         );
-         $instance = wp_parse_args((array) $instance, $defaults);
-         ?>
-         <p>
-             <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
-             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
-         </p>
-         <p>
-             <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook URL:'); ?></label>
-             <input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_attr($instance['facebook_url']); ?>" />
-         </p>
-         <p>
-             <label for="<?php echo $this->get_field_id('twitter_url'); ?>"><?php _e('Twitter URL:'); ?></label>
-             <input class="widefat" id="<?php echo $this->get_field_id('twitter_url'); ?>" name="<?php echo $this->get_field_name('twitter_url'); ?>" type="text" value="<?php echo esc_attr($instance['twiter_url']); ?>" />
-         </p>
-         <?php
-     }
-
-     public function update($new_instance, $old_instance) {
-         // processes widget options to be saved
-         $instance = $old_instance;
-         $instance['title'] = strip_tags($new_instance['title']);
-         $instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
-         $instance['twitter_url'] = strip_tags($new_instance['twitter_url']);
-
-         return $instance;
-     }
-
-     public function widget($args, $instance) {
-         // displays the widget on the front-end
-         extract($args);
-
-         $title = apply_filters('widget_title', $instance['title']);
-
-         echo $before_widget;
-
-         if (!empty($title)) {
-             echo $before_title . $title . $after_title;
-         }
-
-         // rest of widget output goes here
-
-         echo $after_widget;
-     }
+    public function __construct() {
+        parent::__construct(
+            'seatosun_social_widget',
+            'Sea to Sun Social Links',
+            array('description' => __('Displays various social network links', 'text_domain'))
+        );
+    }
+    
+    public function form($instance) {
+        // outputs the options form on admin
+        $defaults = array(
+            'title' => 'S2S Comm',
+            'facebook_url' => '',
+            'twitter_url' =>'',
+        );
+        $instance = wp_parse_args((array) $instance, $defaults);
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_attr($instance['facebook_url']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('twitter_url'); ?>"><?php _e('Twitter URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('twitter_url'); ?>" name="<?php echo $this->get_field_name('twitter_url'); ?>" type="text" value="<?php echo esc_attr($instance['twitter_url']); ?>" />
+        </p>
+        <?php
+    }
+    
+    public function update($new_instance, $old_instance) {
+        // processes widget options to be saved
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
+        $instance['twitter_url'] = strip_tags($new_instance['twitter_url']);
+    
+        return $instance;
+    }
+    
+    public function widget($args, $instance) {
+        // displays the widget on the front-end
+        extract($args);
+    
+        $title = apply_filters('widget_title', $instance['title']);
+    
+        echo $before_widget;
+    
+        if (!empty($title)) {
+            echo $before_title . $title . $after_title;
+        }
+        
+        $facebook_url = $instance['facebook_url'];
+        $twitter_url = $instance['twitter_url'];
+        ?>
+        <div class="social-network-links clearfix">
+            <?php if (!empty($facebook_url)) : ?>
+                <a class="ir social-network-link facebook" href="<?php echo $facebook_url; ?>">Facebook</a>
+            <?php endif; ?>
+            <?php if (!empty($twitter_url)) : ?>
+                <a class="ir social-network-link twitter" href="<?php echo $twitter_url; ?>">Twitter</a>
+            <?php endif; ?>
+        </div>
+        <?php
+    
+        echo $after_widget;
+    }
 }
  
 class SeaToSun_Newsletter_Widget extends WP_Widget {
@@ -1774,7 +1803,13 @@ class SeaToSun_Newsletter_Widget extends WP_Widget {
             echo $before_title . $title . $after_title;
         }
         
-        // rest of widget output goes here
+        ?>
+        <form action="">
+            <input type="email" class="email" placeholder="<?php echo $instance['placeholder']; ?>" />
+            <span class="description"><?php echo $instance['description']; ?></span>
+            <input type="submit" value="Submit" />
+        </form>
+        <?php
         
         echo $after_widget;
     }
