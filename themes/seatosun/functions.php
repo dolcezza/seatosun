@@ -1231,31 +1231,89 @@ class WordPressToolKitTheme {
         return array_map('trim', explode($sep, $string));
     }
     
-    public function get_image_from_url($url) {
-        if (!in_array('curl', get_loaded_extensions())) {
-            $error_message = 'The cURL extension is not loaded and is required for the get_image_from_url() function to work.';
+    public function check_for_curl_support() {
+        if (in_array('curl', get_loaded_extensions())) {
+            return true;
+        } else {
+            $error_message = 'The cURL extension is not loaded';
             $wp_errors = new WP_Error();
             $wp_errors->add('curl_not_loaded', $error_message);
             $this->log($wp_errors);
-
+            
             return $wp_errors;
         }
+    }
+    
+    public function get_image_from_url($url) {
+        $curl_enabled = $this->check_for_curl_support();
+        if (is_wp_error($curl_enabled)) {
+            return false;
+        }
         
-        $headers[] = 'Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg';              
-        $headers[] = 'Connection: Keep-Alive';         
-        $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';         
-        $user_agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)';         
-        $process = curl_init($url);         
-        curl_setopt($process, CURLOPT_HTTPHEADER, $headers);         
-        curl_setopt($process, CURLOPT_HEADER, 0);         
-        curl_setopt($process, CURLOPT_USERAGENT, $user_agent);         
-        curl_setopt($process, CURLOPT_TIMEOUT, 30);         
-        curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);         
-        curl_setopt($process, CURLOPT_FOLLOWLOCATION, 1);         
-        $return = curl_exec($process);         
+        $headers[] = 'Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg';
+        $headers[] = 'Connection: Keep-Alive';
+        $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
+        $user_agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)';
+        $process = curl_init($url);
+        curl_setopt($process, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($process, CURLOPT_HEADER, 0);
+        curl_setopt($process, CURLOPT_USERAGENT, $user_agent);
+        curl_setopt($process, CURLOPT_TIMEOUT, 30);
+        curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
+        $return = $this->curl_exec_follow($process);
         curl_close($process);
               
         return $return;
+    }
+    
+    public function curl_exec_follow($ch, &$maxredirect = null) {
+        $curl_enabled = $this->check_for_curl_support();
+        if (is_wp_error($curl_enabled)) {
+            return false;
+        }
+        
+        $mr = $maxredirect === null ? 5 : intval($maxredirect);
+        if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) {
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $mr > 0);
+            curl_setopt($ch, CURLOPT_MAXREDIRS, $mr);
+        } else {
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+            if ($mr > 0) {
+                $newurl = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+
+                $rch = curl_copy_handle($ch);
+                curl_setopt($rch, CURLOPT_HEADER, true);
+                curl_setopt($rch, CURLOPT_NOBODY, true);
+                curl_setopt($rch, CURLOPT_FORBID_REUSE, false);
+                curl_setopt($rch, CURLOPT_RETURNTRANSFER, true);
+                do {
+                    curl_setopt($rch, CURLOPT_URL, $newurl);
+                    $header = curl_exec($rch);
+                    if (curl_errno($rch)) {
+                        $code = 0;
+                    } else {
+                        $code = curl_getinfo($rch, CURLINFO_HTTP_CODE);
+                        if ($code == 301 || $code == 302) {
+                            preg_match('/Location:(.*?)\n/', $header, $matches);
+                            $newurl = trim(array_pop($matches));
+                        } else {
+                            $code = 0;
+                        }
+                    }
+                } while ($code && --$mr);
+                curl_close($rch);
+                if (!$mr) {
+                    if ($maxredirect === null) {
+                        trigger_error('Too many redirects. When following redirects, libcurl hit the maximum amount.', E_USER_WARNING);
+                    } else {
+                        $maxredirect = 0;
+                    }
+                    return false;
+                }
+                curl_setopt($ch, CURLOPT_URL, $newurl);
+            }
+        }
+        return curl_exec($ch);
     }
     
     public function cache_post_object($post_object = null) {
@@ -1632,11 +1690,10 @@ class SeaToSun_Radio_Widget extends WP_Widget {
         $process = curl_init($playlist_data_url);
         $curl_options = array(
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_FOLLOWLOCATION => 1
+            CURLOPT_TIMEOUT => 30
         );
         curl_setopt_array($process, $curl_options);
-        $playlist_data = curl_exec($process);
+        $playlist_data = $wp_theme->curl_exec_follow($process);
         curl_close($process);
         
         if ($playlist_data) :
@@ -1683,8 +1740,11 @@ class SeaToSun_Social_Widget extends WP_Widget {
         // outputs the options form on admin
         $defaults = array(
             'title' => 'S2S Comm',
-            'facebook_url' => '',
+            'youtube_url' => '',
             'twitter_url' =>'',
+            'soundcloud_url' => '',
+            'instagram_url' => '',
+            'facebook_url' => '',
         );
         $instance = wp_parse_args((array) $instance, $defaults);
         ?>
@@ -1693,12 +1753,24 @@ class SeaToSun_Social_Widget extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook URL:'); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_attr($instance['facebook_url']); ?>" />
+            <label for="<?php echo $this->get_field_id('youtube_url'); ?>"><?php _e('YouTube URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('youtube_url'); ?>" name="<?php echo $this->get_field_name('youtube_url'); ?>" type="text" value="<?php echo esc_attr($instance['youtube_url']); ?>" />
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('twitter_url'); ?>"><?php _e('Twitter URL:'); ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id('twitter_url'); ?>" name="<?php echo $this->get_field_name('twitter_url'); ?>" type="text" value="<?php echo esc_attr($instance['twitter_url']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('soundcloud_url'); ?>"><?php _e('SoundCloud URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('soundcloud_url'); ?>" name="<?php echo $this->get_field_name('soundcloud_url'); ?>" type="text" value="<?php echo esc_attr($instance['soundcloud_url']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('instagram_url'); ?>"><?php _e('Instagram URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('instagram_url'); ?>" name="<?php echo $this->get_field_name('instagram_url'); ?>" type="text" value="<?php echo esc_attr($instance['instagram_url']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('facebook_url'); ?>"><?php _e('Facebook URL:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('facebook_url'); ?>" name="<?php echo $this->get_field_name('facebook_url'); ?>" type="text" value="<?php echo esc_attr($instance['facebook_url']); ?>" />
         </p>
         <?php
     }
@@ -1707,8 +1779,11 @@ class SeaToSun_Social_Widget extends WP_Widget {
         // processes widget options to be saved
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-        $instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
+        $instance['youtube_url'] = strip_tags($new_instance['youtube_url']);
         $instance['twitter_url'] = strip_tags($new_instance['twitter_url']);
+        $instance['soundcloud_url'] = strip_tags($new_instance['soundcloud_url']);
+        $instance['instagram_url'] = strip_tags($new_instance['instagram_url']);
+        $instance['facebook_url'] = strip_tags($new_instance['facebook_url']);
     
         return $instance;
     }
@@ -1716,24 +1791,31 @@ class SeaToSun_Social_Widget extends WP_Widget {
     public function widget($args, $instance) {
         // displays the widget on the front-end
         extract($args);
+        extract($instance);
     
-        $title = apply_filters('widget_title', $instance['title']);
+        $title = apply_filters('widget_title', $title);
     
         echo $before_widget;
     
         if (!empty($title)) {
             echo $before_title . $title . $after_title;
         }
-        
-        $facebook_url = $instance['facebook_url'];
-        $twitter_url = $instance['twitter_url'];
         ?>
         <div class="social-network-links clearfix">
-            <?php if (!empty($facebook_url)) : ?>
-                <a class="ir social-network-link facebook" href="<?php echo $facebook_url; ?>">Facebook</a>
+            <?php if (!empty($youtube_url)) : ?>
+                <a class="ir social-network-link youtube" href="<?php echo $youtube_url; ?>">YouTube</a>
             <?php endif; ?>
             <?php if (!empty($twitter_url)) : ?>
                 <a class="ir social-network-link twitter" href="<?php echo $twitter_url; ?>">Twitter</a>
+            <?php endif; ?>
+            <?php if (!empty($soundcloud_url)) : ?>
+                <a class="ir social-network-link soundcloud" href="<?php echo $soundcloud_url; ?>">SoundCloud</a>
+            <?php endif; ?>
+            <?php if (!empty($instagram_url)) : ?>
+                <a class="ir social-network-link instagram" href="<?php echo $instagram_url; ?>">Instagram</a>
+            <?php endif; ?>
+            <?php if (!empty($facebook_url)) : ?>
+                <a class="ir social-network-link facebook" href="<?php echo $facebook_url; ?>">Facebook</a>
             <?php endif; ?>
         </div>
         <?php
