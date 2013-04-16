@@ -1,0 +1,200 @@
+
+/*----  thumbs ----*/
+
+
+
+
+$classmain : ".vplayer.skin_white";
+#{$classmain} .video-description{  top:10px; left:10px; 
+    }
+#{$classmain} .video-description .video-title{ padding:5px 8px; background:rgba(255,255,255,0.5); color:#111; font-size:16px; width:auto; 
+    }
+#{$classmain} .video-description .video-subdescription{  position:absolute; top:42px; left:0px ;padding:5px 8px; background:rgba(255,255,255,0.5); color:#111; font-size:11px; 
+    }
+
+
+#{$classmain} .background{
+height:31px;
+background:rgba(0,0,0,0.5);
+bottom:10px;
+left:85px;
+border-radius:5px;
+}
+/****** info/ description *****/
+#{$classmain} .info{       /*----  info icon  ----*/
+left : 15px;
+top : 15px;
+background:url('img/info.png');
+width:50px;
+height:50px;
+}
+#{$classmain} .infoText{       /*----  description ----*/
+top : 95px;
+left : 30px;
+}
+#{$classmain} .descriptionText{
+background-color:#111111;
+color:#ffffff; 
+padding:10px;
+opacity:0.8;
+}
+/******* play *********/
+#{$classmain} .playcontrols{
+bottom:10px;
+left :10px;
+width:67px;
+height:42px;
+}
+#{$classmain} .playSimple{
+left:0px;
+bottom:0;
+background:rgba(0,0,0,0.5) url('img/swplay.png') no-repeat center center;
+width:67px;
+height:42px;
+border-radius:5px;
+}
+#{$classmain} .playHover{
+left:0px;
+bottom:0;
+opacity:0;
+background:rgba(0,0,0,0.8) url('img/swplay.png') no-repeat center center;
+width:inherit;
+height:inherit;
+border-radius:5px;
+}
+
+#{$classmain} .stopSimple{	
+left:0px;
+bottom:0;
+background:rgba(0,0,0,0.5) url('img/swstop.png') no-repeat center center;
+width:inherit;
+height:inherit;
+visibility:hidden;
+border-radius:5px;
+}
+#{$classmain} .stopHover{
+left:0px;
+bottom:0;
+opacity:0;
+background:rgba(0,0,0,0.8) url('img/swstop.png') no-repeat center center;
+width:inherit;
+height:inherit;
+visibility:hidden;
+border-radius:5px;
+}
+
+/******* scrub *********/
+#{$classmain} .scrubbar{
+bottom : 19px;
+left : 95px;
+}
+#{$classmain} .scrub-bg{
+position:absolute;
+left:0px;
+bottom:0px;
+background:#444;
+border:1px solid #898f8f;
+height:12px;
+
+}
+#{$classmain} .scrub-buffer{
+position:absolute;
+left:0px;
+bottom:0px;
+background:#5f5f5f;
+border:1px solid #898f8f;
+height:12px;
+
+}
+#{$classmain} .scrub{
+position:absolute;
+left:0px;
+bottom:1px;
+background:#94e5ef;
+height:12px;
+}
+/******* timing *********/
+#{$classmain} .timetext{
+	display: none;
+bottom : 8px;
+right: 90px;
+font: 10px Helvetica,Arial,sans-serif;
+}
+#{$classmain} .scrubBox-prog{
+	display: none;
+}
+
+
+
+
+/******* volume *********/
+#{$classmain} .volumecontrols{
+bottom: 20px;
+right : 47px;
+width:38px;
+height:12px;
+}
+
+#{$classmain} .volumeicon{
+	display:none;
+position:absolute;
+bottom:0px;
+left:0px;
+background:url('img/volumeicon.png');
+width:14px;
+height:28px;
+}
+#{$classmain} .volume_static{
+position:absolute; 
+top:0;
+left:0;
+background:url('img/swvolumestatic.png');
+width:38px;
+height:12px;
+}
+
+#{$classmain} .volume_active{
+position:absolute; 
+top:0;
+left:0;
+background:url('img/swvolumeactive.png');
+width:38px;
+height:12px;
+}
+#{$classmain} .volume_cut{
+bottom:5px;
+left:0px;
+background:url('img/volumecut.png');
+width:14px;
+height:24px;
+}
+
+/******* fullscreen*********/
+#{$classmain} .fscreencontrols{
+position: absolute;
+cursor : pointer;
+bottom : 20px;
+right : 20px;
+width:14px;
+height:12px;
+}
+#{$classmain} .full{
+overflow:hidden; 
+position:absolute; 
+top:0px; 
+left:0px;
+background:url('img/swfull.png');
+width:inherit;
+height:inherit;
+
+}
+#{$classmain} .fullHover{
+overflow:hidden; 
+position:absolute; 
+top:0px; 
+left:0px;
+opacity:0;
+background:url('img/swfullh.png');
+width:inherit;
+height:inherit;
+}

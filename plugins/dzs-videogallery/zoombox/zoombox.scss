@@ -1,0 +1,163 @@
+
+@mixin css_animation($transition-property, $transition-duration, $transition-timing) {
+transition-property: $transition-property;transition-duration: $transition-duration;transition-timing-function: $transition-timing;-moz-transition-property:$transition-property;-moz-transition-duration: $transition-duration;-moz-transition-timing-function:$transition-timing;-webkit-transition-property:$transition-property;-webkit-transition-duration: $transition-duration;-webkit-transition-timing-function:$transition-timing;-o-transition-property:$transition-property;-o-transition-duration: $transition-duration;-o-transition-timing-function:$transition-timing;-ms-transition-property:$transition-property;
+-ms-transition-duration: $transition-duration;-ms-transition-timing-function:$transition-timing;
+}
+@mixin boxsizing() {
+-moz-box-sizing:    border-box;   -webkit-box-sizing: border-box;    box-sizing:        border-box;
+}
+
+
+$transition-property: all;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+
+
+$classmain : ".zoombox-maincon";
+
+#{$classmain} {
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:10001;
+    }
+#{$classmain} .zoombox-bg{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: #333;
+    background: rgba(0,0,0,0.2);
+ background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPHJhZGlhbEdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNzUlIj4KICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC42Ii8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMDAwMDAiIHN0b3Atb3BhY2l0eT0iMC4xNiIvPgogIDwvcmFkaWFsR3JhZGllbnQ+CiAgPHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI2dyYWQtdWNnZy1nZW5lcmF0ZWQpIiAvPgo8L3N2Zz4=);
+background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.16) 100%);
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0.6)), color-stop(100%,rgba(0,0,0,0.16)));
+background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.16) 100%);
+background: -o-radial-gradient(center, ellipse cover, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.16) 100%);
+background: -ms-radial-gradient(center, ellipse cover, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.16) 100%);
+background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.16) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#29000000',GradientType=1 );
+    
+    }
+    $cborder: #fff;
+    
+$transition-property: margin-top, margin-left, top, left;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+#{$classmain} .holder-con{
+    position: absolute;
+    @include css_animation($transition-property, $transition-duration, $transition-timing);
+    }
+#{$classmain} .holder-con > .close-btn{
+    display: block;
+    position: absolute;
+    }
+    
+$transition-property: width,height,transform;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+#{$classmain} .holder{
+    display: block;
+    width:100px;
+    height:100px;
+    @include css_animation($transition-property, $transition-duration, $transition-timing);
+    }
+#{$classmain} .holder .preloader{ 
+    
+    width:128px;
+    height:40px;
+    background: transparent url(img/preloader.gif) center center no-repeat;
+    margin-left: -64px; margin-top: -20px;
+    position: absolute;
+    top:50%; left:50%; 
+}
+$transition-property: opacity, transform;
+$transition-duration: 0.3s;
+$transition-timing: ease-out;
+#{$classmain} .holder > .the-item{
+    display:block;
+    transform-origin: top left;
+    @include css_animation($transition-property, $transition-duration, $transition-timing);
+    }
+    /* estethic styling */
+    
+
+#{$classmain}:empty{
+    display:none;
+    }
+#{$classmain}.disabled{
+    display:none;
+    }
+#{$classmain} .holder{
+    background: #fff;
+    }
+    
+    
+#{$classmain} .holder-con{
+    top:0;
+    left:0;
+    border:5px solid $cborder;
+    border-radius:0px;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,1);
+    margin-left:-50px;
+    margin-top:-50px;
+    top:0%;
+    left:50%;
+    }
+    
+#{$classmain} .holder-con > .close-btn{
+    top:10px;
+    right:5px;
+    width:25px;
+    height:25px;
+    background: transparent url(img/zoombox-close.png) no-repeat center center;
+    
+    border:2px solid #222;
+    border-radius:0px;
+    cursor: pointer;
+    }
+    
+#{$classmain} .holder-con > .close-btn{
+    top:10px;
+    right: -35px;
+    
+    border:5px solid $cborder;
+    border-radius:0px;
+    }
+#{$classmain} .holder > .the-item{
+    opacity:0;
+    }
+#{$classmain} .holder > img.the-item{
+    opacity:0;
+    transform: scale(0.1);
+    }
+#{$classmain} .holder.loaded > img.the-item{
+    transform: scale(1);
+    }
+$transition-property: opacity, display;
+$transition-duration: 1s;
+$transition-timing: ease-out;
+#{$classmain} .holder.loaded > .preloader{
+    @include css_animation($transition-property, $transition-duration, $transition-timing);
+    }
+#{$classmain} .holder.loaded > .preloader{
+    opacity:0;
+    display: none;
+    }
+#{$classmain} .holder.loaded > .the-item{
+    opacity:1;
+    width:100%;
+    height:100%;
+    }
+    
+    $aux: 14px;
+    .thumb20{
+        display:inline-block;
+        width:$aux;
+        height:$aux;
+        position:relative; top:2px; 
+        margin-right:2px;
+        border:1px solid rgba(255,255,255,0.3);
+        @include boxsizing();
+        }
+    

@@ -157,6 +157,8 @@ a.themeauthor {
 	display: inline-block;
 	background-repeat: no-repeat;
 	background-position: left;
+	margin-top: 0;
+	padding-top: 0;
 }
 #header span.site-desc.graphic {
 	display: none;
@@ -256,12 +258,34 @@ a.themeauthor {
 
 /* @end */
 
+#search-bar-container {
+background: url(../images/bg_search.png) no-repeat top right; position: absolute;  top: 0; right: 0; width: 300px; height: 47px; text-align: right; z-index: 20; }
+#search-bar-container input {
+	background-color: #000; color: #dedede; font-size: 12px; text-align: right; z-index: 25;
+}
+
+
 .widget_seatosun_releases_widget {background: url(../images/releases_title.png) no-repeat top; width: 180px;}
 .widget_seatosun_releases_widget .release {background: url(../images/featuredrelease_bg.png) no-repeat top; height: 68px; width: 180px; color: #ffffff;}
+.release-image { float: left; margin: 0 5px 5px 2px; border: 1px solid #9a9a9a; }
+.widget_seatosun_releases_widget .release p { line-height: 14px; margin: 0; }
+.widget_seatosun_releases_widget .release .title { font-weight: bold; }
 
 .widget h2.widgettitle {color: #eec673; font-size: 12px; padding: 10px 0 0 34px;}
 
-.widget_seatosun_social_widget {background: url(../images/comm_bg.png) no-repeat center; height: 133px; width: 180px;}
+.widget_events {background: url(../images/calendar_bg.png) no-repeat top; height: 133px; width: 180px; margin-top: 10px; }
+.widget_events .eo-agenda-widget .agenda-nav
+{ display: none; }
+.widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; }
+.widget_events ul, .widget_events ol { padding-left: 0; }
+
+.widget_seatosun_newsletter_widget {background: url(../images/newsletter_bg.png) no-repeat center; height: 172px; width: 180px; text-align: center;}
+.widget_seatosun_newsletter_widget input { background-color: #000; border-left: 1px solid #c9c9c9; border-right: none; border-top: none; border-bottom: none; color: #c9c9c9; display: block; width: 120px; }
+.widget_seatosun_newsletter_widget span {color: #eec673; }
+.widget_seatosun_newsletter_widget input[type="submit"] { background: url(../images/newsletter_submit.png) no-repeat center; border: none; text-align: center; }
+
+
+.widget_seatosun_social_widget {background: url(../images/comm_bg.png) no-repeat center; height: 133px; width: 172px;}
 
 .widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 180px;}
 .widget_seatosun_radio_widget .track-title { color: #eec673; font-size: 11px; padding: 0 0 0 7px; height: 17px; width: 170px; overflow: hidden; white-space: nowrap;}
@@ -407,4 +431,8 @@ a.themeauthor {
 	}
 
 }
+
+.gallery-precon  { margin-top: -20px; padding-top: 0; z-index: 0; }
+.gallery-precon .videogallery-con {padding-top: 0; z-index: 0; }
+
 
