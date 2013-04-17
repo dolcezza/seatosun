@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: Releases Page
+*/
+?>
 <?php get_header(); ?>
     
     <?php get_template_part('masthead', 'release-archive'); ?>
