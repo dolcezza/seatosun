@@ -1244,28 +1244,6 @@ class WordPressToolKitTheme {
         }
     }
     
-    public function get_image_from_url($url) {
-        $curl_enabled = $this->check_for_curl_support();
-        if (is_wp_error($curl_enabled)) {
-            return false;
-        }
-        
-        $headers[] = 'Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg';
-        $headers[] = 'Connection: Keep-Alive';
-        $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
-        $user_agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)';
-        $process = curl_init($url);
-        curl_setopt($process, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($process, CURLOPT_HEADER, 0);
-        curl_setopt($process, CURLOPT_USERAGENT, $user_agent);
-        curl_setopt($process, CURLOPT_TIMEOUT, 30);
-        curl_setopt($process, CURLOPT_RETURNTRANSFER, 1);
-        $return = $this->curl_exec_follow($process);
-        curl_close($process);
-              
-        return $return;
-    }
-    
     public function curl_exec_follow($ch, &$maxredirect = null) {
         $curl_enabled = $this->check_for_curl_support();
         if (is_wp_error($curl_enabled)) {
@@ -1276,6 +1254,7 @@ class WordPressToolKitTheme {
         if (ini_get('open_basedir') == '' && ini_get('safe_mode' == 'Off')) {
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, $mr > 0);
             curl_setopt($ch, CURLOPT_MAXREDIRS, $mr);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         } else {
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
             if ($mr > 0) {
@@ -1314,6 +1293,27 @@ class WordPressToolKitTheme {
             }
         }
         return curl_exec($ch);
+    }
+    
+    public function get_image_from_url($url) {
+        $curl_enabled = $this->check_for_curl_support();
+        if (is_wp_error($curl_enabled)) {
+            return false;
+        }
+        
+        $headers[] = 'Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg';
+        $headers[] = 'Connection: Keep-Alive';
+        $headers[] = 'Content-type: application/x-www-form-urlencoded;charset=UTF-8';
+        $user_agent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)';
+        $process = curl_init($url);
+        curl_setopt($process, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($process, CURLOPT_HEADER, 0);
+        curl_setopt($process, CURLOPT_USERAGENT, $user_agent);
+        curl_setopt($process, CURLOPT_TIMEOUT, 30);
+        $return = $this->curl_exec_follow($process);
+        curl_close($process);
+              
+        return $return;
     }
     
     public function cache_post_object($post_object = null) {
@@ -1590,46 +1590,54 @@ class SeaToSun_Releases_Widget extends WP_Widget {
 
         $title = apply_filters('widget_title', $instance['title']);
         $limit = $instance['limit'];
-
-        echo $before_widget;
-
-        if (!empty($title)) {
-            echo $before_title . $title . $after_title;
-        }
-
+        
         global $wp_theme;
         $wp_theme->cache_post_object();
         
         $posts = get_posts(array(
             'post_type' => 'seatosun_release',
-            'numberposts' => $limit
+            'numberposts' => $limit,
+            'meta_query' => array(
+                array(
+                    'key' => '_default_meta_show_in_widget',
+                    'value' => 'true'
+                ),
+            ),
         ));
         
-        global $seatosun_release_meta;
-        
-        foreach ($posts as $post) :
-            setup_postdata($post);
-            $meta = $seatosun_release_meta->the_meta($post->ID);
-            $wp_theme->log($meta);
-            ?>
-            <div class="release">
-                <?php if (has_post_thumbnail($post->ID)) : ?>
-                    <div class="release-image">
-                        <?php echo get_the_post_thumbnail($post->ID, 'releases-widget-thumbnail'); ?>
+        if (!empty($posts)) :
+            echo $before_widget;
+            
+            if (!empty($title)) {
+                echo $before_title . $title . $after_title;
+            }
+            
+            global $seatosun_release_meta;
+            
+            foreach ($posts as $post) :
+                setup_postdata($post);
+                $meta = $seatosun_release_meta->the_meta($post->ID);
+                $wp_theme->log($meta);
+                ?>
+                <div class="release">
+                    <?php if (has_post_thumbnail($post->ID)) : ?>
+                        <div class="release-image">
+                            <?php echo get_the_post_thumbnail($post->ID, 'releases-widget-thumbnail'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="release-info">
+                        <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
+                        <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
+                        <p class="year"><?php $seatosun_release_meta->the_value('year'); ?></p>
                     </div>
-                <?php endif; ?>
-                <div class="release-info">
-                    <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
-                    <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
-                    <p class="year"><?php $seatosun_release_meta->the_value('year'); ?></p>
                 </div>
-            </div>
-            <?php
-        endforeach;
-        
-        $wp_theme->restore_post_object();
-
-        echo $after_widget;
+                <?php
+            endforeach;
+            
+            $wp_theme->restore_post_object();
+            
+            echo $after_widget;
+        endif;
     }
 }
 
