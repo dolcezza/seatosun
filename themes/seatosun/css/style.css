@@ -1,3 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Cabin:400,500,600,700,400italic,500italic,600italic,700italic|Cabin+Condensed:400,500,600,700);
+
+/* font-family: 'Cabin', sans-serif;
+font-family: 'Cabin Condensed', sans-serif; */
+
 /* CSS reset */
 article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
@@ -61,7 +66,7 @@ a[href^='tel']{color:inherit;}
 /* Theme styling */
 /* @group Structural Customization */
 
-
+body { font-family: 'Cabin', sans-serif; }
 #header {
 	clear: both;
 }
@@ -171,7 +176,8 @@ a.themeauthor {
 
 #navigation {float: left;}
 #navigation ul {
-
+	font-family: 'Cabin', sans-serif;
+	text-transform: uppercase;
     position: relative;
     behavior: url("./wp-content/themes/skeleton/PIE.php");
 }
@@ -189,7 +195,6 @@ a.themeauthor {
 	padding: 10px 15px;
 	text-decoration: none;
 	display: block;
-	font-weight: bold;
 }
 
 /* Navbar Hover Links */
@@ -209,10 +214,8 @@ a.themeauthor {
 /* Navbar Active Links */
 
 #navigation ul li.active a {
-	color: #333;
-	background: #fff;
-	text-shadow: 1px 1px 0px #fff;
-	border-bottom: 1px solid #fff;
+	color: #eec673;
+	border-bottom: 1px solid #eec673;
 }
 
 
@@ -271,7 +274,7 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .widget_seatosun_releases_widget .release p { line-height: 14px; margin: 0; }
 .widget_seatosun_releases_widget .release .title { font-weight: bold; }
 
-.widget h2.widgettitle {color: #eec673; font-size: 12px; padding: 10px 0 0 34px;}
+.widget h2.widgettitle {color: #eec673; font-family: 'Cabin', sans-serif; font-size: 12px; padding: 10px 0 0 34px; text-transform: uppercase; }
 
 .widget_events {background: url(../images/calendar_bg.png) no-repeat top; height: 133px; width: 180px; margin-top: 10px; }
 .widget_events .eo-agenda-widget .agenda-nav
@@ -279,13 +282,19 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; }
 .widget_events ul, .widget_events ol { padding-left: 0; }
 
-.widget_seatosun_newsletter_widget {background: url(../images/newsletter_bg.png) no-repeat center; height: 172px; width: 180px; text-align: center;}
+.widget_seatosun_newsletter_widget {background: url(../images/newsletter_bg.png) no-repeat center; height: 72px; width: 172px; text-align: center;}
 .widget_seatosun_newsletter_widget input { background-color: #000; border-left: 1px solid #c9c9c9; border-right: none; border-top: none; border-bottom: none; color: #c9c9c9; display: block; width: 120px; }
 .widget_seatosun_newsletter_widget span {color: #eec673; }
 .widget_seatosun_newsletter_widget input[type="submit"] { background: url(../images/newsletter_submit.png) no-repeat center; border: none; text-align: center; }
 
 
 .widget_seatosun_social_widget {background: url(../images/comm_bg.png) no-repeat center; height: 133px; width: 172px;}
+.widget_seatosun_social_widget .social-network-link { float: left; padding: 0; margin: 7px 0 0 0;}
+.widget_seatosun_social_widget .facebook {background: url(../images/facebook.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .facebook:hover {background: url(../images/facebook_over.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .twitter {background: url(../images/twitter.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .twitter:hover {background: url(../images/twitter_over.png) no-repeat center; height: 38px; width: 36px;}
+
 
 .widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 180px;}
 .widget_seatosun_radio_widget .track-title { color: #eec673; font-size: 11px; padding: 0 0 0 7px; height: 17px; width: 170px; overflow: hidden; white-space: nowrap;}
