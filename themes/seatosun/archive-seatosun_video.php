@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: Releases Page
+Template Name: Videos Page
 */
 ?>
 <?php get_header(); ?>

@@ -51,6 +51,18 @@
     }
 }
 
+#page_template {
+	option {
+		&[value='onecolumn-page.php'],
+		&[value='page-forum-statistics.php'],
+		&[value='page-user-login.php'],
+		&[value='page-user-lost-pass.php'],
+		&[value='page-user-register.php'] {
+			display: none;
+		}
+	}
+}
+
 @wp-menu-image-url: "<?php echo $wp_theme->config->child_theme_url; ?>admin/images/";
 
 #menu-posts-seatosun_artist .wp-menu-image {
