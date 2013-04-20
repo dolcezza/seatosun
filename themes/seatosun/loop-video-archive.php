@@ -39,15 +39,33 @@ global $seatosun_video_meta;
                     $seatosun_video_meta->the_meta($post->ID);
                     $url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
                     $embed_url = $wp_theme->get_youtube_embed_url($url);
+                    $video_data = $wp_theme->get_youtube_video_data($url);
+
+                    $title = $seatosun_video_meta->get_the_value('title');
+                    if (!$title) {
+                        $title = $video_data ? $video_data->title : get_the_title();
+                    }
+                    
+                    if (has_post_thumbnail()) {
+                        $thumbnail = get_the_post_thumbnail($post->ID, 'videos-archive-thumbnail');
+                    } else {
+                        $thumbnail = $video_data->thumbnail->hqDefault;
+                        if (!$thumbnail) {
+                            $thumbnail = $video_data->thumbnail->sqDefault;
+                        }
+                        if ($thumbnail) {
+                            $thumbnail = '<img class="attachment-videos-archive-thumbnail wp-post-image" src="' . $thumbnail . '" alt="" />';
+                        }
+                    }
                     ?>
                     <div id="featured-video-<?php the_ID(); ?>" <?php post_class('featured-video'); ?> data-embed-url="<?php echo $embed_url; ?>">
-                        <?php if (has_post_thumbnail()) : ?>
+                        <?php if ($thumbnail) : ?>
                             <div class="featured-video-image">
-                                <?php the_post_thumbnail('videos-archive-thumbnail'); ?>
+                                <?php echo $thumbnail; ?>
                             </div>
                         <?php endif; ?>
                         <div class="featured-video-info">
-                            <p class="title"><?php the_title(); ?></p>
+                            <p class="title"><?php echo $title; ?></p>
                         </div>
                     </div><!-- #post-<?php the_ID(); ?> -->
                 <?php endforeach; ?>
@@ -69,17 +87,40 @@ global $seatosun_video_meta;
         	$seatosun_video_meta->the_meta();
         	$url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
             $embed_url = $wp_theme->get_youtube_embed_url($url);
+            $video_data = $wp_theme->get_youtube_video_data($url);
+            
+            $title = $seatosun_video_meta->get_the_value('title');
+            if (!$title) {
+                $title = $video_data ? $video_data->title : get_the_title();
+            }
+            
+            $description = $seatosun_video_meta->get_the_value('description');
+            if (!$description) {
+                $description = $video_data ? $video_data->description : get_the_content();
+            }
+            
+            if (has_post_thumbnail()) {
+                $thumbnail = get_the_post_thumbnail($post->ID, 'videos-archive-thumbnail');
+            } else {
+                $thumbnail = $video_data->thumbnail->hqDefault;
+                if (!$thumbnail) {
+                    $thumbnail = $video_data->thumbnail->sqDefault;
+                }
+                if ($thumbnail) {
+                    $thumbnail = '<img class="attachment-videos-archive-thumbnail wp-post-image" src="' . $thumbnail . '" alt="" />';
+                }
+            }
         	?>
         	<div id="post-<?php the_ID(); ?>" <?php post_class('playlist-item'); ?> data-embed-url="<?php echo $embed_url; ?>">
-        	    <?php if (has_post_thumbnail()) : ?>
+        	    <?php if ($thumbnail) : ?>
     				<div class="video-image">
-    					<?php the_post_thumbnail('videos-archive-thumbnail'); ?>
+    					<?php echo $thumbnail; ?>
     				</div>
     			<?php endif; ?>
     			<div class="video-info">
     			    <p class="num-videos"></p>
-    				<p class="title"><?php the_title(); ?></p>
-    				<p class="description"><?php the_content(); ?></p>
+    				<p class="title"><?php echo $title; ?></p>
+    				<p class="description"><?php echo wp_trim_words($description, 100); ?></p>
     			</div>
         	</div>
         	

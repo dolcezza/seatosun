@@ -313,6 +313,11 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 	cursor: pointer;
 }
 
+.template-archive-seatosun_video .seatosun_video .wp-post-image {
+	width: 292px;
+	height: auto;
+}
+
 /* @end */
 
 /* Contact Form 7 Styling */

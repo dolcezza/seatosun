@@ -1541,31 +1541,59 @@ class WordPressToolKitTheme {
         register_widget('SeaToSun_Store_Widget');
     }
     
-    public function get_youtube_embed_url($url) {
-        $embed_url = 'http://www.youtube.com/embed/';
+    public function get_youtube_url_type($url) {
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
-        $is_short_link_video = (strpos($url, 'youtu.be') !== false);
-        $is_normal_link_video = (isset($url_vars['v']));
-        $is_video = ($is_short_link_video || $is_normal_link_video);
-        $is_playlist = (isset($url_vars['list']));
-        if ($is_video) {
-            if ($is_short_link_video) {
+        $url_type = null;
+        if (strpos($url, 'youtu.be') !== false) {
+            $url_type = 'video_short_link';
+        } else if (isset($url_vars['v'])) {
+            $url_type = 'video';
+        } else if (isset($url_vars['list'])) {
+            $url_type = 'playlist';
+        }
+        
+        return $url_type;
+    }
+    
+    public function get_youtube_resource_id($url) {
+        $url_type = $this->get_youtube_url_type($url);
+        if (!$url_type) {
+            return false;
+        }
+        
+        $resource_id = null;
+        parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
+        
+        if ($url_type == 'video' || $url_type == 'video_short_link') {
+            if ($url_type == 'video_short_link') {
                 // This is a single video using a youtu.be short link
-                $video_id = strstr($url, 'youtu.be/');
-                $video_id = str_replace('youtu.be/', '', $video_id);
+                $resource_id = strstr($url, 'youtu.be/');
+                $resource_id = str_replace('youtu.be/', '', $resource_id);
             } else {
                 // This is a single video using a normal URL
-                $video_id = $url_vars['v'];
+                $resource_id = $url_vars['v'];
             }
-            if ($video_id) {
-                $embed_url .= $video_id;
-            } else {
-                return false;
-            }
-        } else if ($is_playlist) {
+        } else if ($url_type == 'playlist') {
             // This is a playlist
-            $playlist_id = $url_vars['list'];
-            $embed_url .= 'videoseries?list=' . $playlist_id;
+            $resource_id = $url_vars['list'];
+        }
+        
+        return $resource_id;
+    }
+    
+    public function get_youtube_embed_url($url) {
+        $embed_url = 'http://www.youtube.com/embed/';
+        $url_type = $this->get_youtube_url_type($url);
+        $resource_id = $this->get_youtube_resource_id($url);
+        
+        if (!$url_type || !$resource_id) {
+            return false;
+        }
+        
+        if ($url_type == 'video' || $url_type == 'video_short_link') {
+            $embed_url .= $resource_id;
+        } else if ($url_type == 'playlist') {
+            $embed_url .= 'videoseries?list=' . $resource_id;
         } else {
             return false;
         }
@@ -1591,6 +1619,29 @@ class WordPressToolKitTheme {
     
     public function youtube_embed_code($url) {
         echo $this->get_youtube_embed_code($url, $args = array());
+    }
+    
+    public function get_youtube_video_data($url){
+        $url_type = $this->get_youtube_url_type($url);
+        $resource_id = $this->get_youtube_resource_id($url);
+        $feed_name = null;
+        
+        if ($url_type == 'video' || $url_type == 'video_short_link') {
+            $feed_name = 'videos';
+        } else if ($url_type = 'playlist') {
+            $feed_name = 'playlists';
+        } else {
+            return false;
+        }
+        
+        $data = @file_get_contents('http://gdata.youtube.com/feeds/api/' . $feed_name . '/' . $resource_id . '?v=2&alt=jsonc');
+        if ($data === false) {
+            return false;
+        }
+        
+        $obj = json_decode($data);
+        
+        return $obj->data;
     }
 }
 
