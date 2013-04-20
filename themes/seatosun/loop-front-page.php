@@ -27,9 +27,14 @@ global $wp_theme;
             <?php foreach ($posts as $post) : ?>
                 <?php
                 setup_postdata($post);
+                $has_post_thumbnail = has_post_thumbnail($post->ID);
+                $additional_classes = 'featured-item';
+                if ($has_post_thumbnail) {
+                    $additional_classes .= ' has-post-thumbnail';
+                }
                 ?>
-                <div id="post-<?php the_ID(); ?>" <?php post_class('featured-item'); ?>>
-                    <?php if (has_post_thumbnail($post->ID)) : ?>
+                <div id="post-<?php the_ID(); ?>" <?php post_class($additional_classes); ?>>
+                    <?php if ($has_post_thumbnail) : ?>
                         <div class="entry-image-container">
                             <?php echo get_the_post_thumbnail($post->ID); ?>
                         </div>

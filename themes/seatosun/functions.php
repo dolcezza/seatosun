@@ -157,6 +157,7 @@ class WordPressToolKitTheme {
         add_image_size('releases-archive-thumbnail', 145, 145, true);
         add_image_size('releases-archive-featured-thumbnail', 250, 250, true);
         add_image_size('releases-widget-thumbnail', 64, 64, true);
+        add_image_size('videos-archive-thumbnail', 292, 180, true);
     }
     
     public function add_remove_hooks() {
