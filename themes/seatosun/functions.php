@@ -1548,11 +1548,25 @@ class WordPressToolKitTheme {
         ));
         $embed_url = 'http://www.youtube.com/embed/';
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
-        if (isset($url_vars['v'])) {
-            // This is a single video
-            $video_id = $url_vars['v'];
-            $embed_url .= $video_id;
-        } else if (isset($url_vars['list'])) {
+        $is_short_link_video = (strpos($url, 'youtu.be') !== false);
+        $is_normal_link_video = (isset($url_vars['v']));
+        $is_video = ($is_short_link_video || $is_normal_link_video);
+        $is_playlist = (isset($url_vars['list']));
+        if ($is_video) {
+            if ($is_short_link_video) {
+                // This is a single video using a youtu.be short link
+                $video_id = strstr($url, 'youtu.be/');
+                $video_id = str_replace('youtu.be/', '', $video_id);
+            } else {
+                // This is a single video using a normal URL
+                $video_id = $url_vars['v'];
+            }
+            if ($video_id) {
+                $embed_url .= $video_id;
+            } else {
+                return false;
+            }
+        } else if ($is_playlist) {
             // This is a playlist
             $playlist_id = $url_vars['list'];
             $embed_url .= 'videoseries?list=' . $playlist_id;
