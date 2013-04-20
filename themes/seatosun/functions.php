@@ -1537,6 +1537,7 @@ class WordPressToolKitTheme {
         register_widget('SeaToSun_Radio_Widget');
         register_widget('SeaToSun_Social_Widget');
         register_widget('SeaToSun_Newsletter_Widget');
+        register_widget('SeaToSun_Store_Widget');
     }
 }
 
@@ -1889,16 +1890,75 @@ class SeaToSun_Newsletter_Widget extends WP_Widget {
         
         echo $before_widget;
         
-        if (!empty($title)) {
-            echo $before_title . $title . $after_title;
-        }
-        
         ?>
         <form action="">
             <input type="email" class="email" placeholder="<?php echo $instance['placeholder']; ?>" />
             <span class="description"><?php echo $instance['description']; ?></span>
             <input type="submit" value="Submit" />
         </form>
+        <?php
+        
+        echo $after_widget;
+    }
+}
+
+class SeaToSun_Store_Widget extends WP_Widget {
+    public function __construct() {
+        parent::__construct(
+            'seatosun_store_widget',
+            'Sea to Sun Store',
+            array('description' => __('Store advertisement area', 'text_domain'))
+        );
+    }
+    
+    public function form($instance) {
+        // outputs the options form on admin
+        $defaults = array(
+            'title' => 'S2S Store',
+            'description' => 'Coming Soon',
+            'mailchimp_api_key' => '',
+            'mailchimp_list_id' => '',
+        );
+        $instance = wp_parse_args((array) $instance, $defaults);
+        ?>
+        <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
+        </p>
+        <p>
+            <label for="<?php echo $this->get_field_id('description'); ?>"><?php _e('Description:'); ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id('description'); ?>" name="<?php echo $this->get_field_name('description'); ?>" type="text" value="<?php echo esc_attr($instance['description']); ?>" />
+        </p>
+        <?php
+    }
+    
+    public function update($new_instance, $old_instance) {
+        // processes widget options to be saved
+        $instance = $old_instance;
+        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['description'] = strip_tags($new_instance['description']);
+        
+        return $instance;
+    }
+    
+    public function widget($args, $instance) {
+        // displays the widget on the front-end
+        extract($args);
+        extract($instance);
+        
+        echo $before_widget;
+        
+        ?>
+        <div class="widget-inner">
+            <?php
+            if (!empty($title)) {
+                echo $before_title . $title . $after_title;
+            }
+            ?>
+            <?php if (!empty($description)) : ?>
+                <p class="description"><?php echo $description; ?></p>
+            <?php endif; ?>
+            
         <?php
         
         echo $after_widget;
