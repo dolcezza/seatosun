@@ -1541,11 +1541,7 @@ class WordPressToolKitTheme {
         register_widget('SeaToSun_Store_Widget');
     }
     
-    public function get_youtube_embed_code($url, $args = array()) {
-        $args = wp_parse_args($args, array(
-            'width' => 580,
-            'height' => 326
-        ));
+    public function get_youtube_embed_url($url) {
         $embed_url = 'http://www.youtube.com/embed/';
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
         $is_short_link_video = (strpos($url, 'youtu.be') !== false);
@@ -1574,6 +1570,20 @@ class WordPressToolKitTheme {
             return false;
         }
         
+        return $embed_url;
+    }
+    
+    public function youtube_embed_url($url) {
+        echo $this->get_youtube_embed_url($url);
+    }
+    
+    public function get_youtube_embed_code($url, $args = array()) {
+        $args = wp_parse_args($args, array(
+            'width' => 580,
+            'height' => 326
+        ));
+        
+        $embed_url = $this->get_youtube_embed_url($url);
         $embed_code = '<iframe width="' . $args['width'] . '" height="' . $args['height'] . '" src="' . $embed_url . '"frameborder="0" allowfullscreen></iframe>';
         
         return $embed_code;

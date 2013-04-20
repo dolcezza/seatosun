@@ -23,7 +23,7 @@ global $seatosun_video_meta;
     $url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
     ?>
     <?php if ($url) : ?>
-        <div class="video-player">
+        <div id="video-player-container">
             <?php
             $wp_theme->youtube_embed_code($url);
             ?>
@@ -37,15 +37,17 @@ global $seatosun_video_meta;
                     <?php
                     setup_postdata($post);
                     $seatosun_video_meta->the_meta($post->ID);
+                    $url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
+                    $embed_url = $wp_theme->get_youtube_embed_url($url);
                     ?>
-                    <div id="featured-video-<?php the_ID(); ?>" class="featured-video">
+                    <div id="featured-video-<?php the_ID(); ?>" <?php post_class('featured-video'); ?> data-embed-url="<?php echo $embed_url; ?>">
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="featured-video-image">
                                 <?php the_post_thumbnail('videos-archive-thumbnail'); ?>
                             </div>
                         <?php endif; ?>
                         <div class="featured-video-info">
-
+                            <p class="title"><?php the_title(); ?></p>
                         </div>
                     </div><!-- #post-<?php the_ID(); ?> -->
                 <?php endforeach; ?>
@@ -63,8 +65,12 @@ global $seatosun_video_meta;
         ));
         ?>
         <?php while (have_posts()) : the_post(); ?>
-        	
-        	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+        	<?php
+        	$seatosun_video_meta->the_meta();
+        	$url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
+            $embed_url = $wp_theme->get_youtube_embed_url($url);
+        	?>
+        	<div id="post-<?php the_ID(); ?>" <?php post_class('playlist-item'); ?> data-embed-url="<?php echo $embed_url; ?>">
         	    <?php if (has_post_thumbnail()) : ?>
     				<div class="video-image">
     					<?php the_post_thumbnail('videos-archive-thumbnail'); ?>
