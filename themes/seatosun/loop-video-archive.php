@@ -3,24 +3,34 @@ global $wp_theme;
 global $seatosun_video_meta;
 ?>
 <div class="content-container ten columns">
-    <div class="video-player">
-        
-    </div>
+    <?php
+    $args = array(
+        'post_type' => 'seatosun_video',
+        'posts_per_page' => 4,
+        'meta_query' => array(
+            array(
+                'key' => '_default_meta_is_featured',
+                'value' => 'true'
+            ),
+        ),
+    );
+    $posts = get_posts($args);
+    ?>
+    <?php
+    $post = $posts[0];
+    setup_postdata($post);
+    $seatosun_video_meta->the_meta($post->ID);
+    $url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
+    ?>
+    <?php if ($url) : ?>
+        <div class="video-player">
+            <?php
+            $wp_theme->youtube_embed_code($url);
+            ?>
+        </div>
+    <?php endif; ?>
     <div class="featured-videos">
         <h3>Featured Videos</h3>
-        <?php
-        $args = array(
-            'post_type' => 'seatosun_video',
-            'posts_per_page' => 4,
-            'meta_query' => array(
-                array(
-                    'key' => '_default_meta_is_featured',
-                    'value' => 'true'
-                ),
-            ),
-        );
-        $posts = get_posts($args);
-        ?>
         <?php if (!empty($posts)) : ?>
             <div class="featured-videos">
                 <?php foreach ($posts as $post) : ?>

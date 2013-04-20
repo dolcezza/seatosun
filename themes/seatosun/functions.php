@@ -1540,6 +1540,34 @@ class WordPressToolKitTheme {
         register_widget('SeaToSun_Newsletter_Widget');
         register_widget('SeaToSun_Store_Widget');
     }
+    
+    public function get_youtube_embed_code($url, $args = array()) {
+        $args = wp_parse_args($args, array(
+            'width' => 580,
+            'height' => 326
+        ));
+        $embed_url = 'http://www.youtube.com/embed/';
+        parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
+        if (isset($url_vars['v'])) {
+            // This is a single video
+            $video_id = $url_vars['v'];
+            $embed_url .= $video_id;
+        } else if (isset($url_vars['list'])) {
+            // This is a playlist
+            $playlist_id = $url_vars['list'];
+            $embed_url .= 'videoseries?list=' . $playlist_id;
+        } else {
+            return false;
+        }
+        
+        $embed_code = '<iframe width="' . $args['width'] . '" height="' . $args['height'] . '" src="' . $embed_url . '"frameborder="0" allowfullscreen></iframe>';
+        
+        return $embed_code;
+    }
+    
+    public function youtube_embed_code($url) {
+        echo $this->get_youtube_embed_code($url, $args = array());
+    }
 }
 
 /**
@@ -1618,8 +1646,7 @@ class SeaToSun_Releases_Widget extends WP_Widget {
             
             foreach ($posts as $post) :
                 setup_postdata($post);
-                $meta = $seatosun_release_meta->the_meta($post->ID);
-                $wp_theme->log($meta);
+                $seatosun_release_meta->the_meta($post->ID);
                 ?>
                 <div class="release">
                     <?php if (has_post_thumbnail($post->ID)) : ?>
