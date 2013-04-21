@@ -1621,7 +1621,7 @@ class WordPressToolKitTheme {
         echo $this->get_youtube_embed_code($url, $args = array());
     }
     
-    public function get_youtube_video_data($url){
+    public function get_youtube_video_or_playlist_data($url){
         $url_type = $this->get_youtube_url_type($url);
         $resource_id = $this->get_youtube_resource_id($url);
         $feed_name = null;
@@ -1642,6 +1642,59 @@ class WordPressToolKitTheme {
         $obj = json_decode($data);
         
         return $obj->data;
+    }
+    
+    public function get_youtube_data($url) {
+        global $seatosun_video_meta;
+        
+        $embed_url = $this->get_youtube_embed_url($url);
+        $video_data = $this->get_youtube_video_or_playlist_data($url);
+        
+        $title = $seatosun_video_meta->get_the_value('title');
+        if (!$title) {
+            $title = $video_data->title ? $video_data->title : get_the_title();
+        }
+        
+        $description = $seatosun_video_meta->get_the_value('description');
+        if (!$description) {
+            $description = $video_data->description ? $video_data->description : get_the_content();
+        }
+        
+        if (has_post_thumbnail()) {
+            $thumbnail = get_the_post_thumbnail($post->ID, 'videos-archive-thumbnail');
+        } else {
+            $thumbnail = $video_data->thumbnail->hqDefault;
+            if (!$thumbnail) {
+                $thumbnail = $video_data->thumbnail->sqDefault;
+            }
+            if ($thumbnail) {
+                $thumbnail = '<img class="attachment-videos-archive-thumbnail wp-post-image" src="' . $thumbnail . '" alt="" />';
+            }
+        }
+        
+        if ($video_data->items) {
+            $duration = $video_data->items[0]->video->duration;
+        } else {
+            $duration = $video_data->duration;
+        }
+        if ($duration) {
+            $timestamp_format = 'i:s';
+            if ($duration >= 3600) {
+                $timestamp_format = 'H:' . $timestamp_format;
+            }
+            
+            $duration = gmdate($timestamp_format, $duration);
+        }
+        
+        $return_data = array(
+            'title' => $title,
+            'description' => $description,
+            'thumbnail' => $thumbnail,
+            'duration' => $duration,
+            'embed_url' => $embed_url,
+        );
+        
+        return $return_data;
     }
 }
 
