@@ -32,7 +32,7 @@ global $seatosun_video_meta;
         </div>
     <?php endif; ?>
     <div class="featured-videos">
-        <h3>Featured Videos</h3>
+        <h3 class="section-title">Featured Videos</h3>
         <?php if (!empty($posts)) : ?>
             <div class="featured-videos">
                 <?php foreach ($posts as $post) : ?>
@@ -65,7 +65,7 @@ global $seatosun_video_meta;
         <?php endif; ?>
     </div>
     <div class="playlists">
-        <h3>Playlists</h3>
+        <h3 class="section-title">Playlists</h3>
         <?php
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         query_posts(array(
@@ -93,11 +93,13 @@ global $seatosun_video_meta;
                 			<?php endif; ?>
                 		</div>
                 	<?php endif; ?>
-                	<div class="video-info">
-                	    <p class="num-videos"></p>
+                	<aside class="video-info">
+                	    <?php if ($playlist_items) : ?>
+                	        <h4 class="num-videos"><?php echo count($playlist_items); ?> Videos</h4>
+                	    <?php endif; ?>
                 		<p class="title"><?php echo $title; ?></p>
                 		<p class="description"><?php echo wp_trim_words($description, 100); ?></p>
-                	</div>
+                	</aside>
                 </div>
             <?php endif; ?>
         	

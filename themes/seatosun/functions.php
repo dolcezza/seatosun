@@ -1647,6 +1647,7 @@ class WordPressToolKitTheme {
     public function get_youtube_data($url) {
         global $seatosun_video_meta;
         
+        $url_type = $this->get_youtube_url_type($url);
         $embed_url = $this->get_youtube_embed_url($url);
         $video_data = $this->get_youtube_video_or_playlist_data($url);
         
@@ -1686,12 +1687,18 @@ class WordPressToolKitTheme {
             $duration = gmdate($timestamp_format, $duration);
         }
         
+        if ($url_type == 'playlist') {
+            $playlist_items = $video_data->items;
+        }
+        
         $return_data = array(
             'title' => $title,
             'description' => $description,
             'thumbnail' => $thumbnail,
             'duration' => $duration,
             'embed_url' => $embed_url,
+            'url_type' => $url_type,
+            'playlist_items' => $playlist_items,
         );
         
         return $return_data;
