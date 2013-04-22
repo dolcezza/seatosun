@@ -1533,14 +1533,6 @@ class WordPressToolKitTheme {
         return false;
     }
     
-    public function register_widgets() {
-        register_widget('SeaToSun_Releases_Widget');
-        register_widget('SeaToSun_Radio_Widget');
-        register_widget('SeaToSun_Social_Widget');
-        register_widget('SeaToSun_Newsletter_Widget');
-        register_widget('SeaToSun_Store_Widget');
-    }
-    
     public function get_youtube_url_type($url) {
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
         $url_type = null;
@@ -1702,6 +1694,14 @@ class WordPressToolKitTheme {
         );
         
         return $return_data;
+    }
+    
+    public function register_widgets() {
+        register_widget('SeaToSun_Releases_Widget');
+        register_widget('SeaToSun_Radio_Widget');
+        register_widget('SeaToSun_Social_Widget');
+        // register_widget('SeaToSun_Newsletter_Widget');
+        register_widget('SeaToSun_Store_Widget');
     }
 }
 
@@ -2054,7 +2054,7 @@ class SeaToSun_Newsletter_Widget extends WP_Widget {
         echo $before_widget;
         
         ?>
-        <form action="">
+        <form action="/mailchimp-subscribe/">
             <input type="email" class="email" placeholder="<?php echo $instance['placeholder']; ?>" />
             <span class="description"><?php echo $instance['description']; ?></span>
             <input type="submit" value="Submit" />
