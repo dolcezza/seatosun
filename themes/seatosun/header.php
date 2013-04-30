@@ -106,5 +106,7 @@
                 <div id="search-bar-container" class="three columns omega">
                     <input type="search" class="search-input" placeholder="Search" />
                 </div>
+<?php echo do_shortcode('[videogallery id="home_gallery"]'); ?>
             </div>
+
         </header>

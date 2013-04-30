@@ -117,6 +117,7 @@ function eventorganiser_register_scripts(){
 }
 add_action( 'admin_init', 'eventorganiser_register_scripts', 5 );
 
+
  /**
  * The "Comprehensive Google Map Plugin" plug-in deregisters all other Google scripts registered
  * by other plug-ins causing these plug-ins not to function. This plug-in removes that behaviour.
