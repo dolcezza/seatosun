@@ -56,7 +56,7 @@ global $seatosun_video_meta;
                                 </div>
                             <?php endif; ?>
                             <div class="featured-video-info">
-                                <p class="title"><?php echo $title; ?></p>
+                                <p class="video-title"><?php echo $title; ?></p>
                             </div>
                         </div><!-- #post-<?php the_ID(); ?> -->
                     <?php endif; ?>
@@ -65,7 +65,6 @@ global $seatosun_video_meta;
         <?php endif; ?>
     </div>
     <div class="playlists">
-        <h3 class="section-title">Playlists</h3>
         <?php
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         query_posts(array(
@@ -85,22 +84,26 @@ global $seatosun_video_meta;
                 extract($youtube_data);
                 $container_class = $playlist_items ? 'playlist-container' : 'video-container';
                 ?>
+                <?php if ($playlist_items) : ?>
+                    <h3 class="section-title playlist-title"><?php echo $title; ?> (<?php echo count($playlist_items); ?> Videos)</h3>
+                <?php endif; ?>
                 <div id="post-<?php the_ID(); ?>" <?php post_class($container_class); ?> data-embed-url="<?php echo $embed_url; ?>">
                     <?php if ($playlist_items) : ?>
-                        <h4 class="playlist-title"><?php echo $title; ?> (<?php echo count($playlist_items); ?> Videos)</h4>
                         <?php foreach ($playlist_items as $video) : ?>
-                            <div class="playlist-video">
-                                <?php
-                                $video_data = $video->video;
-                                $title = $video_data->title;
-                                $thumbnail = $video_data->thumbnail->hqDefault;
-                                if (!$thumbnail) {
-                                    $thumbnail = $video_data->thumbnail->sqDefault;
-                                }
-                                if ($thumbnail) {
-                                    $thumbnail = '<img class="playlist-video-thumbnail" src="' . $thumbnail . '" alt="" />';
-                                }
-                                ?>
+                            <?php
+                            $video_data = $video->video;
+                            $title = $video_data->title;
+                            $player_url = $video_data->player->default;
+                            $embed_url = $wp_theme->get_youtube_embed_url($player_url);
+                            $thumbnail = $video_data->thumbnail->hqDefault;
+                            if (!$thumbnail) {
+                                $thumbnail = $video_data->thumbnail->sqDefault;
+                            }
+                            if ($thumbnail) {
+                                $thumbnail = '<img class="video-thumbnail wp-post-image" src="' . $thumbnail . '" alt="" />';
+                            }
+                            ?>
+                            <div class="playlist-video" data-embed-url="<?php echo $embed_url; ?>">
                                 <?php if ($thumbnail) : ?>
                                     <div class="playlist-video-thumbnail-container">
                                         <?php echo $thumbnail; ?>

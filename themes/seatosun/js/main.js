@@ -45,10 +45,10 @@
         // Videos page
         var videoEmbed = $('#video-player-container iframe');
         if (videoEmbed.length) {
-            $('.seatosun_video').find('.wp-post-image, .title').click(function(event) {
+            $('.seatosun_video').find('.wp-post-image, .video-title').click(function(event) {
                 event.preventDefault();
                 var self = $(this);
-                var embedURL = self.closest('.seatosun_video').attr('data-embed-url');
+                var embedURL = self.closest('[data-embed-url]').attr('data-embed-url');
                 if (embedURL) {
                     var currentEmbedURL = videoEmbed.attr('src');
                     if (embedURL != currentEmbedURL) {

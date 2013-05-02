@@ -309,7 +309,7 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 /* Video Items */
 .template-archive-seatosun_video .seatosun_video .wp-post-image,
-.template-archive-seatosun_video .seatosun_video .title {
+.template-archive-seatosun_video .seatosun_video .video-title {
 	cursor: pointer;
 }
 
