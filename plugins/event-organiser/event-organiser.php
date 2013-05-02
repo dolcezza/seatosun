@@ -41,7 +41,11 @@ Domain Path: /languages
  * @name $eventorganiser_db_version
  */ 
 global $eventorganiser_db_version;
+<<<<<<< HEAD
 $eventorganiser_db_version = '2.0.2';
+=======
+$eventorganiser_db_version = 'Custom';
+>>>>>>> Releases / events changes
 
 
 add_action( 'after_setup_theme', '_eventorganiser_set_constants' );

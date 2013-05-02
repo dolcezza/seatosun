@@ -25,12 +25,24 @@ $posts = get_posts($args);
                 <?php if (has_post_thumbnail()) : ?>
                     <div class="featured-release-image">
                         <?php the_post_thumbnail('releases-archive-featured-thumbnail'); ?>
+                        <p class="tagline"><?php $seatosun_release_meta->the_value('tagline'); ?></p>
                     </div>
                 <?php endif; ?>
                 <div class="featured-release-info">
                     <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
                     <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
-                    <p class="year"><?php $seatosun_release_meta->the_value('year'); ?></p>
+                    <p class="release-date">
+                        <?php
+                        $year = $seatosun_release_meta->get_the_value('year');
+                        $month = $seatosun_release_meta->get_the_value('month');
+                        $day = $seatosun_release_meta->get_the_value('day');
+
+                         if ($month && $day) {
+                            echo "$month-$day-";
+                        }
+                        echo $year;
+                        ?>
+                    </p>
                 </div>
             </div><!-- #post-<?php the_ID(); ?> -->
         <?php endforeach; ?>

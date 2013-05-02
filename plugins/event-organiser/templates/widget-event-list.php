@@ -29,6 +29,8 @@ $time_format = get_option('time_format');
 $id = $eo_event_loop_args['id'];
 $classes = $eo_event_loop_args['class'];
 
+// Past events
+$past_events = array();
 ?>
 
 <?php if( $eo_event_loop->have_posts() ): ?>
@@ -44,12 +46,32 @@ $classes = $eo_event_loop_args['class'];
 				//For non-all-day events, include time format
 				$format = ( eo_is_all_day() ? $date_format : $date_format.' '.$time_format );
 			?>
-
-			<li class="<?php echo esc_attr(implode(' ',$eo_event_classes)); ?>" >
-				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php the_title(); ?></a> <?php echo __('on','eventorganiser') . ' '.eo_get_the_start($format); ?>
-			</li>
+			
+			<?php
+			$html  = '<li class="' . esc_attr(implode(' ', $eo_event_classes)) . '">';
+            $html .= '<a href="' . get_permalink(get_the_ID()) . '" title="' . the_title_attribute(array('echo' => false)) . '">' . get_the_title() .'</a> ' . __('on','eventorganiser') . ' ' . eo_get_the_start($format);
+            $html .= '</li>';
+			?>
+			
+			<?php if (in_array('eo-event-past', $eo_event_classes)) : ?>
+			    <?php
+			    $past_events[] = $html;
+			    ?>
+			<?php else : ?>
+                <?php
+                echo $html;
+                ?>
+            <?php endif; ?>
 
 		<?php endwhile; ?>
+		
+		<?php if (!empty($past_events)) : ?>
+    	    <ul class="past-events">
+    	        <?php foreach ($past_events as $event_html) : ?>
+    	            <?php echo $event_html; ?>
+    	        <?php endforeach; ?>
+            </ul>
+    	<?php endif; ?>
 
 	</ul>
 

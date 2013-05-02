@@ -51,8 +51,8 @@ global $seatosun_video_meta;
                                 <div class="featured-video-image">
                                     <?php echo $thumbnail; ?>
                                     <?php if ($duration) : ?>
-                        			    <span class="duration"><?php echo $duration; ?></span>
-                        			<?php endif; ?>
+                                        <span class="duration"><?php echo $duration; ?></span>
+                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                             <div class="featured-video-info">
@@ -75,9 +75,9 @@ global $seatosun_video_meta;
         ));
         ?>
         <?php while (have_posts()) : the_post(); ?>
-        	<?php
-        	$seatosun_video_meta->the_meta();
-        	$url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
+            <?php
+            $seatosun_video_meta->the_meta();
+            $url = $seatosun_video_meta->get_the_value('video_or_playlist_url');
             ?>
             <?php if ($url) : ?>
                 <?php
@@ -86,23 +86,23 @@ global $seatosun_video_meta;
                 ?>
                 <div id="post-<?php the_ID(); ?>" <?php post_class('playlist-item'); ?> data-embed-url="<?php echo $embed_url; ?>">
                     <?php if ($thumbnail) : ?>
-                		<div class="video-image">
-                			<?php echo $thumbnail; ?>
-                			<?php if ($duration) : ?>
-                			    <span class="duration"><?php echo $duration; ?></span>
-                			<?php endif; ?>
-                		</div>
-                	<?php endif; ?>
-                	<aside class="video-info">
-                	    <?php if ($playlist_items) : ?>
-                	        <h4 class="num-videos"><?php echo count($playlist_items); ?> Videos</h4>
-                	    <?php endif; ?>
-                		<p class="title"><?php echo $title; ?></p>
-                		<p class="description"><?php echo wp_trim_words($description, 100); ?></p>
-                	</aside>
+                        <div class="video-image">
+                            <?php echo $thumbnail; ?>
+                            <?php if ($duration) : ?>
+                                <span class="duration"><?php echo $duration; ?></span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <aside class="video-info">
+                        <?php if ($playlist_items) : ?>
+                            <h4 class="num-videos"><?php echo count($playlist_items); ?> Videos</h4>
+                        <?php endif; ?>
+                        <p class="title"><?php echo $title; ?></p>
+                        <p class="description"><?php echo wp_trim_words($description, 100); ?></p>
+                    </aside>
                 </div>
             <?php endif; ?>
-        	
+            
         <?php endwhile; ?>
     </div>
 </div><!-- .content-container -->
