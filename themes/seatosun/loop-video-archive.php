@@ -83,23 +83,48 @@ global $seatosun_video_meta;
                 <?php
                 $youtube_data = $wp_theme->get_youtube_data($url);
                 extract($youtube_data);
+                $container_class = $playlist_items ? 'playlist-container' : 'video-container';
                 ?>
-                <div id="post-<?php the_ID(); ?>" <?php post_class('playlist-item'); ?> data-embed-url="<?php echo $embed_url; ?>">
-                    <?php if ($thumbnail) : ?>
-                        <div class="video-image">
-                            <?php echo $thumbnail; ?>
-                            <?php if ($duration) : ?>
-                                <span class="duration"><?php echo $duration; ?></span>
-                            <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
-                    <aside class="video-info">
-                        <?php if ($playlist_items) : ?>
-                            <h4 class="num-videos"><?php echo count($playlist_items); ?> Videos</h4>
+                <div id="post-<?php the_ID(); ?>" <?php post_class($container_class); ?> data-embed-url="<?php echo $embed_url; ?>">
+                    <?php if ($playlist_items) : ?>
+                        <h4 class="playlist-title"><?php echo $title; ?> (<?php echo count($playlist_items); ?> Videos)</h4>
+                        <?php foreach ($playlist_items as $video) : ?>
+                            <div class="playlist-video">
+                                <?php
+                                $video_data = $video->video;
+                                $title = $video_data->title;
+                                $thumbnail = $video_data->thumbnail->hqDefault;
+                                if (!$thumbnail) {
+                                    $thumbnail = $video_data->thumbnail->sqDefault;
+                                }
+                                if ($thumbnail) {
+                                    $thumbnail = '<img class="playlist-video-thumbnail" src="' . $thumbnail . '" alt="" />';
+                                }
+                                ?>
+                                <?php if ($thumbnail) : ?>
+                                    <div class="playlist-video-thumbnail-container">
+                                        <?php echo $thumbnail; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($title) : ?>
+                                    <p class="video-title"><?php echo $title; ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <?php if ($thumbnail) : ?>
+                            <div class="video-image">
+                                <?php echo $thumbnail; ?>
+                                <?php if ($duration) : ?>
+                                    <span class="duration"><?php echo $duration; ?></span>
+                                <?php endif; ?>
+                            </div>
                         <?php endif; ?>
-                        <p class="title"><?php echo $title; ?></p>
-                        <p class="description"><?php echo wp_trim_words($description, 100); ?></p>
-                    </aside>
+                        <aside class="video-info">
+                            <p class="title"><?php echo $title; ?></p>
+                            <p class="description"><?php echo wp_trim_words($description, 100); ?></p>
+                        </aside>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
             
