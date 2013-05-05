@@ -69,6 +69,8 @@
             var playerState = 'paused';
             var playerIsMuted = false;
             var currentVolume = 100;
+            
+            // Radio Widget
             var playerContainer = $('#soundcloud-player-container');
             var trackTitleElem = playerContainer.find('.track-title');
             var trackDurationElem = playerContainer.find('.track-duration');

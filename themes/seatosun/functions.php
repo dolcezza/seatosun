@@ -1533,6 +1533,29 @@ class WordPressToolKitTheme {
         return false;
     }
     
+    public function get_soundcloud_data_from_url($url) {
+        if (!$url) {
+            return null;
+        }
+        
+        $client_id = $this->config->soundcloud_client_id;
+        $data_url = "http://api.soundcloud.com/resolve.json?url=$url&client_id=$client_id";
+        $process = curl_init($data_url);
+        $curl_options = array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_TIMEOUT => 30
+        );
+        curl_setopt_array($process, $curl_options);
+        $data = $this->curl_exec_follow($process);
+        curl_close($process);
+        
+        if ($data) {
+            $data = json_decode($data, true);
+        }
+        
+        return $data;
+    }
+    
     public function get_youtube_url_type($url) {
         parse_str(parse_url($url, PHP_URL_QUERY), $url_vars);
         $url_type = null;
@@ -1857,19 +1880,9 @@ class SeaToSun_Radio_Widget extends WP_Widget {
         
         // rest of widget output goes here
         $playlist_url = $instance['playlist_url'];
-        $client_id = $wp_theme->config->soundcloud_client_id;
-        $playlist_data_url = "http://api.soundcloud.com/resolve.json?url=$playlist_url&client_id=$client_id";
-        $process = curl_init($playlist_data_url);
-        $curl_options = array(
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_TIMEOUT => 30
-        );
-        curl_setopt_array($process, $curl_options);
-        $playlist_data = $wp_theme->curl_exec_follow($process);
-        curl_close($process);
+        $playlist_data = $wp_theme->get_soundcloud_data_from_url($playlist_url);
         
         if ($playlist_data) :
-            $playlist_data = json_decode($playlist_data, true);
             $tracks = $playlist_data['tracks'];
             if ($tracks) :
                 ?>

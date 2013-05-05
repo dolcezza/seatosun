@@ -29,7 +29,7 @@
             <label for="<?php $metabox->the_name(); ?>">Tagline</label>
         </td>
         <td>
-            <textarea name="<?php $metabox->the_name(); ?>" id="<?php $metabox->the_name(); ?>"><?php $metabox->the_value(); ?></textarea>
+            <input type="text" name="<?php $metabox->the_name(); ?>" id="<?php $metabox->the_name(); ?>" value="<?php $metabox->the_value(); ?>" />
         </td>
     </tr>
     <tr>
