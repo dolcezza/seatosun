@@ -67,6 +67,7 @@ a[href^='tel']{color:inherit;}
 /* @group Structural Customization */
 
 body { font-family: 'Cabin', sans-serif; }
+h3 { color: #808080; }
 #header {
 	clear: both;
 }
@@ -286,6 +287,7 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .widget_seatosun_newsletter_widget input { background-color: #000; border-left: 1px solid #c9c9c9; border-right: none; border-top: none; border-bottom: none; color: #c9c9c9; display: block; width: 120px; }
 .widget_seatosun_newsletter_widget span {color: #eec673; }
 .widget_seatosun_newsletter_widget input[type="submit"] { background: url(../images/newsletter_submit.png) no-repeat center; border: none; text-align: center; }
+.widget_seatosun_newsletter_widget #mc_signup_form { background-color: transparent; Border: none; }
 
 
 .widget_seatosun_social_widget {background: url(../images/comm_bg.png) no-repeat center; height: 133px; width: 172px;}
@@ -308,6 +310,9 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 /* @group Videos Page */
 
 /* Video Items */
+
+.playlist-video, .featured-video { float: left; width: 50%; }
+.video-title {color: #fff; margin: 0 5px 10px 0; }
 .template-archive-seatosun_video .seatosun_video .wp-post-image,
 .template-archive-seatosun_video .seatosun_video .video-title {
 	cursor: pointer;
