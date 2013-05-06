@@ -1,45 +1,31 @@
 ;(function($) {
+    // Fallback for browsers that don't support console.log
+    if (!window.console) {
+        window.console = {
+            log : function() {
+                
+            },
+            debug : function() {
+                
+            }
+        };
+    }
+    
+    // Get the size of a native JavaScript Object
+    if (!$.objectSize) {
+        $.objectSize = function(obj) {
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        };
+    }
+    
     $(function() {
-        // Add keyboard navigation support to nav menu
-        var currentMenuLink;
-        var retainOrRelease = 0;
-        
-        $('.sub-menu-container > a, .sub-menu a').focusin(function(event) {
-            retainOrRelease++;
-            
-            if (retainOrRelease == 1) {
-                currentMenuLink = $(event.target).closest('.sub-menu-container');
-                currentMenuLink.addClass('focus');
-            }
-        }).focusout(function(event) {
-            retainOrRelease--;
-            if (retainOrRelease == 0) {
-                currentMenuLink.removeClass('focus');
-            }
-        });
-        
         // Add placeholder support for non-HTML5 browsers
         if (!Modernizr.placeholder) {
             $('input[placeholder], textarea[placeholder]').placeholder();
-        }
-        
-        // Load TypeKit fonts
-        if (window.Typekit) {
-            try {
-                window.Typekit.load();
-            } catch(e) {
-                
-            }
-        }
-        
-        // Initialize ColorBox script
-        if ($.colorbox) {
-            $('.colorbox, .lightbox').each(function() {
-                var self = $(this);
-                var options = self.data('options') || {};
-                
-                self.colorbox(options);
-            });
         }
         
         // Videos page
@@ -60,184 +46,280 @@
         
         // Initialize SoundCloud Player
         if (SC) {
-            var currentTrackID;
-            var currentTrackInput;
-            var currentSoundObject;
-            var cachedTrackData = [];
-            var cachedSoundObjects = [];
-            var playerInitialized = false;
-            var playerState = 'paused';
-            var playerIsMuted = false;
-            var currentVolume = 100;
-            
-            // Radio Widget
-            var playerContainer = $('#soundcloud-player-container');
-            var trackTitleElem = playerContainer.find('.track-title');
-            var trackDurationElem = playerContainer.find('.track-duration');
-            var playPauseButton = playerContainer.find('.play-pause');
-            var previousButton = playerContainer.find('.previous');
-            var nextButton = playerContainer.find('.next');
-            var volumeButton = playerContainer.find('.volume');
-            var showHidePlaylistButton = playerContainer.find('.track-list');
-            var trackInputs = $('#soundcloud-track-id-list .track-id');
-            currentTrackInput = trackInputs.first().addClass('current');
-            currentTrackID = currentTrackInput.val();
-            
-            function formatTrackDuration(ms) {
-                var seconds = Math.floor(ms / 1000);
-                var minutes = Math.floor(seconds / 60);
-                if (minutes) {
-                    seconds -= minutes * 60;
-                    minutes = (minutes < 10 ? '0' + minutes : minutes);
-                } else {
-                    minutes = '00';
-                }
-                seconds = (seconds < 10 ? '0' + seconds : seconds);
-                return minutes + ":" + seconds;
-            }
-            
-            function updateCurrentSoundObject(sound) {
-                if (!cachedSoundObjects[currentTrackID]) {
-                    cachedSoundObjects[currentTrackID] = sound;
-                }
-                if (cachedSoundObjects[currentTrackID]) {
-                    currentSoundObject = cachedSoundObjects[currentTrackID];
-                }
-            }
-            
-            function updateCurrentTrackInfo() {
-                if (playerInitialized) {
-                    soundManager.stopAll();
-                }
-                currentTrackID = currentTrackInput.val();
-                if (!cachedTrackData[currentTrackID]) {
-                    SC.get("/tracks/" + currentTrackID, function(track, error){
-                        if (error) {
-                            console.log(error.message);
-                            return false;
+            var soundCloudPlayer = {
+                /* ----------------------------------------------------------
+                   Variables
+                   ---------------------------------------------------------- */
+                
+                // Internal variables
+                playerInitialized : false,
+                currentTrackID : null,
+                currentTrackIDList : null,
+                currentSoundObject : null,
+                cachedTrackData : [],
+                cachedSoundObjects : [],
+                firstTrackNumber : 0,
+                lastTrackNumber : 0,
+                currentTrackNumber : 0,
+                playerState : 'paused',
+                playerIsMuted : false,
+                currentVolume : 100,
+                
+                // Player elements
+                playerContainer : null,
+                trackTitleElem : null,
+                trackDurationElem : null,
+                playPauseButton : null,
+                previousButton : null,
+                nextButton : null,
+                volumeButton : null,
+                showHidePlaylistButton : null,
+                
+                /* ----------------------------------------------------------
+                   Functions
+                   ---------------------------------------------------------- */
+                
+                // Initialize the player
+                init : function() {
+                    // Set player elements
+                    this.playerContainer = $('#soundcloud-player-container');
+                    this.trackTitleElem = this.playerContainer.find('.track-title');
+                    this.trackDurationElem = this.playerContainer.find('.track-duration');
+                    this.playPauseButton = this.playerContainer.find('.play-pause');
+                    this.previousButton = this.playerContainer.find('.previous');
+                    this.nextButton = this.playerContainer.find('.next');
+                    this.volumeButton = this.playerContainer.find('.volume');
+                    this.showHidePlaylistButton = this.playerContainer.find('.track-list');
+                    
+                    // Set initial track
+                    this.updateCurrentTrackID();
+                    this.updateCurrentTrackInfo();
+                    
+                    // Add player event handlers
+                    this.previousButton.click(function(event) {
+                        event.preventDefault();
+                        
+                        soundCloudPlayer.playPreviousTrack();
+                    });
+
+                    this.nextButton.click(function(event) {
+                        event.preventDefault();
+                        
+                        soundCloudPlayer.playNextTrack();
+                    });
+
+                    this.playPauseButton.click(function(event) {
+                        event.preventDefault();
+                        
+                        if (!soundCloudPlayer.playerInitialized) {
+                            soundCloudPlayer.playerInitialized = true;
+                            soundCloudPlayer.playerState = 'playing';
+                            SC.stream('/tracks/' + soundCloudPlayer.currentTrackID, function(sound) {
+                                soundCloudPlayer.updateCurrentSoundObject(sound);
+                                soundCloudPlayer.playCurrentTrack();
+                            });
                         } else {
-                            cachedTrackData[currentTrackID] = track;
-                            updateTrack(track);
+                            switch (soundCloudPlayer.playerState) {
+                                case 'paused' :
+                                    soundCloudPlayer.playCurrentTrack();
+                                break;
+                                case 'playing' :
+                                    soundCloudPlayer.pauseCurrentTrack();
+                                break;
+                                default :
+                                    console.log('Invalid player state; only "paused" and "playing" are accepted. Check your code for spelling errors.');
+                                break;
+                            }
                         }
                     });
-                } else {
-                    var track = cachedTrackData[currentTrackID];
-                    updateTrack(track);
-                }
-            }
-            
-            function updateTrack(track) {
-                if (!track) {
-                    console.log('updateTrack :: Invalid or missing track object');
-                    return false;
-                } else {
-                    trackTitleElem.html(track.title);
-                    trackDurationElem.html(formatTrackDuration(track.duration));
-                    SC.stream('/tracks/' + currentTrackID, function(sound) {
-                        updateCurrentSoundObject(sound);
-                        if (playerState != 'paused') {
-                            currentSoundObject.play();
+
+                    this.volumeButton.click(function(event) {
+                        event.preventDefault();
+                        
+                        if (soundCloudPlayer.playerIsMuted) {
+                            soundCloudPlayer.playerIsMuted = false;
+                            soundCloudPlayer.volumeButton.removeClass('muted');
+                            soundCloudPlayer.currentSoundObject.unmute();
+                        } else {
+                            soundCloudPlayer.playerIsMuted = true;
+                            soundCloudPlayer.volumeButton.addClass('muted');
+                            soundCloudPlayer.currentSoundObject.mute();
                         }
                     });
-                }
-            }
-            
-            function playCurrentTrack() {
-                playerState = 'playing';
-                playPauseButton.removeClass('paused').addClass('playing');
-                if (playerIsMuted) {
-                    currentSoundObject.mute();
-                }
-                currentSoundObject.play();
-            }
-            
-            function pauseCurrentTrack() {
-                playerState = 'paused';
-                playPauseButton.removeClass('playing').addClass('paused');
-                currentSoundObject.pause();
-            }
-            
-            updateCurrentTrackInfo();
-            
-            previousButton.click(function(event) {
-                event.preventDefault();
-                
-                currentTrackInput = trackInputs.filter('.current');
-                var newTrackInput = currentTrackInput.prev();
-                
-                if (!newTrackInput.length) {
-                    newTrackInput = trackInputs.last();
-                }
-                
-                if (newTrackInput.length) {
-                    newTrackInput.addClass('current');
-                    currentTrackInput.removeClass('current');
-                    currentTrackInput = newTrackInput;
-                    
-                    updateCurrentTrackInfo();
-                }
-            });
-            
-            nextButton.click(function(event) {
-                event.preventDefault();
-                
-                currentTrackInput = trackInputs.filter('.current');
-                var newTrackInput = currentTrackInput.next();
-                
-                if (!newTrackInput.length) {
-                    newTrackInput = trackInputs.first();
-                }
-                
-                if (newTrackInput.length) {
-                    newTrackInput.addClass('current');
-                    currentTrackInput.removeClass('current');
-                    currentTrackInput = newTrackInput;
-                    
-                    updateCurrentTrackInfo();
-                }
-            });
-            
-            playPauseButton.click(function(event) {
-                event.preventDefault();
-                if (!playerInitialized) {
-                    playerInitialized = true;
-                    playerState = 'playing';
-                    SC.stream('/tracks/' + currentTrackID, function(sound) {
-                        updateCurrentSoundObject(sound);
-                        playCurrentTrack();
+
+                    this.showHidePlaylistButton.click(function(event) {
+                        event.preventDefault();
+                        
+                        soundCloudPlayer.showHidePlaylistButton.toggleClass('visible');
                     });
-                } else {
-                    switch (playerState) {
-                        case 'paused' :
-                            playCurrentTrack();
+                },
+                
+                // Set internal variables
+                updateCurrentSoundObject : function(sound) {
+                    if (!soundCloudPlayer.cachedSoundObjects[soundCloudPlayer.currentTrackID]) {
+                        soundCloudPlayer.cachedSoundObjects[soundCloudPlayer.currentTrackID] = sound;
+                    }
+                    if (soundCloudPlayer.cachedSoundObjects[soundCloudPlayer.currentTrackID]) {
+                        soundCloudPlayer.currentSoundObject = soundCloudPlayer.cachedSoundObjects[soundCloudPlayer.currentTrackID];
+                    }
+                },
+                
+                updateCurrentTrackIDList : function(idList) {
+                    if (!idList) {
+                        idList = soundCloudPlayer.playerContainer.attr('data-track-id-list');
+                    }
+                    if (idList) {
+                        if (typeof idList != 'object') {
+                            try {
+                                idList = $.parseJSON(idList);
+                                soundCloudPlayer.currentTrackIDList = idList;
+                                soundCloudPlayer.firstTrackNumber = 0;
+                                soundCloudPlayer.lastTrackNumber = $.objectSize(soundCloudPlayer.currentTrackIDList) - 1;
+                                soundCloudPlayer.currentTrackNumber = soundCloudPlayer.firstTrackNumber;
+                            } catch (error) {
+                                console.log(error);
+                            }
+                        }
+                    }
+                },
+                
+                updateCurrentTrackID : function(id) {
+                    if (!soundCloudPlayer.currentTrackIDList) {
+                        soundCloudPlayer.updateCurrentTrackIDList();
+                    }
+                    if (!id) {
+                        id = soundCloudPlayer.currentTrackIDList[soundCloudPlayer.currentTrackNumber];
+                    }
+                    if (id) {
+                        soundCloudPlayer.currentTrackID = id;
+                    }
+                },
+                
+                updateCurrentTrackNumber : function(trackNumber) {
+                    if (trackNumber != null) {
+                        soundCloudPlayer.currentTrackNumber = trackNumber;
+                    }
+                },
+                
+                updateCurrentTrackInfo : function() {
+                    if (soundCloudPlayer.playerInitialized) {
+                        soundManager.stopAll();
+                    }
+                    
+                    if (!soundCloudPlayer.currentTrackIDList) {
+                        soundCloudPlayer.updateCurrentTrackIDList();
+                    }
+                    
+                    if (!soundCloudPlayer.currentTrackID) {
+                        soundCloudPlayer.updateCurrentTrackID();
+                    }
+                    
+                    soundCloudPlayer.currentTrackID = soundCloudPlayer.currentTrackIDList[soundCloudPlayer.currentTrackNumber];
+                    
+                    if (!soundCloudPlayer.cachedTrackData[soundCloudPlayer.currentTrackID]) {
+                        SC.get("/tracks/" + soundCloudPlayer.currentTrackID, function(track, error){
+                            if (error) {
+                                console.log(error.message);
+                                return false;
+                            } else {
+                                soundCloudPlayer.cachedTrackData[soundCloudPlayer.currentTrackID] = track;
+                                soundCloudPlayer.updateTrack(track);
+                            }
+                        });
+                    } else {
+                        var track = soundCloudPlayer.cachedTrackData[soundCloudPlayer.currentTrackID];
+                        soundCloudPlayer.updateTrack(track);
+                    }
+                },
+                
+                updateTrack : function(track) {
+                    if (!track) {
+                        console.log('updateTrack :: Invalid or missing track object');
+                        return false;
+                    } else {
+                        soundCloudPlayer.trackTitleElem.html(track.title);
+                        soundCloudPlayer.trackDurationElem.html(soundCloudPlayer.formatTrackDuration(track.duration));
+                        SC.stream('/tracks/' + soundCloudPlayer.currentTrackID, function(sound) {
+                            soundCloudPlayer.updateCurrentSoundObject(sound);
+                            if (soundCloudPlayer.playerState != 'paused') {
+                                soundCloudPlayer.currentSoundObject.play();
+                            }
+                        });
+                    }
+                },
+                
+                playCurrentTrack : function() {
+                    soundCloudPlayer.playerState = 'playing';
+                    soundCloudPlayer.playPauseButton.removeClass('paused').addClass('playing');
+                    if (soundCloudPlayer.playerIsMuted) {
+                        soundCloudPlayer.currentSoundObject.mute();
+                    }
+                    soundCloudPlayer.currentSoundObject.play();
+                },
+                
+                pauseCurrentTrack : function() {
+                    soundCloudPlayer.playerState = 'paused';
+                    soundCloudPlayer.playPauseButton.removeClass('playing').addClass('paused');
+                    soundCloudPlayer.currentSoundObject.pause();
+                },
+                
+                playNextOrPreviousTrack : function(nextOrPrev) {
+                    var newTrackNumber;
+                    var newTrackID;
+                    
+                    switch (nextOrPrev) {
+                        case 'prev' :
+                        case 'previous' :
+                            newTrackNumber = soundCloudPlayer.currentTrackNumber - 1;
+                            newTrackID = soundCloudPlayer.currentTrackIDList[newTrackNumber];
+                            if (!newTrackID) {
+                                newTrackNumber = soundCloudPlayer.lastTrackNumber;
+                                newTrackID = soundCloudPlayer.currentTrackIDList[newTrackNumber];
+                            }
                         break;
-                        case 'playing' :
-                            pauseCurrentTrack();
-                        break;
+                        
+                        case 'next' :
                         default :
-                            if (window.console) console.log('Invalid player state; only "paused" and "playing" are accepted. Check your code for spelling errors.');
+                            newTrackNumber = soundCloudPlayer.currentTrackNumber + 1;
+                            newTrackID = soundCloudPlayer.currentTrackIDList[newTrackNumber];
+                            if (!newTrackID) {
+                                newTrackNumber = soundCloudPlayer.firstTrackNumber;
+                                newTrackID = soundCloudPlayer.currentTrackIDList[newTrackNumber];
+                            }
                         break;
                     }
-                }
-            });
+                    
+                    if (newTrackID) {
+                        console.log(newTrackNumber + ', ' + newTrackID);
+                        soundCloudPlayer.updateCurrentTrackNumber(newTrackNumber);
+                        soundCloudPlayer.updateCurrentTrackID(newTrackID);
+                        soundCloudPlayer.updateCurrentTrackInfo();
+                    }
+                },
+                
+                playNextTrack : function() {
+                    soundCloudPlayer.playNextOrPreviousTrack('next');
+                },
+                
+                playPreviousTrack : function() {
+                    this.playNextOrPreviousTrack('previous');
+                },
+                
+                formatTrackDuration : function(ms) {
+                    var seconds = Math.floor(ms / 1000);
+                    var minutes = Math.floor(seconds / 60);
+                    if (minutes) {
+                        seconds -= minutes * 60;
+                        minutes = (minutes < 10 ? '0' + minutes : minutes);
+                    } else {
+                        minutes = '00';
+                    }
+                    seconds = (seconds < 10 ? '0' + seconds : seconds);
+                    return minutes + ":" + seconds;
+                },
+            };
             
-            volumeButton.click(function(event) {
-                event.preventDefault();
-                if (playerIsMuted) {
-                    playerIsMuted = false;
-                    volumeButton.removeClass('muted');
-                    currentSoundObject.unmute();
-                } else {
-                    playerIsMuted = true;
-                    volumeButton.addClass('muted');
-                    currentSoundObject.mute();
-                }
-            });
-            
-            showHidePlaylistButton.click(function(event) {
-                event.preventDefault();
-                showHidePlaylistButton.toggleClass('visible');
-            });
+            soundCloudPlayer.init();
         }
     });
 })(jQuery);

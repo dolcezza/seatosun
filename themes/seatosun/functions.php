@@ -493,7 +493,7 @@ class WordPressToolKitTheme {
             $this->enqueue_style('js_plugins', $this->config->js_folder . 'plugins.css', array(), '1.3.19', 'all');
             
             // Custom scripts
-            $this->enqueue_script('main_js', $this->config->js_folder . 'main.min.js', array('modernizr', 'jquery'), 'auto', true);
+            $this->enqueue_script('main_js', $this->config->js_folder . 'main.js', array('modernizr', 'jquery'), 'auto', true);
         }
     }
     
@@ -1884,9 +1884,13 @@ class SeaToSun_Radio_Widget extends WP_Widget {
         
         if ($playlist_data) :
             $tracks = $playlist_data['tracks'];
-            if ($tracks) :
+            $track_ids = array();
+            foreach ($tracks as $track) {
+                $track_ids[] = $track['id'];
+            }
+            if ($track_ids) :
                 ?>
-                <div id="soundcloud-player-container">
+                <div id="soundcloud-player-container" data-track-id-list="<?php echo json_encode($track_ids); ?>">
                     <div class="track-info clearfix">
                         <span class="track-title"></span>
                         <span class="track-duration"></span>
