@@ -31,7 +31,7 @@ global $seatosun_video_meta;
             ?>
         </div>
     <?php endif; ?>
-    <div class="featured-videos">
+    <div class="featured-videos clearfix">
         <h3 class="section-title">Featured Videos</h3>
         <?php if (!empty($posts)) : ?>
             <div class="featured-videos">
@@ -46,7 +46,7 @@ global $seatosun_video_meta;
                         $youtube_data = $wp_theme->get_youtube_data($url);
                         extract($youtube_data);
                         ?>
-                        <div id="featured-video-<?php the_ID(); ?>" <?php post_class('featured-video'); ?> data-embed-url="<?php echo $embed_url; ?>">
+                        <div id="featured-video-<?php the_ID(); ?>" <?php post_class('featured-video clearfix'); ?> data-embed-url="<?php echo $embed_url; ?>">
                             <?php if ($thumbnail) : ?>
                                 <div class="featured-video-image">
                                     <?php echo $thumbnail; ?>
@@ -64,7 +64,7 @@ global $seatosun_video_meta;
             </div>
         <?php endif; ?>
     </div>
-    <div class="playlists">
+    <div class="playlists clearfix">
         <?php
         $paged = get_query_var('paged') ? get_query_var('paged') : 1;
         query_posts(array(

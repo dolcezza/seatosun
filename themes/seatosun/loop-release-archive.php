@@ -31,8 +31,10 @@ query_posts(array(
         $release_data = $wp_theme->get_soundcloud_data_from_url($release_url);
         $tracks = $release_data['tracks'];
         $track_id_list = array();
-        foreach ($tracks as $track) {
-            $track_id_list[] = $track['id'];
+        if (!empty($tracks)) {
+            foreach ($tracks as $track) {
+                $track_id_list[] = $track['id'];
+            }
         }
         ?>
         <?php if ($release_data) : ?>

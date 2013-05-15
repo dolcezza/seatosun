@@ -313,12 +313,28 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 .playlist-video, .featured-video { float: left; width: 50%; }
 .video-title {color: #fff; margin: 0 5px 10px 0; }
+
+.featured-video,
+.video-container {
+    width: 100%;
+}
+
+.featured-video-image,
+.featured-video-info,
+.video-image,
+.video-info {
+    float: left;
+    width: 50%;
+}
+
 .seatosun_video .wp-post-image,
 .seatosun_video .video-title {
 	cursor: pointer;
 }
 
 .seatosun_video .wp-post-image {
+    display: block;
+    max-width: 100%;
 	width: 292px;
 	height: auto;
 }

@@ -1769,7 +1769,12 @@ class SeaToSun_Releases_Widget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        if (is_archive() && get_post_type() == 'seatosun_release') {
+        global $wp_theme;
+        
+        // Check if we're on a Releases archive page
+        $is_releases_archive = (is_archive() && get_post_type() == 'seatosun_release');
+        $is_releases_page_template = ($wp_theme->get_page_template() == 'archive-seatosun_release');
+        if ($is_releases_archive || $is_releases_page_template) {
             return null;
         }
         
@@ -1804,14 +1809,27 @@ class SeaToSun_Releases_Widget extends WP_Widget {
             
             foreach ($posts as $post) :
                 setup_postdata($post);
-                $seatosun_release_meta->the_meta($post->ID);
+                $release_meta = $seatosun_release_meta->the_meta($post->ID);
+                $release_url = $seatosun_release_meta->get_the_value('track_or_playlist_url');
+                $release_data = $wp_theme->get_soundcloud_data_from_url($release_url);
+                $tracks = $release_data['tracks'];
+                $track_id_list = array();
+                if (!empty($tracks)) {
+                    foreach ($tracks as $track) {
+                        $track_id_list[] = $track['id'];
+                    }
+                }
                 ?>
-                <div class="release">
-                    <?php if (has_post_thumbnail($post->ID)) : ?>
-                        <div class="release-image">
+                <div class="release clearfix">
+                    <div class="release-image">
+                        <?php if (has_post_thumbnail($post->ID)) : ?>
                             <?php echo get_the_post_thumbnail($post->ID, 'releases-widget-thumbnail'); ?>
-                        </div>
-                    <?php endif; ?>
+                        <?php else : ?>
+                            <?php if (!empty($release_data['artwork_url'])) : ?>
+                                <img class="wp-post-image" src="<?php echo $release_data['artwork_url']; ?>" alt="" />
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
                     <div class="release-info">
                         <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
                         <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
