@@ -1884,13 +1884,13 @@ class SeaToSun_Radio_Widget extends WP_Widget {
         
         if ($playlist_data) :
             $tracks = $playlist_data['tracks'];
-            $track_ids = array();
+            $track_id_list = array();
             foreach ($tracks as $track) {
-                $track_ids[] = $track['id'];
+                $track_id_list[] = $track['id'];
             }
-            if ($track_ids) :
+            if ($track_id_list) :
                 ?>
-                <div id="soundcloud-player-container" data-track-id-list="<?php echo json_encode($track_ids); ?>">
+                <div id="soundcloud-player-container" data-track-id-list="<?php echo json_encode($track_id_list); ?>">
                     <div class="track-info clearfix">
                         <span class="track-title"></span>
                         <span class="track-duration"></span>

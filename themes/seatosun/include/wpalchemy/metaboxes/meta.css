@@ -52,6 +52,10 @@ table.custom-metabox input[type="checkbox"] {
 	margin-top: 4px;
 }
 
+table.custom-metabox select {
+	min-width: 120px;
+}
+
 table.custom-metabox .button {
 	display: inline-block;
 	text-align: center;
@@ -91,4 +95,9 @@ table.custom-metabox .media-upload input[type="text"] ~ .button {
     padding-top: 0;
     margin-top: 0;
     border-top: none;
+}
+
+.custom-metabox a[class*="docopy-"] {
+	display: inline-block;
+	margin-top: 10px;
 }

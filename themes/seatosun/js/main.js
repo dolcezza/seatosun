@@ -80,9 +80,29 @@
                    ---------------------------------------------------------- */
                 
                 // Initialize the player
-                init : function() {
+                init : function(playerContainerElement) {
+                    // Set player container element
+                    if (playerContainerElement) {
+                        this.playerContainer = playerContainerElement;
+                    } else {
+                        this.playerContainer = $('#soundcloud-player-container');
+                    }
+                    
+                    // Unbind any existing click events
+                    this.playerContainer.find('*').off('click.scPlayer');
+                    
+                    // Set config
+                    if (this.playerContainer.data('current-track-id-list')) {
+                        this.currentTrackIDList = this.playerContainer.data('current-track-id-list');
+                    }
+                    if (this.playerContainer.data('current-track-id')) {
+                        this.currentTrackID = this.playerContainer.data('current-track-id');
+                    }
+                    if (this.playerContainer.data('current-track-number')) {
+                        this.currentTrackNumber = this.playerContainer.data('current-track-number');
+                    }
+                    
                     // Set player elements
-                    this.playerContainer = $('#soundcloud-player-container');
                     this.trackTitleElem = this.playerContainer.find('.track-title');
                     this.trackDurationElem = this.playerContainer.find('.track-duration');
                     this.playPauseButton = this.playerContainer.find('.play-pause');
@@ -91,24 +111,29 @@
                     this.volumeButton = this.playerContainer.find('.volume');
                     this.showHidePlaylistButton = this.playerContainer.find('.track-list');
                     
+                    // Show player if it's hidden
+                    if (!this.playerContainer.is(':visible')) {
+                        this.playerContainer.fadeIn();
+                    }
+                    
                     // Set initial track
                     this.updateCurrentTrackID();
                     this.updateCurrentTrackInfo();
                     
                     // Add player event handlers
-                    this.previousButton.click(function(event) {
+                    this.previousButton.on('click.scPlayer', function(event) {
                         event.preventDefault();
                         
                         soundCloudPlayer.playPreviousTrack();
                     });
 
-                    this.nextButton.click(function(event) {
+                    this.nextButton.on('click.scPlayer', function(event) {
                         event.preventDefault();
                         
                         soundCloudPlayer.playNextTrack();
                     });
 
-                    this.playPauseButton.click(function(event) {
+                    this.playPauseButton.on('click.scPlayer', function(event) {
                         event.preventDefault();
                         
                         if (!soundCloudPlayer.playerInitialized) {
@@ -133,7 +158,7 @@
                         }
                     });
 
-                    this.volumeButton.click(function(event) {
+                    this.volumeButton.on('click.scPlayer', function(event) {
                         event.preventDefault();
                         
                         if (soundCloudPlayer.playerIsMuted) {
@@ -147,7 +172,7 @@
                         }
                     });
 
-                    this.showHidePlaylistButton.click(function(event) {
+                    this.showHidePlaylistButton.on('click.scPlayer', function(event) {
                         event.preventDefault();
                         
                         soundCloudPlayer.showHidePlaylistButton.toggleClass('visible');
@@ -166,7 +191,13 @@
                 
                 updateCurrentTrackIDList : function(idList) {
                     if (!idList) {
+                        idList = soundCloudPlayer.playerContainer.data('current-track-id-list');
+                    }
+                    if (!idList) {
                         idList = soundCloudPlayer.playerContainer.attr('data-track-id-list');
+                    }
+                    if (!idList) {
+                        idList = soundCloudPlayer.playerContainer.find('[data-track-id-list]').attr('data-track-id-list');
                     }
                     if (idList) {
                         if (typeof idList != 'object') {
@@ -176,6 +207,8 @@
                                 soundCloudPlayer.firstTrackNumber = 0;
                                 soundCloudPlayer.lastTrackNumber = $.objectSize(soundCloudPlayer.currentTrackIDList) - 1;
                                 soundCloudPlayer.currentTrackNumber = soundCloudPlayer.firstTrackNumber;
+                                
+                                soundCloudPlayer.playerContainer.data('current-track-id-list', idList).data('current-track-number', soundCloudPlayer.currentTrackNumber);
                             } catch (error) {
                                 console.log(error);
                             }
@@ -188,16 +221,21 @@
                         soundCloudPlayer.updateCurrentTrackIDList();
                     }
                     if (!id) {
+                        id = soundCloudPlayer.playerContainer.data('current-track-id');
+                    }
+                    if (!id) {
                         id = soundCloudPlayer.currentTrackIDList[soundCloudPlayer.currentTrackNumber];
                     }
                     if (id) {
                         soundCloudPlayer.currentTrackID = id;
+                        soundCloudPlayer.playerContainer.data('current-track-id', id);
                     }
                 },
                 
                 updateCurrentTrackNumber : function(trackNumber) {
                     if (trackNumber != null) {
                         soundCloudPlayer.currentTrackNumber = trackNumber;
+                        soundCloudPlayer.playerContainer.data('current-track-number', trackNumber);
                     }
                 },
                 
@@ -230,6 +268,8 @@
                         var track = soundCloudPlayer.cachedTrackData[soundCloudPlayer.currentTrackID];
                         soundCloudPlayer.updateTrack(track);
                     }
+                    
+                    console.log(soundCloudPlayer.playerContainer.data('current-track-id'));
                 },
                 
                 updateTrack : function(track) {
@@ -290,7 +330,6 @@
                     }
                     
                     if (newTrackID) {
-                        console.log(newTrackNumber + ', ' + newTrackID);
                         soundCloudPlayer.updateCurrentTrackNumber(newTrackNumber);
                         soundCloudPlayer.updateCurrentTrackID(newTrackID);
                         soundCloudPlayer.updateCurrentTrackInfo();
@@ -319,7 +358,34 @@
                 },
             };
             
-            soundCloudPlayer.init();
+            // Radio widget
+            var widgetPlayerContainer = $('#soundcloud-player-container');
+            soundCloudPlayer.init(widgetPlayerContainer);
+            
+            // Releases archive page
+            var releasesPlayerContainer = $('#releases-soundcloud-player-container');
+            if (releasesPlayerContainer.length) {
+                // Enable player-switching functionality
+                $('.seatosun_release').on('click.scPlayerInit', function(event) {
+                    event.preventDefault();
+                    var self = $(this);
+                    
+                    var trackIDList = self.attr('data-track-id-list');
+                    if (!trackIDList) {
+                        trackIDList = [self.attr('data-release-id')];
+                    }
+                    
+                   soundCloudPlayer.updateCurrentTrackIDList(trackIDList);
+                   soundCloudPlayer.init(releasesPlayerContainer); 
+                });
+                
+                $('#soundcloud-player-container .player-controls .play-pause').on('click.scPlayerInit', function(event) {
+                    event.preventDefault();
+                    var self = $(this);
+                    
+                    soundCloudPlayer.init(widgetPlayerContainer);
+                });
+            }
         }
     });
 })(jQuery);
@@ -328,64 +394,4 @@
 // Custom Modernizr Tests
 if (Modernizr) {
     Modernizr.addTest('placeholder', !!("placeholder" in document.createElement("input")));
-    Modernizr.addTest('lastchild', function () {
-        var hasLastChild,
-            rules = ['#modernizr-last-child li{display:block;width:100px;height:100px;}','#modernizr-last-child li:last-child{width:200px;}'],
-            head = document.getElementsByTagName('head')[0] || (function () {
-                return document.documentElement.appendChild(document.createElement('head'));
-            }()),
-            root = document.body || (function () {
-                return document.documentElement.appendChild(document.createElement('body'));
-            }()),
-            list = document.createElement('ul'),
-            firstChild = document.createElement('li'),
-            lastChild = document.createElement('li'),
-            style = document.createElement('style');
-            
-        style.type = "text/css";
-        if(style.styleSheet){ style.styleSheet.cssText = rules.join(''); } 
-        else {style.appendChild(document.createTextNode(rules.join(''))); }
-        head.appendChild(style);
-        
-        list.id = "modernizr-last-child";
-        list.appendChild(firstChild);
-        list.appendChild(lastChild);
-        root.appendChild(list);
-        hasLastChild = lastChild.offsetWidth > firstChild.offsetWidth;
-        
-        head.removeChild(style);
-        root.removeChild(list);
-        
-        return hasLastChild;
-    });
-    Modernizr.addTest('firstchild', function () {
-        var hasFirstChild,
-            rules = ['#modernizr-first-child li{display:block;width:100px;height:100px;}','#modernizr-first-child li:first-child{width:200px;}'],
-            head = document.getElementsByTagName('head')[0] || (function () {
-                return document.documentElement.appendChild(document.createElement('head'));
-            }()),
-            root = document.body || (function () {
-                return document.documentElement.appendChild(document.createElement('body'));
-            }()),
-            list = document.createElement('ul'),
-            firstChild = document.createElement('li'),
-            lastChild = document.createElement('li'),
-            style = document.createElement('style');
-            
-        style.type = "text/css";
-        if(style.styleSheet){ style.styleSheet.cssText = rules.join(''); } 
-        else {style.appendChild(document.createTextNode(rules.join(''))); }
-        head.appendChild(style);
-        
-        list.id = "modernizr-first-child";
-        list.appendChild(firstChild);
-        list.appendChild(lastChild);
-        root.appendChild(list);
-        hasFirstChild = firstChild.offsetWidth > lastChild.offsetWidth;
-        
-        head.removeChild(style);
-        root.removeChild(list);
-        
-        return hasFirstChild;
-    });
 }

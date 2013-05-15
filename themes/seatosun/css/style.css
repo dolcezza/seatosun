@@ -313,13 +313,28 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 .playlist-video, .featured-video { float: left; width: 50%; }
 .video-title {color: #fff; margin: 0 5px 10px 0; }
-.template-archive-seatosun_video .seatosun_video .wp-post-image,
-.template-archive-seatosun_video .seatosun_video .video-title {
+.seatosun_video .wp-post-image,
+.seatosun_video .video-title {
 	cursor: pointer;
 }
 
-.template-archive-seatosun_video .seatosun_video .wp-post-image {
+.seatosun_video .wp-post-image {
 	width: 292px;
+	height: auto;
+}
+
+/* @end */
+
+/* @group Releases Page */
+
+/* Release Items */
+#releases-soundcloud-player-container {
+    display: none;
+    margin-bottom: 20px;
+}
+.seatosun_release .release-image img {
+	display: block;
+	width: 250px;
 	height: auto;
 }
 

@@ -62,4 +62,31 @@
             <input type="text" name="<?php $metabox->the_name(); ?>" id="<?php $metabox->the_name(); ?>" value="<?php $metabox->the_value(); ?>" placeholder="Day" />
         </td>
     </tr>
+    <tr>
+        <td>
+            <label>Download URLs</label>
+        </td>
+        <td>
+            <?php while($metabox->have_fields_and_multi('download_links')): ?>
+        	    <?php $metabox->the_group_open(); ?>
+        	    
+        	    <?php $metabox->the_field('service_name') ?>
+        	    <select name="<?php $metabox->the_name(); ?>">
+        	        <option value="">Service</option>
+        	        <option value="itunes">iTunes</option>
+        	        <option value="beatport">BeatPort</option>
+    	        </select>
+    	        <br />
+    	        
+    	        <?php $metabox->the_field('link_url'); ?>
+                <input type="text" name="<?php $metabox->the_name(); ?>" id="<?php $metabox->the_name(); ?>" value="<?php $metabox->the_value(); ?>" placeholder="Link URL" />
+        	    
+        	    <a href="#" class="dodelete button">Remove Link</a>
+        	    
+        	    <?php $metabox->the_group_close(); ?>
+        	<?php endwhile; ?>
+        	
+        	<a href="#" class="docopy-download_links button">Add Link</a>
+        </td>
+    </tr>
 </table>
