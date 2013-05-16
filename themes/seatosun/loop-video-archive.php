@@ -48,7 +48,7 @@ global $seatosun_video_meta;
                         ?>
                         <div id="featured-video-<?php the_ID(); ?>" <?php post_class('featured-video clearfix'); ?> data-embed-url="<?php echo $embed_url; ?>">
                             <?php if ($thumbnail) : ?>
-                                <div class="featured-video-image">
+                                <div class="featured-video-image" data-overlayer="on">
                                     <?php echo $thumbnail; ?>
                                     <?php if ($duration) : ?>
                                         <span class="duration"><?php echo $duration; ?></span>
@@ -105,7 +105,7 @@ global $seatosun_video_meta;
                             ?>
                             <div class="playlist-video" data-embed-url="<?php echo $embed_url; ?>">
                                 <?php if ($thumbnail) : ?>
-                                    <div class="playlist-video-thumbnail-container">
+                                    <div class="playlist-video-thumbnail-container" data-overlayer="on">
                                         <?php echo $thumbnail; ?>
                                     </div>
                                 <?php endif; ?>
@@ -116,7 +116,7 @@ global $seatosun_video_meta;
                         <?php endforeach; ?>
                     <?php else : ?>
                         <?php if ($thumbnail) : ?>
-                            <div class="video-image">
+                            <div class="video-image" data-overlayer="on">
                                 <?php echo $thumbnail; ?>
                                 <?php if ($duration) : ?>
                                     <span class="duration"><?php echo $duration; ?></span>

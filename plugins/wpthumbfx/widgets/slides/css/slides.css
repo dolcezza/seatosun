@@ -1,0 +1,29 @@
+/* General
+----------------------------------------------------------------------------------------------------*/
+[data-slides],
+.slides { position: relative; overflow: hidden; }
+.slides  > *,
+[data-slides] > * { position: absolute; display: none; width: 100%; left: 0; top: 0; }
+.slides  > *:first-child,
+[data-slides]  > *:first-child { position: relative; display: block; float: left; }
+.slides img,
+[data-slides] img { max-width: 100%; display: block; }
+
+/* Pager/Navigation
+----------------------------------------------------------------------------------------------------*/
+
+.slides .slide-nav,
+.slides .slide-pager { display: block; position: absolute; top: 50%; margin-top: -15px; z-index: 2; }
+.slide-nav a { background: url(../images/overlay-ie.png) 0 0 repeat; background: rgba(0, 0, 0, 0.5); cursor: pointer; outline: medium none; padding: 5px; position: absolute; z-index: 999; -moz-border-radius: 3px; -webkit-border-radius: 3px; border-radius: 3px; display: block; }
+.slide-nav a:hover { background: #000 }
+.slide-nav a span { display: block; width: 20px; height: 20px; background: url(../images/sprite.png) 0 0 no-repeat; }
+.slide-nav a.prev { left: 10px }
+.slide-nav a.next { right: 10px }
+.slide-nav a.prev span { background-position: 0px -40px }
+.slide-nav a.next span { background-position: 0px -20px }
+.slides .slide-pager { top: auto; margin: 0; bottom: 0; text-align: center; }
+.slides .slide-pager a { text-indent: -9999px; display: inline-block; width: 13px; height: 13px; margin: 0 3px; background: url(../images/nav.png) 0 0 repeat; cursor: pointer; }
+.slides .slide-pager a:hover { background-position: 0 -13px }
+.slides .slide-pager a:active { background-position: 0 -26px }
+.slides .slide-pager a.active { background-position: 0 -39px }
+

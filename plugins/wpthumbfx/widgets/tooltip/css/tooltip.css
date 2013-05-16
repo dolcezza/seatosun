@@ -1,0 +1,27 @@
+/* Tooltips Style
+----------------------------------------------------------------------------------------------------*/
+
+#tip_holder { display: none; position: absolute; top: 0; left: 0; z-index: 99999; }
+#close-tip { background: url("../images/close-tip.png") no-repeat center center #000000; cursor: pointer; display: none; height: 12px; position: absolute; right: 0; top: 0; width: 12px; z-index: 1; -moz-border-radius: 14px; -webkit-border-radius: 14px; border-radius: 14px; }
+.tip-content { display: none !important }
+#tip_holder.tip_top { padding-bottom: 5px }
+#tip_holder.tip_bottom { padding-top: 5px }
+#tip_holder.tip_right { padding-left: 5px }
+#tip_holder.tip_left { padding-right: 5px }
+#tip_holder.tip_bottom #close-tip { top: 6px }
+#tip_holder.tip_left #close-tip { left: 2px }
+#tip_holder.tip_right #close-tip { right: -1px }
+#tip_content { color: #fff; text-shadow: 0 0 2px #000; padding: 5px 6px; background: url(../images/tooltip-bg.png) 0 0 repeat; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; position: relative; }
+#tip_content > *:first-child { margin-top: 0 }
+#tip_content > *:last-child { margin-bottom: 0 }
+#tip_arrow,
+#tip_arrow_inner { position: absolute; height: 12px; width: 12px; }
+#tip_holder.tip_top #tip_arrow { }
+#tip_holder.tip_bottom #tip_arrow { }
+#tip_holder.tip_right #tip_arrow { }
+#tip_holder.tip_left #tip_arrow { }
+#tip_holder.tip_top #tip_arrow_inner { background: url(../images/tooltip-arrow-top.png) 0 0 no-repeat }
+#tip_holder.tip_bottom #tip_arrow_inner { background: url(../images/tooltip-arrow-bottom.png) 0 0 no-repeat }
+#tip_holder.tip_right #tip_arrow_inner { background: url(../images/tooltip-arrow-right.png) 0 0 no-repeat }
+#tip_holder.tip_left #tip_arrow_inner { background: url(../images/tooltip-arrow-left.png) 0 0 no-repeat }
+

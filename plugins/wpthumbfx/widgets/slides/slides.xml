@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+    <settings>
+        <setting name="enable" label="Enable" type="radio" default="1" description="If disabled the slides JavaScript will not be loaded.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</setting>
+        <setting name="fx" label="Effect" type="list" default="fade" description="You can set the default effect.">
+			<option value="fade">Fade</option>
+			<option value="slide">Slide</option>
+		</setting>
+        <setting name="speed" label="Transition Speed (ms)" type="text" default="700" description="Transition duration in milliseconds." />
+        <setting name="pager" label="Create Pagination" type="radio" default="0" description="To enable slide pagination set this option to yes.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</setting>
+        <setting name="nav" label="Enable Navigation" type="radio" default="1" description="Enable the next and previous buttons">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</setting>
+		<setting name="selector" label="Selector" type="text" default="a[data-slides]" description="You can customize the default selector to activate the slides on other link elements." />
+    </settings>
+</widget>

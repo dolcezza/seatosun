@@ -38,7 +38,7 @@ query_posts(array(
         }
         ?>
         <?php if ($release_data) : ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-release-id="<?php echo $release_data['id']; ?>" data-track-id-list="<?php echo json_encode($track_id_list); ?>">
+            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-release-id="<?php echo $release_data['id']; ?>" data-track-id-list="<?php echo json_encode($track_id_list); ?>" data-overlayer="on" data-tooltip="on" >
                 <div class="release-image">
                     <?php if (has_post_thumbnail()) : ?>
                         <?php the_post_thumbnail('releases-archive-widget'); ?>
@@ -52,7 +52,7 @@ query_posts(array(
                     <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
                     <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>
                 </div>
-                <div class="release-hover-info">
+                <div class="release-hover-info tip-content">
                     <p class="tagline"><?php $seatosun_release_meta->the_value('tagline'); ?></p>
                     <p class="title"><?php $seatosun_release_meta->the_value('title'); ?></p>
                     <p class="artist"><?php $seatosun_release_meta->the_value('artist'); ?></p>

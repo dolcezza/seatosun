@@ -1,0 +1,24 @@
+/* General
+----------------------------------------------------------------------------------------------------*/
+.overlayer { display: inline-block; max-width: 100%; }
+.overlay { display: none }
+.overlayer .overlay { visibility: hidden }
+
+
+/* Default Style
+----------------------------------------------------------------------------------------------------*/
+.overlayer .overlay-default { background: url(../images/overlay-zoom.png) 50% 50% no-repeat; background-color: rgba(0,0,0,0.5); display: none; }
+.overlayer .overlay-default.play { background: url(../images/overlay-play.png) 50% 50% no-repeat; background-color: rgba(0,0,0,0.5); }
+.overlayer .overlay-default.link { background: url(../images/overlay-link.png) 50% 50% no-repeat; background-color: rgba(0,0,0,0.5); }
+
+/* Overlay Style
+----------------------------------------------------------------------------------------------------*/
+.overlayer .overlay { background: url(../images/overlay-ie.png) 0 0 repeat; background: none rgba(0,0,0,0.5); text-shadow: none; z-index: 99; display: none; }
+.overlayer .overlay,
+.overlayer .overlay a { color: #fff }
+.overlayer .overlay a { text-decoration: underline }
+.overlayer .overlay > div { padding: 10px }
+.overlayer .overlay.remove-padding > div { padding: 0 }
+.overlayer .overlay > div > *:first-child { margin-top: 0 }
+.overlayer .overlay > div > *:last-child { margin-bottom: 0 }
+

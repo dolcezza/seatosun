@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+    <settings>
+        <setting name="enable" label="Enable" type="radio" default="1" description="If disabled the Tooltip JavaScript will not be loaded.">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</setting>
+        <setting name="activation" label="Activation Method" type="list" default="hover" description="Select the default activation method for tooltips.">
+			<option value="hover">Hover</option>
+			<option value="click">Click</option>
+		</setting>
+        <setting name="position" label="Default Position" type="list" default="top" description="Select the default position for tooltips.">
+			<option value="top">Top</option>
+			<option value="right">Right</option>
+			<option value="bottom">Bottom</option>
+			<option value="left">Left</option>
+		</setting>
+        <setting name="gutter" label="Edge Offset (in px)" type="text" default="5" description="The amount of space between the tooltip and the originating element." />
+        <setting name="maxwidth" label="Maximum Width (in px)" type="text" default="220" description="Sets the maximum width of the toltips." />
+        <setting name="delay" label="Delay (in ms)" type="text" default="0" description="The delay before fading in tooltips onto the screen." />
+        <setting name="fadeIn" label="Fade in speed (in ms)" type="text" default="300" description="Fade in speed of the tooltips." />
+        <setting name="fadeOut" label="Fade out speed (in ms)" type="text" default="300" description="Fade out speed of the tooltips." />
+        <setting name="sticky" label="Sticky Tooltip" type="radio" default="0" description="If enabled all tooltips will be sticky by default.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</setting>
+        <setting name="selector" label="Selector" type="text" default="[data-tooltip]" description="You can customize the default selector to activate the tooltip on other elements." />
+    </settings>
+</widget>

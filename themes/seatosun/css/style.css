@@ -271,7 +271,8 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 .widget_seatosun_releases_widget {background: url(../images/releases_title.png) no-repeat top; width: 180px;}
 .widget_seatosun_releases_widget .release {background: url(../images/featuredrelease_bg.png) no-repeat top; height: 68px; width: 180px; color: #ffffff;}
-.release-image { float: left; margin: 0 5px 5px 2px; border: 1px solid #9a9a9a; }
+.release-image { float: left; margin: 0 5px 5px 2px; }
+.release-image img { border: 1px solid #9a9a9a; width: 60px; height: 60px; }
 .widget_seatosun_releases_widget .release p { line-height: 14px; margin: 0; }
 .widget_seatosun_releases_widget .release .title { font-weight: bold; }
 
@@ -348,10 +349,30 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
     display: none;
     margin-bottom: 20px;
 }
-.seatosun_release .release-image img {
+
+.content-container .seatosun_release {
+	float: left;
+	width: 150px;
+}
+
+.featured-releases  .release-image img {
 	display: block;
 	width: 250px;
 	height: auto;
+}
+
+.content-container  .seatosun_release .release-image img {
+	display: block;
+	width: 145px;
+	height: auto;
+}
+
+.seatosun_release .release-info p {
+	color: #fff;
+	line-height: 12px;
+}
+.seatosun_release .release-hover-info #tip-content {
+	background: url(../images/releases_tooltip.png) no-repeat center; height: 215px; width: 207px;
 }
 
 /* @end */
@@ -495,4 +516,15 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .gallery-precon  { margin-top: -20px; padding-top: 0; z-index: 0; }
 .gallery-precon .videogallery-con {padding-top: 0; z-index: 0; }
 
+
+.container .overlayer .overlay-default {
+background-image: url(../images/video_play.png);
+  background-attachment: scroll;
+  background-position: 50% 50%;
+  background-clip: border-box;
+  background-origin: padding-box;
+  background-size: auto auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
 

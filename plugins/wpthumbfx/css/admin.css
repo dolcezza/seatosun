@@ -1,0 +1,288 @@
+/*
+ * AtomicPress Administration Style Sheet
+ */
+
+/* Grid Clear
+----------------------------------------------------------------------------------------------------*/
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+/* System Check
+----------------------------------------------------------------------------------------------------*/
+
+#apress-systemcheck {
+    margin: 0 0 10px 0;
+    padding: 10px;
+	border-radius: 6px;
+    border: 1px solid #E6DB55;
+    background: #FFFFE0;
+}
+
+#apress-systemcheck h3 { margin-top: 0; }
+
+#apress-systemcheck ul {
+	list-style: none;
+	margin: 10px 0 0 0;
+	padding: 0;
+}
+
+#apress-systemcheck li { margin: 0; }
+
+
+/* Tabs Box
+----------------------------------------------------------------------------------------------------*/
+.tabs-box {
+	background: url("../images/tab_bg.png") repeat-y scroll 0 0 transparent;
+    border-radius: 8px 8px 8px 8px;
+    font-family: Arial,Helvetica,sans-serif;
+    position: relative;
+    width: 900px;
+	border: 1px solid #DDDDDD;	
+}
+
+.tabs-box:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.tabs-box {
+	display: inline-block;
+}
+
+/* Navigation */
+.tabs-box ul.nav {
+	border-radius:0;
+	float: left;
+	list-style: none outside none;
+	margin: 0;
+	overflow: hidden;
+	width: 180px;
+	z-index: 2;
+}
+
+.tabs-box ul.nav li {
+	border-bottom: 1px dashed #264B69;
+	display: block;
+	margin: 0;
+	padding: 10px 0;
+	cursor: pointer;
+}
+.tabs-box ul.nav li:first-child { border-radius: 8px 0 0 0 }
+.tabs-box ul.nav li:last-child { border: 0; }
+
+.tabs-box ul.nav li a {
+	background-image: url("../images/sprites.png");
+    background-position: 0px -64px;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 32px;
+    margin: 0 0 0 15px;
+    padding-left: 40px;
+    text-transform: uppercase;
+}
+
+.tabs-box ul.nav li:hover {
+}
+
+.tabs-box ul.nav li:hover a {
+}
+
+.tabs-box ul.nav li:active {
+	
+}
+
+.tabs-box ul.nav li:active a {
+}
+
+.tabs-box ul.nav li.active {
+	background:rgba(0,0,0,0.2);
+}
+
+.tabs-box ul.nav li.active a {
+}
+
+.tabs-box ul.nav li.version,
+.tabs-box ul.nav li.version:hover,
+.tabs-box ul.nav li.version:active {
+	display:none;
+}
+
+/* Content */
+.tabs-box ul.content,
+.tabs-box ul.properties {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.tabs-box ul.content {
+	font-size: 13px;
+	padding: 15px;
+	position: relative;
+	margin-left:180px;
+}
+
+.tabs-box ul.content a {
+	color: #CB2B50;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.tabs-box ul.content input[type='text'],
+.tabs-box ul.content input[type='password'],
+.tabs-box ul.content select,
+.tabs-box ul.content textarea {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #fff;
+    border: 1px solid #CFCFCF;
+    border-radius: 4px 4px 4px 4px;
+    color: #666666;
+    font-size: 12px;
+    height: 35px;
+    line-height: 35px;
+    padding: 8px;
+    width: 300px;
+}
+.tabs-box ul.content select {
+}
+
+.tabs-box ul.content input[type='text'].short,
+.tabs-box ul.content input[type='password'].short { width:70px; }
+
+.tabs-box ul.content textarea {
+	height: 150px;
+	width: 300px;
+	line-height:1;
+}
+
+.tabs-box ul.content input[type='text']:focus,
+.tabs-box ul.content input[type='password']:focus,
+.tabs-box ul.content select:focus,
+.tabs-box ul.content textarea:focus { 
+	background: #FFFFDD;
+	text-shadow: none;
+}
+
+/* Properties */
+.tabs-box ul.properties > li {
+	border-bottom: 1px dashed #DDDDDD;
+    line-height: 35px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px 0;
+}
+.tabs-box ul.properties > li:first-child { margin-top: 0; }
+.tabs-box ul.properties > li:last-child { border-bottom:0; padding-bottom:0; }
+.tabs-box ul.properties .label {
+	float: left;
+    line-height: 35px;
+    width: 200px;
+}
+
+.tabs-box ul.properties .field {
+	float: left;
+	font-size: 12px;
+	position: relative;
+}
+
+.tabs-box ul.properties .description {
+	clear: both;
+    color: #777777;
+    float: none;
+    font-family: georgia;
+    font-size: 11px;
+    font-style: italic;
+    margin: 0;
+}
+.tabs-box ul.properties .description span { }
+.tabs-box.small-screen ul.properties .description {
+	padding: 5px 0 0 0;
+	clear: both;
+}
+
+.tabs-box ul.properties > li.separator {
+	background: #EBEBEB;
+    border-bottom: 1px solid #D2D2D2;
+    border-top: 1px solid #D2D2D2;
+    color: #898989;
+    font-weight: bold;
+    height: 33px;
+    line-height: 34px;
+    margin: 15px -15px;
+    padding: 0;
+    text-indent: 15px;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+/* Pre + Code */
+
+.tabs-box table.list code { background: #EAEAEA; }
+.tabs-box ul.content .info code { color: #d50; }
+
+.tabs-box ul.content .info pre {
+	padding: 10px;
+	border: 1px solid #ddd;
+	background: #fafafa;
+	white-space: pre-wrap;
+}
+
+/* General
+----------------------------------------------------------------------------------------------------*/
+
+/* If Placeholder is not supported */
+#atomicpress .placeholder { color: #969696; }
+
+/* Save Button Spinner */
+#atom .saving span {
+	display: inline-block;
+	width: 20px;
+	height: 16px;
+	background: url("../images/loader.gif") 4px 0 no-repeat;
+	vertical-align: middle;
+}
+
+/* Options */
+#atomicpress div.option {
+	margin-top: 15px;
+	overflow: hidden;
+}
+#atomicpress div.option:first-child { margin-top: 0; }
+
+#atomicpress div.option h4 {
+	margin: 0 0 8px 0;
+	font-size: 12px;
+}
+
+#atomicpress .item div.option textarea,
+#atomicpress .item div.option input[type=text] { width: 100%; }
+#atomicpress .item div.option textarea { min-height: 120px; }
+#atomicpress .item div.option textarea.small { min-height: 50px; }
+
+/* Tabs Icon
+----------------------------------------------------------------------------------------------------*/
+.tabs-box ul.nav li.lightbox a { background-position:0 -352px; }
+.tabs-box ul.nav li.overlayer a { background-position: 0 -288px; }
+.tabs-box ul.nav li.slides a { background-position: 0 -381px; }
+.tabs-box ul.nav li.tooltip a { background-position: 0 -318px; }
+
+
+
+

@@ -1,0 +1,23 @@
+/*
+ * IE Style Sheet - Only loaded by Internet Explorer
+ */
+
+
+/* General
+----------------------------------------------------------------------------------------------------*/
+
+.apress-ie8 .overlayer img,
+.apress-ie8 a[data-lightbox] img { width: auto; }
+
+
+/* Spotlight
+----------------------------------------------------------------------------------------------------*/
+
+.apress-ie .overlayer .overlay-default,
+.apress-ie .overlayer .overlay { filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#77000000', endColorstr='#77000000'); }
+
+.apress-ie .overlayer .overlay-default {
+	background-image: url(../widgets/overlayer/images/overlay-zoom.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
