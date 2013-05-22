@@ -157,7 +157,7 @@ a.themeauthor {
 }
 
 /* Image Header */
-#header #site-title.graphic {float: left;}
+#header #site-title.graphic {position: relative; float: left; z-index: 1029;}
 #header #site-title.graphic a {
 	text-indent: -9999em;
 	display: inline-block;
@@ -263,10 +263,23 @@ a.themeauthor {
 /* @end */
 
 #search-bar-container {
-background: url(../images/bg_search.png) no-repeat top right; position: absolute;  top: 0; right: 0; width: 300px; height: 47px; text-align: right; z-index: 20; }
+background: url(../images/bg_search.png) no-repeat top right; position: absolute;  top: 0; right: 0; width: 300px; height: 48px; text-align: right; z-index: 20; }
 #search-bar-container input {
-	background-color: #000; color: #dedede; font-size: 12px; text-align: right; z-index: 25;
-}
+	display: block;
+    border: none;
+    border-radius: 20px;
+    padding: 3px 5px;
+    color: #333;
+    float: right;
+    -webkit-box-shadow:0 0 5px #666 inset; 
+   -moz-box-shadow:0 0 5px #666 inset; 
+   box-shadow:0 0 5px #666 inset; 
+   height:20px; 
+   line-height:20px;
+   margin-top: 15px; 
+   width:150px; 
+   text-indent:5px;      
+        }
 
 
 .widget_seatosun_releases_widget {background: url(../images/releases_title.png) no-repeat top; width: 180px;}
@@ -278,10 +291,10 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 .widget h2.widgettitle {color: #eec673; font-family: 'Cabin', sans-serif; font-size: 12px; padding: 10px 0 0 34px; text-transform: uppercase; }
 
-.widget_events {background: url(../images/calendar_bg.png) no-repeat top; height: 133px; width: 180px; margin-top: 10px; }
+.widget_events {background: url(../images/calendar_bg.png) no-repeat left top; height: 133px; width: 180px; margin-top: 10px; }
 .widget_events .eo-agenda-widget .agenda-nav
 { display: none; }
-.widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; }
+.widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; color: #eec673; font-weight: normal; }
 .widget_events ul, .widget_events ol { padding-left: 0; }
 
 .widget_seatosun_newsletter_widget {background: url(../images/newsletter_bg.png) no-repeat center; height: 72px; width: 172px; text-align: center;}
@@ -297,9 +310,15 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .widget_seatosun_social_widget .facebook:hover {background: url(../images/facebook_over.png) no-repeat center; height: 38px; width: 36px;}
 .widget_seatosun_social_widget .twitter {background: url(../images/twitter.png) no-repeat center; height: 38px; width: 36px;}
 .widget_seatosun_social_widget .twitter:hover {background: url(../images/twitter_over.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .soundcloud {background: url(../images/soundcloud.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .soundcloud:hover {background: url(../images/soundcloud_over.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .youtube {background: url(../images/youtube.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .youtube:hover {background: url(../images/youtube_over.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .instagram {background: url(../images/instagram.png) no-repeat center; height: 38px; width: 36px;}
+.widget_seatosun_social_widget .instagram:hover {background: url(../images/instagram_over.png) no-repeat center; height: 38px; width: 36px;}
 
 
-.widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 180px;}
+.widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 180px; overflow: hidden; }
 .widget_seatosun_radio_widget .track-title { color: #eec673; font-size: 11px; padding: 0 0 0 7px; height: 17px; width: 170px; overflow: hidden; white-space: nowrap;}
 .player-controls { padding: 0 0 0 5px; width:170px;}
 .player-controls .track-list {background: url(../images/radio_tracks.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
@@ -312,21 +331,26 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 /* Video Items */
 
-.playlist-video, .featured-video { float: left; width: 50%; }
-.video-title {color: #fff; margin: 0 5px 10px 0; }
+.playlist-video, .featured-video { float: left; width: 30%; padding: 0 5px; }
+.video-title {color: #fff; margin: -6px 5px 20px 5px; z-index: 100; }
 
-.featured-video,
-.video-container {
-    width: 100%;
+#video-player-container {
+	width: 100%;
+	text-align: center;
+}
+
+
+#video-player-container iframe {
+     margin: 0 auto;
 }
 
 .featured-video-image,
 .featured-video-info,
 .video-image,
 .video-info {
-    float: left;
-    width: 50%;
+    /* width: 40%; */
 }
+
 
 .seatosun_video .wp-post-image,
 .seatosun_video .video-title {
@@ -336,8 +360,9 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .seatosun_video .wp-post-image {
     display: block;
     max-width: 100%;
-	width: 292px;
+	width: 292px; 
 	height: auto;
+	margin-bottom: 0;
 }
 
 /* @end */
@@ -352,7 +377,8 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 
 .content-container .seatosun_release {
 	float: left;
-	width: 150px;
+	width: 145px;
+	padding: 0 5px;
 }
 
 .featured-releases  .release-image img {
@@ -370,6 +396,10 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .seatosun_release .release-info p {
 	color: #fff;
 	line-height: 12px;
+	font-size: 12px;
+}
+.release-info .artist {
+	font-weight: normal;
 }
 .seatosun_release .release-hover-info #tip-content {
 	background: url(../images/releases_tooltip.png) no-repeat center; height: 215px; width: 207px;
