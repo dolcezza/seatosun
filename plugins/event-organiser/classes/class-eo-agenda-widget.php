@@ -102,6 +102,20 @@ class EO_Events_Agenda_Widget extends WP_Widget{
 	echo '</ul>';//End dates
 	echo "</div>";
     	echo $after_widget;
+?>
+	<li id="eo_events_past_widget-2" class="widget widget_events"><h2 class="widgettitle">Past Events</h2>
+<div style="width:100%" id="eo_events_past_widget-2_container" class="eo-agenda-widget">	<div class="agenda-nav">
+		<span class="next button ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="">
+			<span class="ui-button-icon-primary ui-icon ui-icon-carat-1-e"></span><span class="ui-button-text"></span>
+		</span>
+		<span class="prev button ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" role="button" title="">
+			<span class="ui-button-icon-primary ui-icon ui-icon-carat-1-w"></span><span class="ui-button-text"></span>
+		</span>
+	</div>
+	<ul class="old_dates"></ul>
+</li>
+
+<?php
   }
 
 	function add_options_to_script() {

@@ -9,6 +9,21 @@ query_posts(array(
     'post_per_page' => 5
 ));
 ?>
+<script>
+var gunning_it=false;
+$(document).ready(function() {
+	$(".overlay-default").click(function() {
+		the_player=$("#releases-soundcloud-player-container");
+/*
+		boton=$(the_player).children(".play-pause");
+		boton.click(function() {
+			gunning_it=(this.hasClass("paused"));
+		});
+*/
+		gunning_it=true;		
+	});
+});
+</script>
 <div class="content-container ten columns">
     <div id="releases-soundcloud-player-container">
     	<div class="track-info clearfix">
@@ -38,7 +53,7 @@ query_posts(array(
         }
         ?>
         <?php if ($release_data) : ?>
-            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-release-id="<?php echo $release_data['id']; ?>" data-track-id-list="<?php echo json_encode($track_id_list); ?>" data-overlayer="on" data-tooltip="on" >
+            <div id="post-<?php the_ID(); ?>" <?php post_class(); ?> data-release-id="<?php echo $release_data['id']; ?>" data-track-id-list="<?php echo json_encode($track_id_list); ?>" data-overlayer="on" data-tooltip="on;sticky:1;position:right;" onmouseleave="setTimeout(function() {$('#tip_holder').hide()},5000);" onmouseenter="$('#tip_holder').show();">
                 <div class="release-image">
                     <?php if (has_post_thumbnail()) : ?>
                         <?php the_post_thumbnail('releases-archive-widget'); ?>

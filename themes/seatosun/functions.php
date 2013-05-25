@@ -155,7 +155,7 @@ class WordPressToolKitTheme {
         // Add support for post thumbnails
         add_theme_support('post-thumbnails');
         add_image_size('releases-archive-thumbnail', 145, 145, true);
-        add_image_size('releases-archive-featured-thumbnail', 250, 250, true);
+        add_image_size('releases-archive-featured-thumbnail', 290, 290, true);
         add_image_size('releases-widget-thumbnail', 64, 64, true);
         add_image_size('videos-archive-thumbnail', 292, 180, true);
     }
@@ -1909,8 +1909,8 @@ class SeaToSun_Radio_Widget extends WP_Widget {
             if ($track_id_list) :
                 ?>
                 <div id="soundcloud-player-container" data-track-id-list="<?php echo json_encode($track_id_list); ?>">
-                    <div class="track-info clearfix">
-                        <span class="track-title"></span>
+                    <div class="track-info clearfix" style="line-height:0.7;overflow:hidden;width:164px;margin-left:4px;">
+                        <span class="track-title" id="marquee"></span>
                         <span class="track-duration"></span>
                     </div>
                     <div class="player-controls clearfix">

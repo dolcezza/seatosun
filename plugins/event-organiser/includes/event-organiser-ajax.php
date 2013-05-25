@@ -446,17 +446,24 @@ function eventorganiser_widget_agenda() {
 		$query['order'] = ($query['direction'] <1? 'DESC' : 'ASC');
 
 		$key = 'eo_ag_'.md5(serialize($query)).get_locale();
-		$agenda = get_transient('eo_widget_agenda');
+		$agenda = null; //get_transient('eo_widget_agenda');
 		if( $agenda && is_array($agenda) && isset($agenda[$key]) ){
 			echo json_encode($agenda[$key]);
+var_dump($agenda);
 			exit;
 		}
-
 		if( 'day' == $query['mode'] ){		
 			//Day mode
 			$selectDates="SELECT DISTINCT StartDate FROM {$wpdb->eo_events}";
 			$whereDates = " WHERE {$wpdb->eo_events}.StartDate".( $query['order']=='ASC' ? " >= " : " <= ")."%s ";
+			if($_GET['past']==1)
+			{
+			$whereDates .= " AND {$wpdb->eo_events}.StartDate <= %s ";
+			}
+			else
+			{
 			$whereDates .= " AND {$wpdb->eo_events}.StartDate >= %s ";
+			}
 			$orderlimit = "ORDER BY  {$wpdb->eo_events}.StartDate {$query['order']} LIMIT 4";
 			$dates = $wpdb->get_col($wpdb->prepare($selectDates.$whereDates.$orderlimit, $query['date'],$today->format('Y-m-d')));
 

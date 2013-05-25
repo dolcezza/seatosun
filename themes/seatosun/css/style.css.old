@@ -67,7 +67,6 @@ a[href^='tel']{color:inherit;}
 /* @group Structural Customization */
 
 body { font-family: 'Cabin', sans-serif; }
-h3 { color: #808080; }
 #header {
 	clear: both;
 }
@@ -157,7 +156,7 @@ a.themeauthor {
 }
 
 /* Image Header */
-#header #site-title.graphic {position: relative; float: left; z-index: 1029;}
+#header #site-title.graphic {float: left;}
 #header #site-title.graphic a {
 	text-indent: -9999em;
 	display: inline-block;
@@ -259,59 +258,34 @@ a.themeauthor {
 	border-bottom: none;
 }
 
-#navigation .eModal { background: url(../images/bg_navcontact.png) no-repeat center; font-size: 11px; font-weight: bold;}
-
 
 /* @end */
 
 #search-bar-container {
-background: url(../images/bg_search.png) no-repeat top right; position: absolute;  top: 0; right: 0; width: 300px; height: 48px; text-align: right; z-index: 20; }
+background: url(../images/bg_search.png) no-repeat top right; position: absolute;  top: 0; right: 0; width: 300px; height: 47px; text-align: right; z-index: 20; }
 #search-bar-container input {
-	display: block;
-    border: none;
-    border-radius: 20px;
-    padding: 3px 5px;
-    color: #333;
-    float: right;
-    -webkit-box-shadow:0 0 5px #666 inset; 
-   -moz-box-shadow:0 0 5px #666 inset; 
-   box-shadow:0 0 5px #666 inset; 
-   height:20px; 
-   line-height:20px;
-   margin-top: 15px; 
-   width:150px; 
-   text-indent:5px;      
-        }
-#search-bar-container .searchbutton {
-	background: url(../image/search_button.png) no-repeat center; float: right; height: 24px; width: 24px;
+	background-color: #000; color: #dedede; font-size: 12px; text-align: right; z-index: 25;
 }
 
 
 .widget_seatosun_releases_widget {background: url(../images/releases_title.png) no-repeat top; width: 180px;}
 .widget_seatosun_releases_widget .release {background: url(../images/featuredrelease_bg.png) no-repeat top; height: 68px; width: 180px; color: #ffffff;}
-.release-image { float: left; margin: 0 5px 5px 2px; }
-.release-image img { border: 1px solid #9a9a9a; width: 60px; height: 60px; }
+.release-image { float: left; margin: 0 5px 5px 2px; border: 1px solid #9a9a9a; }
 .widget_seatosun_releases_widget .release p { line-height: 14px; margin: 0; }
 .widget_seatosun_releases_widget .release .title { font-weight: bold; }
 
 .widget h2.widgettitle {color: #eec673; font-family: 'Cabin', sans-serif; font-size: 12px; padding: 10px 0 0 34px; text-transform: uppercase; }
 
-.widget_events {background: url(../images/calendar_bg.png) no-repeat left top; width: 172px; margin-top: 10px; margin-bottom: 0;}
-#eo_events_past_widget-2 {background: url(../images/calendarpast_bg.png) no-repeat left top; height: 133px; width: 172px; margin-top: 0px; }
-#eo_events_past_widget-2 h2 { color: #fff; }
-#eo_events_past_widget-2, #eo_events_agenda_widget-2_container { background-color: #161b22; width: 170px; }
+.widget_events {background: url(../images/calendar_bg.png) no-repeat top; height: 133px; width: 180px; margin-top: 10px; }
 .widget_events .eo-agenda-widget .agenda-nav
 { display: none; }
-.widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; color: #eec673; font-weight: normal; }
+.widget_events .eo-agenda-widget ul.dates, .widget_events .eo-agenda-widget li.date { border: none; }
 .widget_events ul, .widget_events ol { padding-left: 0; }
 
 .widget_seatosun_newsletter_widget {background: url(../images/newsletter_bg.png) no-repeat center; height: 72px; width: 172px; text-align: center;}
-.widget_seatosun_newsletter_widget .mc-signup { text-align: center; width: 172px; }
-.widget_seatosun_newsletter_widget input { background-color: #000; border-left: 1px solid #c9c9c9; border-right: none; border-top: none; border-bottom: none; color: #c9c9c9; display: block; height: 16px; width: 120px; margin: 4px auto; line-height: 14px; }
+.widget_seatosun_newsletter_widget input { background-color: #000; border-left: 1px solid #c9c9c9; border-right: none; border-top: none; border-bottom: none; color: #c9c9c9; display: block; width: 120px; }
 .widget_seatosun_newsletter_widget span {color: #eec673; }
 .widget_seatosun_newsletter_widget input[type="submit"] { background: url(../images/newsletter_submit.png) no-repeat center; border: none; text-align: center; }
-.widget_seatosun_newsletter_widget #mc_signup_form { background-color: transparent; Border: none; }
-.mc_signup_submit .button { color: #000; font-family: 'Cabin Condensed', sans-serif; text-transform: uppercase; text-shadow: none; }
 
 
 .widget_seatosun_social_widget {background: url(../images/comm_bg.png) no-repeat center; height: 133px; width: 172px;}
@@ -320,148 +294,28 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .widget_seatosun_social_widget .facebook:hover {background: url(../images/facebook_over.png) no-repeat center; height: 38px; width: 36px;}
 .widget_seatosun_social_widget .twitter {background: url(../images/twitter.png) no-repeat center; height: 38px; width: 36px;}
 .widget_seatosun_social_widget .twitter:hover {background: url(../images/twitter_over.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .soundcloud {background: url(../images/soundcloud.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .soundcloud:hover {background: url(../images/soundcloud_over.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .youtube {background: url(../images/youtube.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .youtube:hover {background: url(../images/youtube_over.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .instagram {background: url(../images/instagram.png) no-repeat center; height: 38px; width: 36px;}
-.widget_seatosun_social_widget .instagram:hover {background: url(../images/instagram_over.png) no-repeat center; height: 38px; width: 36px;}
 
 
-.widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 172px; overflow: hidden; }
-.widget_seatosun_radio_widget .track-title { color: #eec673; font-size: 11px; padding: 0 0 0 7px; height: 17px; width: 160px; overflow: hidden; white-space: nowrap;}
+.widget_seatosun_radio_widget {background: url(../images/radio_bg.png) no-repeat center; height: 109px; width: 180px;}
+.widget_seatosun_radio_widget .track-title { color: #eec673; font-size: 11px; padding: 0 0 0 7px; height: 17px; width: 170px; overflow: hidden; white-space: nowrap;}
 .player-controls { padding: 0 0 0 5px; width:170px;}
 .player-controls .track-list {background: url(../images/radio_tracks.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
 .player-controls .previous {background: url(../images/radio_rw.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
 .player-controls .play-pause {background: url(../images/radio_play.png) no-repeat center; height: 36px; width: 36px; float: left; position: relative;  z-index: 99;}
-.player-controls .play-pause.playing {background: url(../images/radio_pause.png) no-repeat center;}
 .player-controls .next{background: url(../images/radio_ff.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
 .player-controls .volume{background: url(../images/radio_volume.png) no-repeat center; height: 36px; width: 33px; float: left; position: relative;  z-index: 99;}
 
 /* @group Videos Page */
 
 /* Video Items */
-
-.playlist-video, .featured-video { float: left; width: 30%; padding: 0 5px; }
-.video-title {color: #fff; margin: -6px 5px 20px 5px; z-index: 100; }
-
-#video-player-container {
-	width: 100%;
-	text-align: center;
-}
-
-
-#video-player-container iframe {
-     margin: 0 auto;
-}
-
-.featured-video-image,
-.featured-video-info,
-.video-image,
-.video-info {
-    /* width: 40%; */
-}
-
-
-.seatosun_video .wp-post-image,
-.seatosun_video .video-title {
+.template-archive-seatosun_video .seatosun_video .wp-post-image,
+.template-archive-seatosun_video .seatosun_video .title {
 	cursor: pointer;
 }
 
-.seatosun_video .wp-post-image {
-    display: block;
-    max-width: 100%;
-	width: 292px; 
+.template-archive-seatosun_video .seatosun_video .wp-post-image {
+	width: 292px;
 	height: auto;
-	margin-bottom: 0;
-}
-
-/* @end */
-
-/* @group Releases Page */
-
-/* Release Items */
-#releases-soundcloud-player-container {
-   
-    margin-bottom: 20px;
-}
-
-.featured-releases {
-	width: 100%;
-}
-
-.content-container .seatosun_release, .featured-releases .seatosun_release {
-	float: left;	
-	padding: 0;
-	text-align: center;
-}
-
-.featured-releases .seatosun_release {
-	width: 200px;
-	padding: 0 20px;
-}
-
-.featured-release-info {
-	width: 180px; 
-	
-}
-.featured-release-info .title {
-	color: #fff;
-	font-size: 16px;
-	font-weight: bold;
-}
-
-.featured-releases  .featured-release-image {
-	float: left;
-	width: 200px;
-}
-.featured-releases  .featured-release-image img {
-	display: block;
-	width: 200px;
-	height: auto;
-	border: 2px solid #eaa54b;
-}
-
-.content-container  .seatosun_release .release-image img {
-	display: block;
-	width: 142px;
-	height: auto;
-}
-
-.seatosun_release .release-info p {
-	color: #fff;
-	line-height: 12px;
-	font-size: 12px;
-	padding-left: 5px;
-	text-align: left;
-	width: 120px;
-}
-.release-info .artist {
-	font-weight: light;
-}
-.seatosun_release .release-hover-info #tip-content {
-	background: url(../images/releases_tooltip.png) no-repeat center; height: 215px; width: 207px;
-}
-
-.release-hover-info  {
-	color: #707070;
-}
-
-.seatosun_release .release-hover-info .title, .seatosun_release .release-hover-info .artist {
-	color: #000000;
-}
-
-.download-links-section {
-	background-color: #939393;
-	height: 50px;
-	padding: 3px;
-}
-.section-title { display: block; }
-.download-links-section .itunes {
-	background: url(../images/d_itunes.png) no-repeat center; height:32px; width: 32px; float: left;
-}
-.download-links-section .beatport {
-	background: url(../images/d_beatport.png) no-repeat center; height:32px; width: 32px; float: left;
 }
 
 /* @end */
@@ -606,33 +460,3 @@ background: url(../images/bg_search.png) no-repeat top right; position: absolute
 .gallery-precon .videogallery-con {padding-top: 0; z-index: 0; }
 
 
-.container .overlayer .overlay-default {
-background-image: url(../images/video_play.png);
-  background-attachment: scroll;
-  background-position: 50% 50%;
-  background-clip: border-box;
-  background-origin: padding-box;
-  background-size: auto auto;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-}
-
-.hidden{display:none;}
-
-.left.three.columns { 
-	margin-left: 0;
-	
-}
-.right.three.columns { 
-	margin-right: -5px;
-	margin-left: 0;	
-}
-.container .ten.columns { margin: 0; }
-
-.footer {
-background-color: #242424;
-	width: 100%;
-	padding: 10px;
-	margin: 10px 0;
-	text-align: right;
-}
